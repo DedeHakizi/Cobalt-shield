@@ -1,154 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Cobalt Shield Initiative</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cobalt Shield | Protecting Digital Legacy</title>
   <style>
-* {
-  box-sizing: border-box;
-}
-
-body { 
-  margin: 0;
-  padding: 0;
-  background: url('https://images.unsplash.com/photo-1510511459019-5dda7724fd87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80') no-repeat center center;
-  background-size: cover;
-  background-attachment: scroll;
-  color: #ffffff;
-  font-family: Arial, sans-serif;
-  text-align: center;
-}
-.overlay {
-  background-color: rgba(0, 0, 0, 0.75);
-  min-height: 100vh;
-  padding: 60px 15px;
-}
-
-h1 {
-  font-size: 8vw;
-  margin-bottom: 10px;
-}
-
-h2, h3 {
-  font-size: 6vw;
-  margin-bottom: 10px;
-}
-
-p {
-  font-size: 4.5vw;
-  margin-bottom: 20px;
-  max-width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.tagline {
-  font-size: 5vw;
-  color: #00c3ff;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-footer {
-  margin-top: 80px;
-  font-size: 3.5vw;
-  color: #cccccc;
-}
-
     body {
       margin: 0;
       padding: 0;
-      background: url('https://images.unsplash.com/photo-1510511459019-5dda7724fd87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80') no-repeat center center fixed;
-      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0a0f2c, #0f1c47);
       color: #ffffff;
-      font-family: Arial, sans-serif;
-      text-align: center;
     }
-    .overlay {
-      background-color: rgba(0, 0, 0, 0.75);
-      min-height: 100vh;
-      padding: 80px 20px;
-      box-sizing: border-box;
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 60px;
     }
-    h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
-    .tagline {
-      font-size: 22px;
-      color: #00c3ff;
+    .logo {
+      font-size: 24px;
       font-weight: bold;
+      color: #00c3ff;
+      letter-spacing: 1px;
+    }
+    nav a {
+      margin-left: 30px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      height: 90vh;
+      padding: 60px;
+    }
+    .hero h1 {
+      font-size: 52px;
+      line-height: 1.2;
       margin-bottom: 20px;
     }
-    p {
-      font-size: 18px;
-      margin-bottom: 40px;
+    .hero p {
+      font-size: 20px;
+      max-width: 600px;
+      margin-bottom: 30px;
+      color: #d1d1e0;
     }
-    footer {
-      margin-top: 120px;
-      font-size: 14px;
-      color: #cccccc;
+    .btn {
+      padding: 15px 30px;
+      background: #00c3ff;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-transform: uppercase;
     }
   </style>
 </head>
-<body> <div class="overlay">
-  <h1>Cobalt Shield Initiative</h1>
-  <p style="color: #00c3ff;">Protecting Youth. Powering Africa.</p>
-  <img src="mining-kid.png" alt="Protecting kids from mining exploitation" style="max-width: 60%; border-radius: 10px; margin-top: 20px;">
-  <p>Digital Safety · Ethical Tech · Legacy Learning</p>
-</div>
+<body>
 
-  <nav style="background-color: rgba(0,0,0,0.8); padding: 12px 20px; text-align: center; position: sticky; top: 0; z-index: 100;">
-  <a href="#home" style="color: #00c3ff; margin: 0 15px; text-decoration: none; font-weight: bold;">Home</a>
-  <a href="#mission" style="color: #ffffff; margin: 0 15px; text-decoration: none;">Mission</a>
-  <a href="#founder" style="color: #ffffff; margin: 0 15px; text-decoration: none;">Founder</a>
-  <a href="#contact" style="color: #ffffff; margin: 0 15px; text-decoration: none;">Contact</a>
-</nav> 
-  <div class="overlay">
-    <h1>Cobalt Shield Initiative</h1>
-    <p class="tagline">Protecting Youth. Powering Africa.</p>
-    <p>Digital Safety · Ethical Tech · Legacy Learning</p>
-    <!-- Mission Section -->
-<div style="margin-top: 60px;">
-  <h2>Our Mission</h2>
-  <p style="max-width: 600px; margin: 0 auto;">
-    Cobalt Shield exists to empower African youth through digital literacy, ethical technology, and awareness of online risks.
-    We’re building the future with privacy-first education, smart tools, and local empowerment.
-  </p>
-<div id="home" class="overlay">
-  <h1>Cobalt Shield Initiative</h1>
-  <p class="tagline">Protecting Youth. Powering Africa.</p>
-  <p>Digital Safety · Ethical Tech · Legacy Learning</p>
-</div>
-<div id="mission" style="margin-top: 60px;">
-  <h2>Our Mission</h2>
-  <p style="max-width: 600px; margin: 0 auto;">
-    Cobalt Shield exists to empower African youth...
-  </p>
-</div>
+  <header>
+    <div class="logo">Cobalt Shield</div>
+    <nav>
+      <a href="#">Mission</a>
+      <a href="#">Team</a>
+      <a href="#">Join</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
 
-<div id="founder" style="margin-top: 60px;">
-  <h3>A Word from the Founder</h3>
-  <p style="max-width: 600px; margin: 0 auto; font-style: italic;">
-    “I built Cobalt Shield to protect the next generation...”
-  </p>
-</div>
-
-<div id="contact" style="margin-top: 60px;">
-  <p><a href="mailto:dedehakiza@icloud.com" style="color: #00c3ff;">Email Us</a></p>
-  <p><a href="https://wa.me/306986761215" style="color: #00c3ff;">WhatsApp</a></p>
-</div>
-
-
-<!-- Founder Message -->
-<div style="margin-top: 60px;">
-  <h3>A Word from the Founder</h3>
-  <p style="max-width: 600px; margin: 0 auto; font-style: italic;">
-    “I built Cobalt Shield to protect the next generation from what I had to learn the hard way. This is not just tech — it’s legacy. Africa forward.”  
-    – Delphin Hakizimana
-  </p>
-</div>
-    <footer>
+  <section class="hero">
+    <h1>Digital Defense. Ethical Power.</h1>
+    <p>We protect Africa’s next generation with clean tech, transparent systems, and futureproof digital shields. Built for legacy. Made to evolve.</p>
+    <button class="btn">Join the Shield</button>
+  </section>    
+  <footer>
       © 2025 Cobalt Shield | Built by Delphin Hakizimana
     </footer>
   </div>
