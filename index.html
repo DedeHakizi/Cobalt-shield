@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,9 +10,13 @@
       scroll-behavior: smooth;
     }
 
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    body {
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(to right, #0a0f2c, #0f1c47);
       color: #ffffff;
@@ -23,47 +26,46 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 30px 60px;
+      padding: 20px 30px;
+      flex-wrap: wrap;
     }
 
     .logo {
       font-size: 24px;
       font-weight: bold;
       color: #00c3ff;
-      letter-spacing: 1px;
     }
 
     nav a {
-      margin-left: 30px;
+      margin-left: 20px;
       color: #ffffff;
       text-decoration: none;
       font-weight: 500;
     }
 
     .hero {
+      padding: 60px 30px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
-      height: 90vh;
-      padding: 60px;
+      min-height: 80vh;
     }
 
     .hero h1 {
-      font-size: 52px;
-      line-height: 1.2;
+      font-size: 40px;
       margin-bottom: 20px;
     }
 
     .hero p {
-      font-size: 20px;
+      font-size: 18px;
       max-width: 600px;
-      margin-bottom: 30px;
       color: #d1d1e0;
+      margin-bottom: 30px;
     }
 
     .btn {
-      padding: 15px 30px;
+      padding: 12px 24px;
       background: #00c3ff;
       color: #000;
       font-weight: bold;
@@ -73,36 +75,58 @@
       text-transform: uppercase;
     }
 
+    /* Mission Section */
     #mission {
-      padding: 100px 60px;
-      background: #111530;
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
+      padding: 80px 30px;
+      background-color: #111530;
       gap: 40px;
+      align-items: center;
+      justify-content: center;
     }
 
     #mission img {
       width: 100%;
+      max-width: 450px;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(0,195,255,0.3);
     }
 
+    #mission .text {
+      max-width: 500px;
+    }
+
     #mission h2 {
       color: #00c3ff;
-      font-size: 32px;
+      margin-bottom: 20px;
     }
 
     #mission p {
-      color: #d1d1e0;
       line-height: 1.6;
+      color: #d1d1e0;
+      margin-bottom: 20px;
     }
 
     footer {
       text-align: center;
-      padding: 40px;
+      padding: 40px 20px;
       background: #0a0f2c;
       color: #999;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 30px;
+      }
+      nav {
+        width: 100%;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
     }
   </style>
 </head>
@@ -125,20 +149,15 @@
     <button class="btn">Join the Shield</button>
   </section>
 
-  <!-- MISSION SECTION -->
+  <!-- Mission Section -->
   <section id="mission">
-    <!-- Image -->
-    <div style="flex:1; min-width:280px;">
-      <img src="images/founder.jpg" alt="Cobalt Shield Mission">
-    </div>
-
-    <!-- Text -->
-    <div style="flex:1; min-width:280px;">
+    <img src="https://www.cyberark.com/wp-content/uploads/2022/02/what-is-cyber-security-featured-image.jpg" alt="Cobalt Shield Mission Image">
+    <div class="text">
       <h2>Our Mission</h2>
       <p>
-        At Cobalt Shield, we protect Africa’s next generation from digital exploitation by promoting ethical technology, encrypted systems, and legacy-driven education.
+        At Cobalt Shield, our mission is to protect Africa’s youth through digital safety, data privacy, and ethical innovation. We’re not here to follow trends — we’re here to shape the future.
       </p>
-      <p style="color:#ffffff; font-weight:bold; margin-top:30px;">
+      <p style="color:#ffffff; font-weight:bold;">
         <em>“We don’t chase hype. We build systems that defend our people and evolve with purpose.”</em><br>
         — <strong>Delphin Hakizimana, Founder</strong>
       </p>
@@ -150,4 +169,4 @@
   </footer>
 
 </body>
-</html> 
+</html>
