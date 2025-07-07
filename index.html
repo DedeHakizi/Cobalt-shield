@@ -1,10 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Cobalt Shield | Protecting Digital Legacy</title>
+
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       padding: 0;
@@ -12,24 +18,28 @@
       background: linear-gradient(to right, #0a0f2c, #0f1c47);
       color: #ffffff;
     }
+
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 30px 60px;
     }
+
     .logo {
       font-size: 24px;
       font-weight: bold;
       color: #00c3ff;
       letter-spacing: 1px;
     }
+
     nav a {
       margin-left: 30px;
       color: #ffffff;
       text-decoration: none;
       font-weight: 500;
     }
+
     .hero {
       display: flex;
       flex-direction: column;
@@ -38,17 +48,20 @@
       height: 90vh;
       padding: 60px;
     }
+
     .hero h1 {
       font-size: 52px;
       line-height: 1.2;
       margin-bottom: 20px;
     }
+
     .hero p {
       font-size: 20px;
       max-width: 600px;
       margin-bottom: 30px;
       color: #d1d1e0;
     }
+
     .btn {
       padding: 15px 30px;
       background: #00c3ff;
@@ -59,86 +72,50 @@
       cursor: pointer;
       text-transform: uppercase;
     }
-  </style>
-</head>
-<body>
 
-  <header>
-    <div class="logo">Cobalt Shield</div>
-    <nav>
-      <a href="#">Mission</a> 
-      <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cobalt Shield | Protecting Digital Legacy</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #0a0f2c, #0f1c47);
-      color: #ffffff;
-    }
-    header {
+    #mission {
+      padding: 100px 60px;
+      background: #111530;
       display: flex;
-      justify-content: space-between;
+      flex-wrap: wrap;
       align-items: center;
-      padding: 30px 60px;
+      gap: 40px;
     }
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
+
+    #mission img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,195,255,0.3);
+    }
+
+    #mission h2 {
       color: #00c3ff;
-      letter-spacing: 1px;
+      font-size: 32px;
     }
-    nav a {
-      margin-left: 30px;
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .hero {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      height: 90vh;
-      padding: 60px;
-    }
-    .hero h1 {
-      font-size: 52px;
-      line-height: 1.2;
-      margin-bottom: 20px;
-    }
-    .hero p {
-      font-size: 20px;
-      max-width: 600px;
-      margin-bottom: 30px;
+
+    #mission p {
       color: #d1d1e0;
+      line-height: 1.6;
     }
-    .btn {
-      padding: 15px 30px;
-      background: #00c3ff;
-      color: #000;
-      font-weight: bold;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      text-transform: uppercase;
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      background: #0a0f2c;
+      color: #999;
     }
   </style>
 </head>
+
 <body>
 
   <header>
     <div class="logo">Cobalt Shield</div>
     <nav>
-      <a href="#">Mission</a>
-      <a href="#">Team</a>
-      <a href="#">Join</a>
-      <a href="#">Contact</a>
+      <a href="#mission">Mission</a>
+      <a href="#team">Team</a>
+      <a href="#join">Join</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
@@ -146,20 +123,31 @@
     <h1>Digital Defense. Ethical Power.</h1>
     <p>We protect Africa’s next generation with clean tech, transparent systems, and futureproof digital shields. Built for legacy. Made to evolve.</p>
     <button class="btn">Join the Shield</button>
-  </section>      <a href="#">Team</a>
-      <a href="#">Join</a>
-      <a href="#">Contact</a>
-    </nav>
-  </header>
+  </section>
 
-  <section class="hero">
-    <h1>Digital Defense. Ethical Power.</h1>
-    <p>We protect Africa’s next generation with clean tech, transparent systems, and futureproof digital shields. Built for legacy. Made to evolve.</p>
-    <button class="btn">Join the Shield</button>
-  </section>    
+  <!-- MISSION SECTION -->
+  <section id="mission">
+    <!-- Image -->
+    <div style="flex:1; min-width:280px;">
+      <img src="https://raw.githubusercontent.com/dedehakizi/Cobalt-shield/main/images/mission.jpg" alt="Cobalt Shield Mission">
+    </div>
+
+    <!-- Text -->
+    <div style="flex:1; min-width:280px;">
+      <h2>Our Mission</h2>
+      <p>
+        At Cobalt Shield, we protect Africa’s next generation from digital exploitation by promoting ethical technology, encrypted systems, and legacy-driven education.
+      </p>
+      <p style="color:#ffffff; font-weight:bold; margin-top:30px;">
+        <em>“We don’t chase hype. We build systems that defend our people and evolve with purpose.”</em><br>
+        — <strong>Delphin Hakizimana, Founder</strong>
+      </p>
+    </div>
+  </section>
+
   <footer>
-      © 2025 Cobalt Shield | Built by Delphin Hakizimana
-    </footer>
-  </div>
+    © 2025 Cobalt Shield | Built by Delphin H.
+  </footer>
+
 </body>
-</html>
+</html> 
