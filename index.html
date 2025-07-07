@@ -36,8 +36,14 @@
       color: #00c3ff;
     }
 
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
     nav a {
-      margin-left: 20px;
       color: #ffffff;
       text-decoration: none;
       font-weight: 500;
@@ -79,7 +85,7 @@
     #mission {
       display: flex;
       flex-wrap: wrap;
-      padding: 80px 30px;
+      padding: 60px 30px;
       background-color: #111530;
       gap: 40px;
       align-items: center;
@@ -88,7 +94,7 @@
 
     #mission img {
       width: 100%;
-      max-width: 450px;
+      max-width: 400px;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(0,195,255,0.3);
     }
@@ -116,16 +122,38 @@
     }
 
     @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        justify-content: flex-start;
+      }
+
       .hero h1 {
         font-size: 30px;
       }
-      nav {
-        width: 100%;
-        margin-top: 20px;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 15px;
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .btn {
+        font-size: 14px;
+      }
+
+      #mission {
+        flex-direction: column;
+        padding: 40px 20px;
+      }
+
+      #mission img {
+        max-width: 100%;
+      }
+
+      #mission .text {
+        max-width: 100%;
       }
     }
   </style>
@@ -149,7 +177,7 @@
     <button class="btn">Join the Shield</button>
   </section>
 
-  <!-- Mission Section -->
+  <!-- MISSION SECTION -->
   <section id="mission">
     <img src="https://www.cyberark.com/wp-content/uploads/2022/02/what-is-cyber-security-featured-image.jpg" alt="Cobalt Shield Mission Image">
     <div class="text">
