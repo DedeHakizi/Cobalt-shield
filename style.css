@@ -73,3 +73,32 @@ footer {
   color: #ccc;
   margin-top: 3rem;
 }
+#team, #contact {
+  background-color: #fff;
+  color: #111;
+  padding: 2rem;
+  margin-top: 2rem;
+  border-top: 2px solid #102A43;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+#team h3, #contact h3 {
+  color: #102A43;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+#team ul li {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+#contact a {
+  color: #0077cc;
+  text-decoration: none;
+}
+
+#contact a:hover {
+  text-decoration: underline;
+}
