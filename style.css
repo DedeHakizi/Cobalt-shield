@@ -6,30 +6,36 @@
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background-color: #f7f9fb;
-  color: #111;
+  background-color: #111;
+  color: #fff;
   line-height: 1.7;
-}
-
-.container {
-  max-width: 1000px;
-  margin: auto;
-  padding: 2rem;
+  margin: 0;
+  padding: 0;
 }
 
 header {
   background-color: #102A43;
   color: white;
-  padding: 2rem 0;
   text-align: center;
+  padding: 2rem 0;
 }
 
-header h1 {
-<link rel="stylesheet" href="style.css" />
+.nav-menu {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
 }
 
-header .tagline {
-  <link rel="stylesheet" href="style.css" />
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-menu a:hover {
+  color: #00ffcc;
 }
 
 nav ul {
