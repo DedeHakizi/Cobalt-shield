@@ -102,3 +102,16 @@ footer {
 #contact a:hover {
   text-decoration: underline;
 }
+.coming-soon {
+  margin-top: 0.5rem;
+  color: #00ffaa;
+  font-weight: bold;
+  text-align: center;
+  animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+  0% { text-shadow: 0 0 5px #00ffaa; }
+  50% { text-shadow: 0 0 20px #00ffaa; }
+  100% { text-shadow: 0 0 5px #00ffaa; }
+}
