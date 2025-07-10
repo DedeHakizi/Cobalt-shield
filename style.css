@@ -120,3 +120,68 @@ footer {
   50% { text-shadow: 0 0 20px #00ffaa; }
   100% { text-shadow: 0 0 5px #00ffaa; }
 }
+/* ========== Newsletter Section ========== */
+.newsletter-section {
+  background-color: #f9f9f9;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.newsletter-section h2 {
+  font-size: 28px;
+  margin-bottom: 40px;
+  font-weight: bold;
+  color: #222;
+}
+
+.newsletter-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.newsletter-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.05);
+  max-width: 400px;
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+.newsletter-card:hover {
+  transform: translateY(-5px);
+}
+
+.newsletter-card img {
+  width: 100%;
+  height: auto;
+}
+
+.newsletter-content {
+  padding: 20px;
+  text-align: left;
+}
+
+.newsletter-content h3 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  color: #1a1a1a;
+}
+
+.newsletter-content p {
+  font-size: 14px;
+  color: #555;
+}
+
+.status-badge {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 6px 12px;
+  background-color: #ffcc00;
+  color: #000;
+  font-weight: bold;
+  border-radius: 4px;
+  font-size: 13px;
+}
