@@ -196,3 +196,7 @@ footer {
   transition: all 0.3s ease-in-out;
   box-shadow: 0 0 15px #00ffaa;
 }
+.newsletter-link {
+  display: inline-block;
+  text-decoration: none;
+}
