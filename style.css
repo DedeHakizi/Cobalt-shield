@@ -269,7 +269,6 @@ nav a {
 .nav-menu li {
   margin: 10px 0;
 }
-
 .nav-menu a {
   color: #00f;
   text-decoration: none;
@@ -280,6 +279,26 @@ nav a {
 }
 
 /* Responsive — hide menu by default on small screens */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+
+  .nav-menu.open {
+    display: block;
+  }
+}
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  margin: 10px auto;
+}
+
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
