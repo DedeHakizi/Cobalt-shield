@@ -245,3 +245,51 @@ nav a {
     margin: 10px 0;
   }
 }
+/* Menu toggle style */
+.menu-toggle {
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+  display: none;
+  text-align: center;
+  margin: 10px auto;
+}
+
+/* Desktop nav */
+.nav-menu {
+  text-align: center;
+}
+
+.nav-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-menu li {
+  margin: 10px 0;
+}
+
+.nav-menu a {
+  color: #00f;
+  text-decoration: none;
+}
+
+.nav-menu a:hover {
+  color: yellow;
+}
+
+/* Responsive — hide menu by default on small screens */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+
+  .nav-menu.open {
+    display: block;
+  }
+}
