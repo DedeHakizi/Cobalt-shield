@@ -312,3 +312,27 @@ nav a {
     display: block;
   }
 }
+<style>
+.section {
+  max-width: 900px;
+  margin: auto;
+  padding: 30px 20px;
+  font-family: Arial, sans-serif;
+  color: white;
+  background-color: #000814;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.section h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #00b4d8;
+  border-bottom: 2px solid #00b4d8;
+  display: inline-block;
+}
+
+.section p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+</style>
