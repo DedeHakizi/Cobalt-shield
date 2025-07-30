@@ -1,99 +1,136 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="style.css">
-<header>
-  <h1>Cobalt Shield</h1>
-  <p>Protecting Youth. Powering Africa.</p>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cobalt Shield | Digital Safety & Innovation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cobalt Shield empowers African youth with ethical tech, digital safety, EV education, and innovation for a brighter future.">
+  <meta name="keywords" content="Cobalt Shield, digital safety, Africa, EV, ethical tech, smart systems, cybersecurity, innovation, youth empowerment, green tech">
+  <meta name="author" content="Delphin Hakizimana">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://cobalt-shield.com">
 
-  <div class="menu-toggle" id="menu-toggle">&#9776;</div> <!-- Burger Icon -->
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:title" content="Cobalt Shield | Digital Safety & Innovation">
+  <meta property="og:description" content="Empowering African youth through tech education, EV innovation, and digital safety.">
+  <meta property="og:image" content="https://cobalt-shield.com/images/preview.jpg">
+  <meta property="og:url" content="https://cobalt-shield.com">
+  <meta property="og:type" content="website">
 
-  <nav id="main-nav" class="nav-menu">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="mission.html">Mission</a></li>
-      <li><a href="team.html">Team</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="support.html">Support</a></li>
-    </ul>
-  </nav>
-</header>
-<script>
-  const toggle = document.getElementById('menu-toggle');
-  const nav = document.getElementById('main-nav');
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cobalt Shield | Digital Safety & Innovation">
+  <meta name="twitter:description" content="Empowering youth across Africa with tech, EV solutions, and digital safety.">
+  <meta name="twitter:image" content="https://cobalt-shield.com/images/preview.jpg">
 
-  toggle.addEventListener('click', () => {
-    nav.classList.toggle('open');
-  });
-</script>
-<main class="container">
-  <section class="hero">
-    <h2>Digital Protection for a New Generation</h2>
-    <p>We are building a system that educates, empowers, and protects youth across Africa with ethical tech, smart security, and future-focused leadership.</p>
-  </section>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
 
-  <section class id="vision">
-    <h3>Our Mission</h3>
-    <p>Cobalt Shield is more than a name — it's a legacy initiative. We stand for clean systems, transparency, youth empowerment, and responsible digital growth.</p>
-  </section>
-  
-  <section class id="newsletter-section">
-    <h2>Cobalt Shield Monthly — In Progress</h2>
-    <div class="newsletter-cards">
-      <div class="newsletter-card">
-        <a href="#" class="newsletter-link">
-          <img src="images/mining-kid.png" alt="Newsletter Preview" />
-        </a>
-        <div class="newsletter-content">
-          <h3>Field Voices — Rwanda Pilot</h3>
-          <p>We’re drafting our first story from the field — empowering youth through digital safety.</p>
-          <span class="status-badge">Coming Soon</span>
-        </div>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container header-flex">
+      <a href="index.html" class="logo" aria-label="Cobalt Shield Home">
+        <img src="images/favicon.png" alt="Cobalt Shield Logo" width="48" height="48">
+      </a>
+      <div>
+        <h1>Cobalt Shield</h1>
+        <p class="tagline">Protecting Youth. Powering Africa.</p>
       </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation">&#9776;</button>
+      <nav id="main-nav" class="nav-menu" aria-label="Main Navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="mission.html">Mission</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </nav>
     </div>
-  </section>
+  </header>
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      document.getElementById('main-nav').classList.toggle('open');
+    });
+  </script>
 
-  <!-- Newsletter Subscription Form -->
-  <section id="subscribe" style="margin: 2em 0;">
-    <h2>Subscribe for Updates</h2>
-    <form action="mailto:delphin@cobalt-cobalt.com" method="POST" enctype="text/plain" id="newsletter-form">
-      <input type="email" name="email" placeholder="Enter your email address" required style="padding: 8px; width: 250px;"/>
-      <button type="submit" style="padding: 8px 16px;">Subscribe</button>
-    </form>
-    <p style="font-size: 0.95em; color: #666;">We respect your privacy. Unsubscribe anytime.</p>
-  </section>
-  <!-- End Newsletter Subscription -->
+  <main class="container">
+    <section class="hero" aria-labelledby="main-hero">
+      <h2 id="main-hero">Digital Protection for a New Generation</h2>
+      <p>Building a system that educates, empowers, and protects youth across Africa with ethical tech, smart security, and future-focused leadership.</p>
+    </section>
 
-  <section class id="impact">
-    <h3>2025 Goals</h3>
-    <ul>
-      <li>✔ Launch pilot in Rwanda</li>
-      <li>✔ Build youth digital safety curriculum</li>
-      <li>✔ Partner with clean tech networks</li>
-      <li>✔ Raise awareness on ethical sourcing & EV future</li>
-    </ul>
-  </section>
-  <hr>
+    <section id="vision">
+      <h2>Our Mission</h2>
+      <p>Cobalt Shield is more than a name — it's a legacy initiative. We stand for clean systems, transparency, youth empowerment, and responsible digital growth.</p>
+    </section>
 
-  <section id="team">
-    <h2>Our Team</h2>
-    <ul style="list-style: none; padding: 0;">
-      <li><strong>Delphin Hakizimana</strong> – CEO & Visionary Founder</li>
-      <li><strong>Shalom</strong> – Research & Training Lead</li>
-      <li><strong>Mixalis</strong> – EU Outreach Coordinator (NGO)</li>
-      <li><strong>Panagiotis</strong> – Strategic Advisor (Netherlands)</li>
-      <li><strong>Sister (USA)</strong> – Support Ambassador</li>
-    </ul>
-  </section>
+    <section id="newsletter-section">
+      <h2>Cobalt Shield Monthly — In Progress</h2>
+      <div class="newsletter-cards">
+        <article class="newsletter-card">
+          <a href="#" class="newsletter-link" aria-label="Newsletter Preview">
+            <img src="images/mining-kid.png" alt="Newsletter Preview" loading="lazy" />
+          </a>
+          <div class="newsletter-content">
+            <h3>Field Voices — Rwanda Pilot</h3>
+            <p>Drafting our first story from the field — empowering youth through digital safety.</p>
+            <span class="status-badge">Coming Soon</span>
+          </div>
+        </article>
+      </div>
+    </section>
 
-  <hr>
+    <section id="subscribe" aria-labelledby="subscribe-heading" style="margin: 2em 0;">
+      <h2 id="subscribe-heading">Subscribe for Updates</h2>
+      <form action="mailto:delphin@cobalt-cobalt.com" method="POST" enctype="text/plain" id="newsletter-form" autocomplete="off">
+        <label for="email" class="visually-hidden">Email address</label>
+        <input type="email" name="email" id="email" placeholder="Enter your email address" required style="padding: 8px; width: 250px;" />
+        <button type="submit" style="padding: 8px 16px;">Subscribe</button>
+      </form>
+      <p style="font-size: 0.95em; color: #666;">We respect your privacy. Unsubscribe anytime.</p>
+    </section>
 
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>📧 Email: <a href="mailto:delphin@cobalt-shield.com">delphin@cobalt-shield.com</a></p>
-    <p>📱 WhatsApp: <a href="https://wa.me/306986761215" target="_blank">+30 698 676 1215</a></p>
-    <p>📍 Base: Africa x Greece 🇷🇼 🇬🇷</p>
-  </section>
-</main>
-<footer>
-  <p>&copy; 2025 Cobalt Shield Initiative. All rights reserved.</p>
-  <p class="coming-soon">🚀 Coming Soon: Full Platform Deployment</p>
-</footer>
+    <section id="impact">
+      <h2>2025 Goals</h2>
+      <ul>
+        <li>✔ Launch pilot in Rwanda</li>
+        <li>✔ Build youth digital safety curriculum</li>
+        <li>✔ Partner with clean tech networks</li>
+        <li>✔ Raise awareness on ethical sourcing & EV future</li>
+      </ul>
+    </section>
+    <hr>
+
+    <section id="team">
+      <h2>Our Team</h2>
+      <ul class="team-list">
+        <li><strong>Delphin Hakizimana</strong> – CEO & Visionary Founder</li>
+        <li><strong>Shalom</strong> – Research & Training Lead</li>
+        <li><strong>Mixalis</strong> – EU Outreach Coordinator (NGO)</li>
+        <li><strong>Panagiotis</strong> – Strategic Advisor (Netherlands)</li>
+        <li><strong>Sister (USA)</strong> – Support Ambassador</li>
+      </ul>
+    </section>
+    <hr>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <ul>
+        <li>📧 Email: <a href="mailto:delphin@cobalt-shield.com">delphin@cobalt-shield.com</a></li>
+        <li>📱 WhatsApp: <a href="https://wa.me/306986761215" target="_blank" rel="noopener">+30 698 676 1215</a></li>
+        <li>📍 Base: Africa x Greece 🇷🇼 🇬🇷</li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Cobalt Shield Initiative. All rights reserved.</p>
+      <p class="coming-soon">🚀 Coming Soon: Full Platform Deployment</p>
+    </div>
+  </footer>
+</body>
+</html>
