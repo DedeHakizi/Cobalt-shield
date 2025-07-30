@@ -1,64 +1,219 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="style.css">
-
-<header>
-  <h1>Cobalt Shield</h1>
-  <p>Protecting Youth. Powering Africa.</p>
-  <nav>
-    <ul class="nav-menu">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="mission.html">Mission</a></li>
-      <li><a href="team.html">Team</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="support.html">Support</a></li>
-    </ul>
-  </nav>
-</header>
-
-
-
-
-
-<main class="container" style="display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 80vh; padding: 40px 20px;">
-  <div style="max-width: 800px; text-align: center;">
-    <h2>Our Mission</h2>
-    <p style="font-size: 1.1rem; line-height: 1.6;">
-      We are building a legacy of ethical tech, digital protection, and youth empowerment across Africa. 
-      Cobalt Shield is not just a name — it’s a system born for real impact.
-    </p>
-  </div>
-</main>
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<footer>
-    <p>&copy; 2025 Cobalt Shield Initiative. All rights reserved. Coming soon...</p>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our Mission | Cobalt Shield</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cobalt Shield is committed to a legacy of ethical technology, security, and youth empowerment across Africa. Discover our deeper purpose and vision for a safe, innovative future.">
+  <meta name="keywords" content="Cobalt Shield, mission, purpose, ethical tech, youth empowerment, Africa, digital protection, legacy, innovation">
+  <meta name="author" content="Delphin Hakizimana">
+  <link rel="canonical" href="https://cobalt-shield.com/mission.html">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      background: #f6f8fa;
+      color: #222;
+      margin: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2em 1em;
+    }
+    header {
+      background: #1976d2;
+      color: #fff;
+      padding: 1.2em 0 1em 0;
+      margin-bottom: 2em;
+      box-shadow: 0 2px 8px rgba(30,60,90,0.07);
+    }
+    .header-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 900px;
+      margin: auto;
+      padding: 0 1em;
+    }
+    .logo img {
+      vertical-align: middle;
+      border-radius: 50%;
+      margin-right: 1em;
+    }
+    .tagline {
+      font-size: 1.15em;
+      color: #bbdefb;
+      margin-top: 0.4em;
+    }
+    nav ul.nav-menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 1.2em;
+    }
+    nav ul.nav-menu li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.2em 0.6em;
+      border-radius: 6px;
+      transition: background 0.15s;
+    }
+    nav ul.nav-menu li a:hover, nav ul.nav-menu li a[aria-current="page"] {
+      background: #1565c0;
+    }
+    main.container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 60vh;
+      padding: 40px 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(30,60,90,0.08);
+      margin-bottom: 2em;
+    }
+    .mission-box {
+      max-width: 700px;
+      text-align: center;
+      margin: 0 auto;
+    }
+    .mission-box h2 {
+      color: #1976d2;
+      margin-bottom: 0.8em;
+      font-size: 2em;
+      font-weight: 700;
+    }
+    .mission-box p {
+      font-size: 1.18rem;
+      line-height: 1.7;
+      color: #333;
+      margin-bottom: 1.5em;
+    }
+    .deep-purpose {
+      font-size: 1.12em;
+      color: #1976d2;
+      background: #e3f2fd;
+      border-radius: 10px;
+      font-style: italic;
+      padding: 1em 1.5em;
+      margin-bottom: 1.5em;
+      box-shadow: 0 1px 4px rgba(30,60,90,0.07);
+      display: inline-block;
+      text-align: left;
+    }
+    .core-values {
+      margin: 2em 0 0 0;
+      text-align: left;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .core-values h3 {
+      color: #1565c0;
+      margin-bottom: 0.5em;
+    }
+    .core-values ul {
+      list-style: disc inside;
+      color: #333;
+      font-size: 1.07em;
+      margin: 0 0 1.5em 0;
+      padding-left: 0.5em;
+    }
+    .quote {
+      font-size: 1.08em;
+      color: #1565c0;
+      font-style: italic;
+      background: #e3e7eb;
+      border-radius: 8px;
+      padding: 0.8em 1.2em;
+      margin-bottom: 1em;
+      box-shadow: 0 1px 4px rgba(30,60,90,0.06);
+      display: inline-block;
+    }
+    footer {
+      background: #222;
+      color: #fff;
+      padding: 1em 0;
+      text-align: center;
+      font-size: 1em;
+      margin-top: 2em;
+    }
+    @media (max-width: 700px) {
+      .header-flex, main.container {
+        max-width: 100%;
+        padding: 1em;
+      }
+      .header-flex {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.7em;
+      }
+      nav ul.nav-menu {
+        flex-direction: column;
+        gap: 0.7em;
+        width: 100%;
+      }
+      .mission-box {
+        padding: 0 0.3em;
+      }
+      .core-values {
+        padding: 0 0.3em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-flex">
+      <a href="index.html" class="logo" aria-label="Cobalt Shield Home">
+        <img src="images/favicon.png" alt="Cobalt Shield Logo" width="40" height="40">
+      </a>
+      <div>
+        <h1 style="margin:0;">Cobalt Shield</h1>
+        <p class="tagline">Protecting Youth. Powering Africa.</p>
+      </div>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="mission.html" aria-current="page">Mission</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <div class="mission-box">
+      <h2>Our Mission</h2>
+      <div class="deep-purpose">
+        <strong>At Cobalt Shield, our mission is to build a lasting legacy for Africa’s youth—where ethical technology, digital security, and empowered leadership are the foundation for a future of dignity and opportunity.</strong>
+        <br><br>
+        We believe technology must serve humanity, protect the vulnerable, and spark innovation that is rooted in transparency and responsibility. By creating systems and curricula that uplift and secure young minds, we are shaping a continent where every youth can thrive and every community can prosper.
+      </div>
+      <span class="quote">
+        "We don't just protect data—we protect dreams, ambitions, and the freedom to create. Our shield is built from hope, courage, and integrity."
+      </span>
+      <div class="core-values">
+        <h3>Core Values</h3>
+        <ul>
+          <li><strong>Ethics First:</strong> Technology that respects people and the planet.</li>
+          <li><strong>Empowerment:</strong> Equipping youth with skills and opportunities to lead.</li>
+          <li><strong>Protection:</strong> Safeguarding privacy, safety, and dignity for all.</li>
+          <li><strong>Innovation:</strong> Visionary solutions for Africa’s unique challenges.</li>
+          <li><strong>Transparency & Trust:</strong> Open systems, honest dialogue, and responsible leadership.</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Cobalt Shield Initiative. All rights reserved. Coming soon...</p>
+    </div>
   </footer>
 </body>
 </html>
