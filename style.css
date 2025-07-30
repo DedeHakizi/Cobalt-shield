@@ -452,3 +452,90 @@ footer .coming-soon {
     font-size: 2rem;
   }
 }
+body {
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  background: #f6f8fa;
+  color: #222;
+  margin: 0;
+}
+.container {
+  max-width: 960px;
+  margin: auto;
+  padding: 1em;
+}
+.header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo img {
+  border-radius: 50%;
+}
+.nav-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1em;
+}
+.nav-menu ul li a {
+  text-decoration: none;
+  color: #1976d2;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.nav-menu ul li a:hover {
+  color: #004ba0;
+}
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2em;
+  cursor: pointer;
+}
+@media(max-width: 700px) {
+  .header-flex { flex-direction: column; }
+  .nav-menu ul { flex-direction: column; gap: 0.5em; }
+  .menu-toggle { display: block; }
+  .nav-menu { display: none; }
+  .nav-menu.open { display: block; }
+}
+.hero {
+  background: #1976d2;
+  color: #fff;
+  padding: 2em;
+  border-radius: 8px;
+  margin-bottom: 1.5em;
+  text-align: center;
+}
+.status-badge {
+  background: #ffc107;
+  color: #333;
+  padding: 0.3em 0.8em;
+  border-radius: 12px;
+  font-size: 0.85em;
+}
+.team-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+footer {
+  background: #222;
+  color: #fff;
+  padding: 1em 0;
+  text-align: center;
+  margin-top: 2em;
+}
+.coming-soon {
+  color: #ffc107;
+}
+.visually-hidden {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
