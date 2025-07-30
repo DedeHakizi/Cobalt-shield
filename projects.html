@@ -1,65 +1,188 @@
+
 <!DOCTYPE html>
-<link rel="stylesheet" href="style.css">
-<header>
-  <h1>Cobalt Shield</h1>
-  <p>Protecting Youth. Powering Africa.</p>
-  <nav>
-    <ul class="nav-menu">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="mission.html">Mission</a></li>
-      <li><a href="team.html">Team</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="support.html">Support</a></li>
-    </ul>
-  </nav>
-</header>
-
-  
-
-<main class="container">
-    <h2>Ongoing Projects</h2>
-
-    <p><strong>⚡ Cobalt Shield Pilot Program – Rwanda 2025</strong><br>
-    Digital safety training, youth awareness, and ethical tech curriculum delivered to schools.</p>
-
-    <p><strong>🔌 EV Smart Infrastructure Vision</strong><br>
-    Blueprint for future EV stations, crypto-based billing, and green tech in Africa.</p>
-
-    <p><strong>🛡️ Legacy Deployment System</strong><br>
-    A modular system to replicate our model with NGOs and partners across the continent.</p>
-
-    <p><strong>📘 Cobalt Shield Curriculum</strong><br>
-    Interactive courses on online safety, data protection, and ethical innovation.</p>
-
-    <p><em>More projects launching soon. Partnerships and talent welcome.</em></p>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cobalt Shield | Projects</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore Cobalt Shield's ongoing projects in digital safety, EV infrastructure, and youth empowerment across Africa.">
+  <meta name="keywords" content="Cobalt Shield, projects, digital safety, EV, innovation, Africa, youth, curriculum, tech, NGO">
+  <meta name="author" content="Delphin Hakizimana">
+  <link rel="canonical" href="https://cobalt-shield.com/projects.html">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      background: #f6f8fa;
+      margin: 0;
+      color: #222;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2em 1em;
+    }
+    header {
+      background: #1976d2;
+      color: #fff;
+      padding: 1.2em 0 1em 0;
+      margin-bottom: 2em;
+      box-shadow: 0 2px 8px rgba(30,60,90,0.07);
+    }
+    .header-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 900px;
+      margin: auto;
+      padding: 0 1em;
+    }
+    .logo img {
+      vertical-align: middle;
+      border-radius: 50%;
+      margin-right: 1em;
+    }
+    .tagline {
+      font-size: 1.15em;
+      color: #bbdefb;
+      margin-top: 0.4em;
+    }
+    nav ul.nav-menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 1.2em;
+    }
+    nav ul.nav-menu li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.2em 0.6em;
+      border-radius: 6px;
+      transition: background 0.15s;
+    }
+    nav ul.nav-menu li a:hover, nav ul.nav-menu li a[aria-current="page"] {
+      background: #1565c0;
+    }
+    main.container {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(30,60,90,0.08);
+    }
+    .project-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .project-list li {
+      background: #f6f8fa;
+      border: 1px solid #e3e7eb;
+      border-radius: 8px;
+      margin-bottom: 1.5em;
+      padding: 1.3em 1.8em;
+      box-shadow: 0 2px 8px rgba(30,60,90,0.04);
+      transition: box-shadow 0.2s;
+    }
+    .project-list li:hover {
+      box-shadow: 0 4px 16px rgba(30,60,90,0.13);
+    }
+    .project-list h3 {
+      margin: 0 0 0.5em 0;
+      color: #1976d2;
+      font-size: 1.18em;
+      font-weight: 600;
+    }
+    .more-projects {
+      text-align: center;
+      color: #555;
+      margin-top: 2em;
+      font-style: italic;
+    }
+    footer {
+      background: #222;
+      color: #fff;
+      padding: 1em 0;
+      text-align: center;
+      font-size: 1em;
+      margin-top: 2em;
+    }
+    .coming-soon {
+      color: #ffc107;
+      font-weight: 500;
+      margin-top: 0.6em;
+    }
+    @media (max-width: 700px) {
+      .header-flex, main.container {
+        max-width: 100%;
+        padding: 1em;
+      }
+      .header-flex {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.7em;
+      }
+      nav ul.nav-menu {
+        flex-direction: column;
+        gap: 0.7em;
+        width: 100%;
+      }
+      .project-list li {
+        padding: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-flex">
+      <a href="index.html" class="logo" aria-label="Cobalt Shield Home">
+        <img src="images/favicon.png" alt="Cobalt Shield Logo" width="40" height="40">
+      </a>
+      <div>
+        <h1 style="margin:0;">Cobalt Shield</h1>
+        <p class="tagline">Protecting Youth. Powering Africa.</p>
+      </div>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="mission.html">Mission</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="projects.html" aria-current="page">Projects</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <section aria-labelledby="projects-heading">
+      <h2 id="projects-heading" style="text-align:center; margin-top:0.5em;">Ongoing Projects</h2>
+      <ul class="project-list">
+        <li>
+          <h3>⚡ Cobalt Shield Pilot Program – Rwanda 2025</h3>
+          <p>Digital safety training, youth awareness, and ethical tech curriculum delivered to schools.</p>
+        </li>
+        <li>
+          <h3>🔌 EV Smart Infrastructure Vision</h3>
+          <p>Blueprint for future EV stations, crypto-based billing, and green tech in Africa.</p>
+        </li>
+        <li>
+          <h3>🛡️ Legacy Deployment System</h3>
+          <p>A modular system to replicate our model with NGOs and partners across the continent.</p>
+        </li>
+        <li>
+          <h3>📘 Cobalt Shield Curriculum</h3>
+          <p>Interactive courses on online safety, data protection, and ethical innovation.</p>
+        </li>
+      </ul>
+      <p class="more-projects">More projects launching soon.<br>Partnerships and talent welcome.</p>
+    </section>
   </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<footer>
-    <p>&copy; 2025 Cobalt Shield Initiative. All rights reserved.</p>
-    <p class="coming-soon">🚀 Coming Soon: Full Platform Deployment</p>
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Cobalt Shield Initiative. All rights reserved.</p>
+      <p class="coming-soon">🚀 Coming Soon: Full Platform Deployment</p>
+    </div>
   </footer>
 </body>
 </html>
-
