@@ -36,10 +36,29 @@
       margin: auto;
       padding: 0 1em;
     }
-    .logo img {
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1em;
+    }
+    .logo-img {
       vertical-align: middle;
       border-radius: 50%;
-      margin-right: 1em;
+      box-shadow: 0 2px 8px rgba(30,60,90,0.13);
+      width: 52px;
+      height: 52px;
+      background: #fff;
+      object-fit: contain;
+      border: 2px solid #e3f2fd;
+    }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand-text h1 {
+      margin: 0;
+      font-size: 1.7em;
+      letter-spacing: 0.5px;
     }
     .tagline {
       font-size: 1.15em;
@@ -152,6 +171,9 @@
         align-items: flex-start;
         gap: 0.7em;
       }
+      .brand {
+        gap: 0.7em;
+      }
       nav ul.nav-menu {
         flex-direction: column;
         gap: 0.7em;
@@ -163,18 +185,24 @@
       .core-values {
         padding: 0 0.3em;
       }
+      .logo-img {
+        width: 42px;
+        height: 42px;
+      }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="header-flex">
-      <a href="index.html" class="logo" aria-label="Cobalt Shield Home">
-        <img src="images/favicon.png" alt="Cobalt Shield Logo" width="40" height="40">
-      </a>
-      <div>
-        <h1 style="margin:0;">Cobalt Shield</h1>
-        <p class="tagline">Protecting Youth. Powering Africa.</p>
+      <div class="brand">
+        <a href="index.html" aria-label="Cobalt Shield Home">
+          <img src="cobalt-logo.png" alt="Cobalt Shield Logo" class="logo-img">
+        </a>
+        <span class="brand-text">
+          <h1>Cobalt Shield</h1>
+          <span class="tagline">Protecting Youth. Powering Africa.</span>
+        </span>
       </div>
       <nav aria-label="Main Navigation">
         <ul class="nav-menu">
