@@ -196,95 +196,48 @@ section h3, section h2 {
   left: 0.3em;
   top: 0.08em;
 }
+<section class="team-section">
+  <h2>Meet the Team</h2>
+  <div class="team-cards">
 
-#team ul {
-  margin-top: 1em;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8em;
-  justify-content: center;
-  padding: 0;
-}
+    <!-- Team Member 1 -->
+    <div class="team-card">
+      <div class="avatar">
+        <img src="https://i.ibb.co/Nxhq4p4/anime-avatar1.png" alt="Delphin Hakizimana">
+      </div>
+      <div class="card-info">
+        <h3>Delphin Hakizimana</h3>
+        <p class="role">Founder & CEO</p>
+        <p class="bio">Visionary leader building the Family Empire and Cobalt Shield Initiative, focused on innovation, loyalty, and impact.</p>
+      </div>
+    </div>
 
-#team li {
-  background: #eaf0ff;
-  padding: 0.9em 1.6em;
-  border-radius: 12px;
-  font-size: 1.06rem;
-  font-weight: 500;
-  box-shadow: 0 1px 6px #2242ff0e;
-  margin-bottom: 0.4em;
-}
+    <!-- Team Member 2 -->
+    <div class="team-card">
+      <div class="avatar">
+        <img src="https://i.ibb.co/BfDDkWm/anime-avatar2.png" alt="Team Member 2">
+      </div>
+      <div class="card-info">
+        <h3>Jane Doe</h3>
+        <p class="role">Creative Director</p>
+        <p class="bio">Bringing creative vision to life through branding, design, and innovative user experiences.</p>
+      </div>
+    </div>
 
-#contact p, #contact a {
-  font-size: 1.08rem;
-  color: var(--cobalt-dark);
-}
+    <!-- Team Member 3 -->
+    <div class="team-card">
+      <div class="avatar">
+        <img src="https://i.ibb.co/f0Jz3kp/anime-avatar3.png" alt="Team Member 3">
+      </div>
+      <div class="card-info">
+        <h3>John Smith</h3>
+        <p class="role">Technical Lead</p>
+        <p class="bio">Engineering solutions that power the mission with efficiency, security, and scalability.</p>
+      </div>
+    </div>
 
-footer {
-  background: var(--cobalt-dark);
-  color: #fff;
-  text-align: center;
-  padding: 1.5rem 0 1rem 0;
-  margin-top: 2.5rem;
-  border-radius: 14px 14px 0 0;
-  box-shadow: 0 0 24px #14235c22;
-}
-
-footer .coming-soon {
-  margin-top: 0.8em;
-  color: var(--accent);
-  font-weight: bold;
-  letter-spacing: 0.08em;
-  font-size: 1.07rem;
-}
-
-/* Divider styles */
-hr {
-  border: 0;
-  border-top: 2px solid #e3ebff;
-  margin: 2.7em 0 2em 0;
-}
-
-/* Responsive Styles */
-@media (max-width: 750px) {
-  nav ul {
-    flex-direction: column;
-    gap: 1.2rem;
-    background: var(--cobalt);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    margin-top: 0.5em;
-    padding: 1em 0;
-    display: none;
-    position: absolute;
-    left: 10vw;
-    right: 10vw;
-    top: 4.5em;
-    z-index: 10;
-  }
-
-  nav.open ul {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 0 0.4rem;
-  }
-  .hero {
-    padding: 1.2rem 0.4rem;
-  }
-  footer {
-    font-size: 0.98rem;
-  }
-}
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&family=Roboto:wght@400;500&display=swap');
+  </div>
+</section>
 
 :root {
   --cobalt: #2242ff;
