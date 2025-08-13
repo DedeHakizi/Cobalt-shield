@@ -63,7 +63,10 @@
         <p>
           Building a system that educates, empowers, and protects youth across Africa with ethical tech, smart security, and future-focused leadership.
         </p>
-        <a href="#subscribe" class="cta-btn">Join Our Movement</a>
+        <button id="join-movement-btn" class="cta-btn">
+          <span id="join-movement-text">Join Our Movement</span>
+          <span id="join-count" style="margin-left:0.5em; font-size:0.9em; display:none;"></span>
+        </button>
       </div>
       <div class="hero-bg-anime"></div>
     </section>
@@ -137,6 +140,44 @@
     menuToggle.addEventListener('click', function () {
       nav.classList.toggle('open');
       menuToggle.classList.toggle('active');
+    });
+
+    // Join Our Movement button logic
+    const joinBtn = document.getElementById('join-movement-btn');
+    const joinText = document.getElementById('join-movement-text');
+    const joinCount = document.getElementById('join-count');
+
+    // Helper: update UI
+    function updateJoinUI(joined, count) {
+      joinText.textContent = joined ? "Joined!" : "Join Our Movement";
+      joinBtn.classList.toggle('joined', joined);
+      if (typeof count === 'number') {
+        joinCount.textContent = '(' + count + ')';
+        joinCount.style.display = '';
+      }
+    }
+    // On page load, fetch join count and status
+    async function fetchJoinStatus() {
+      try {
+        const res = await fetch('/api/join/starts');
+        const data = await res.json();
+        // We don't know if user has joined until toggle, so hide joined state until action
+        updateJoinUI(false, data.count);
+      } catch (e) {
+        joinCount.style.display = 'none';
+      }
+    }
+    fetchJoinStatus();
+
+    // Toggle join on click
+    joinBtn.addEventListener('click', async function () {
+      try {
+        const res = await fetch('/api/join/toggles', { method: 'POST' });
+        const data = await res.json();
+        updateJoinUI(data.joined, data.count);
+      } catch (e) {
+        alert("Could not join at this time. Please try again later.");
+      }
     });
   </script>
 </body>
