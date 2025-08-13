@@ -1,80 +1,240 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cobalt Shield | Our Team</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="team.css">
+  <meta charset="UTF-8" />
+  <title>Team • Cobalt Shield</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Meet the Cobalt Shield team building ethical tech and youth protection across Africa." />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <!-- Fonts (same as home) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Base site styles (the one you used on home) -->
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ===== TEAM PAGE — scoped so it won't break anything ===== */
+    .team-page { padding-bottom: 2rem; }
+    .team-hero {
+      margin: 2rem 0 1rem;
+      background: linear-gradient(135deg,#eef3ff 0%, #ffffff 70%);
+      border: 1px solid #dfe8ff;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(20,35,92,.08);
+      padding: 1.6rem 1.4rem;
+      text-align: center;
+    }
+    .team-hero h2 {
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: var(--cobalt, #2242ff);
+      margin: 0 0 .4rem;
+    }
+    .team-hero p { margin: 0; opacity: .9; }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.2rem;
+      margin: 1.2rem 0;
+    }
+    .member-card {
+      grid-column: span 4;
+      background: var(--card-bg, #ffffffea);
+      border: 1px solid #e7ecff;
+      border-radius: 18px;
+      box-shadow: 0 6px 22px rgba(20,35,92,.08);
+      padding: 1.2rem 1.1rem 1.1rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .member-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(20,35,92,.12);
+    }
+    .m-avatar {
+      flex: 0 0 80px; height: 80px; width: 80px; border-radius: 50%;
+      overflow: hidden; display: grid; place-items: center;
+      background: linear-gradient(135deg,#dbeafe 0%, #e0f7fa 100%);
+      box-shadow: 0 2px 8px rgba(25,118,210,.12);
+    }
+    .m-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%; }
+
+    .m-info { min-width: 0; }
+    .m-name { margin: 0; font-weight: 700; font-size: 1.05rem; color: #1a2233; }
+    .m-role { margin: .15rem 0 .35rem; color: var(--cobalt,#2242ff); font-weight: 600; }
+    .m-bio  { margin: 0; color: #2b3550; opacity: .92; font-size: .98rem; }
+    .m-links { margin-top: .55rem; display: flex; gap: .6rem; flex-wrap: wrap; }
+    .m-links a {
+      text-decoration: none; font-weight: 600; font-size: .9rem;
+      background: #eef3ff; color: #223167; padding: .35rem .6rem; border-radius: 999px;
+      border: 1px solid #dfe8ff;
+    }
+
+    /* Full-width card for advisors/support lines (optional) */
+    .member-card.full { grid-column: span 12; align-items: flex-start; }
+    .member-card.full .m-avatar { height: 70px; width: 70px; }
+
+    /* Responsive */
+    @media (max-width: 1000px) { .member-card { grid-column: span 6; } }
+    @media (max-width: 640px)  { .member-card, .member-card.full { grid-column: span 12; } }
+  </style>
 </head>
+
 <body>
-<header>
-  <h1>Cobalt Shield</h1>
-  <p>Protecting Youth. Powering Africa.</p>
-  <nav>
-    <ul class="nav-menu">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="mission.html">Mission</a></li>
-      <li><a href="team.html" aria-current="page">Team</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="support.html">Support</a></li>
-    </ul>
-  </nav>
-</header>
-
-<main>
-  <section class="team-section">
-    <h2>Meet Our Core Team</h2>
-    <div class="team-cards">
-      <!-- Team Member 1 -->
-      <div class="team-card">
-        <div class="avatar">
-          <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Delphin" alt="Delphin Hakizimana avatar">
-        </div>
-        <div class="card-info">
-          <h3>Delphin Hakizimana</h3>
-          <p class="role">Founder & CEO</p>
-          <p class="bio">
-            Visionary behind the mission.<br>
-            Empowering Africa’s youth for a digital future.
-          </p>
-        </div>
+  <!-- Header (same as home) -->
+  <header class="main-header">
+    <div class="container header-flex">
+      <a href="index.html" class="logo-wrap">
+        <img src="cobalt-logo.png" alt="Cobalt Shield Logo" class="logo">
+      </a>
+      <div class="brand">
+        <h1>Cobalt Shield</h1>
+        <p class="tagline">Protecting Youth. Powering Africa.</p>
       </div>
-      <!-- Team Member 2 -->
-      <div class="team-card">
-        <div class="avatar">
-          <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Shalom" alt="Shalom avatar">
-        </div>
-        <div class="card-info">
-          <h3>Shalom</h3>
-          <p class="role">Research & Training Lead</p>
-          <p class="bio">
-            Passionate educator and mentor.<br>
-            Bridges innovation and real-world needs.
-          </p>
-        </div>
-      </div>
-      <!-- Team Member 3 -->
-      <div class="team-card">
-        <div class="avatar">
-          <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Mixalis" alt="Mixalis avatar">
-        </div>
-        <div class="card-info">
-          <h3>Mixalis</h3>
-          <p class="role">EU Outreach Lead</p>
-          <p class="bio">
-            Connects continents and communities.<br>
-            Drives ethical tech partnerships.
-          </p>
-        </div>
-      </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation">
+        <span class="line"></span><span class="line"></span><span class="line"></span>
+      </button>
+      <nav id="main-nav" class="nav-menu" aria-label="Main Navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="mission.html">Mission</a></li>
+          <li><a href="team.html" class="active">Team</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </nav>
     </div>
-  </section>
-</main>
+  </header>
 
-<footer>
-  <p>&copy; 2025 Cobalt Shield Initiative. All rights reserved.</p>
-  <p class="coming-soon">🚀 Coming Soon: Full Platform Deployment</p>
-</footer>
+  <!-- Page -->
+  <main class="container team-page">
+    <section class="team-hero">
+      <h2>Meet the Team</h2>
+      <p>Builders, researchers, and partners aligned on one mission: <strong>protect youth and power ethical tech</strong>.</p>
+    </section>
+
+    <!-- Team grid -->
+    <section aria-label="Core Team">
+      <div class="team-grid">
+
+        <!-- Delphin -->
+        <article class="member-card">
+          <div class="m-avatar">
+            <img src="images/team/delphin.jpg"
+                 onerror="this.src='https://i.ibb.co/Nxhq4p4/anime-avatar1.png'"
+                 alt="Delphin Hakizimana">
+          </div>
+          <div class="m-info">
+            <h3 class="m-name">Delphin Hakizimana</h3>
+            <div class="m-role">Founder & CEO</div>
+            <p class="m-bio">Leads Cobalt Shield’s mission on digital safety, ethical tech, and EV education across Africa.</p>
+            <p class="m-links">
+              <a href="mailto:delphin@cobalt-shield.com">Email</a>
+              <a href="https://wa.me/306986761215" target="_blank" rel="noopener">WhatsApp</a>
+              <!-- <a href="#" target="_blank" rel="noopener">LinkedIn</a> -->
+            </p>
+          </div>
+        </article>
+
+        <!-- Shalom -->
+        <article class="member-card">
+          <div class="m-avatar">
+            <img src="images/team/shalom.jpg"
+                 onerror="this.src='https://i.ibb.co/BfDDkWm/anime-avatar2.png'"
+                 alt="Shalom">
+          </div>
+          <div class="m-info">
+            <h3 class="m-name">Shalom</h3>
+            <div class="m-role">Research & Training Lead</div>
+            <p class="m-bio">Designs youth training modules and field research for safe, responsible tech adoption.</p>
+            <p class="m-links">
+              <!-- optional links -->
+            </p>
+          </div>
+        </article>
+
+        <!-- Mixalis -->
+        <article class="member-card">
+          <div class="m-avatar">
+            <img src="images/team/mixalis.jpg"
+                 onerror="this.src='https://i.ibb.co/f0Jz3kp/anime-avatar3.png'"
+                 alt="Mixalis">
+          </div>
+          <div class="m-info">
+            <h3 class="m-name">Mixalis</h3>
+            <div class="m-role">EU Outreach (NGO)</div>
+            <p class="m-bio">Connects with EU partners and NGOs to align pilots with ethical standards and impact goals.</p>
+            <p class="m-links"></p>
+          </div>
+        </article>
+
+        <!-- Panagiotis -->
+        <article class="member-card">
+          <div class="m-avatar">
+            <img src="images/team/panagiotis.jpg"
+                 onerror="this.src='https://i.ibb.co/Nxhq4p4/anime-avatar1.png'"
+                 alt="Panagiotis">
+          </div>
+          <div class="m-info">
+            <h3 class="m-name">Panagiotis</h3>
+            <div class="m-role">Strategic Advisor (NL)</div>
+            <p class="m-bio">Advises on partnerships, compliance, and scale across EU corridors.</p>
+            <p class="m-links"></p>
+          </div>
+        </article>
+
+        <!-- Sister -->
+        <article class="member-card">
+          <div class="m-avatar">
+            <img src="images/team/sister.jpg"
+                 onerror="this.src='https://i.ibb.co/BfDDkWm/anime-avatar2.png'"
+                 alt="Support Ambassador (USA)">
+          </div>
+          <div class="m-info">
+            <h3 class="m-name">Support Ambassador (USA)</h3>
+            <div class="m-role">Community & Relations</div>
+            <p class="m-bio">Supports outreach, logistics, and diaspora connections for growth and credibility.</p>
+            <p class="m-links"></p>
+          </div>
+        </article>
+
+        <!-- Advisors / Support line (full width example) -->
+        <article class="member-card full" aria-label="Extended contributors">
+          <div class="m-avatar">
+            <img src="images/team/contributors.jpg"
+                 onerror="this.src='https://i.ibb.co/f0Jz3kp/anime-avatar3.png'"
+                 alt="Contributors">
+          </div>
+          <div class="m-info">
+            <h3 class="m-name">Contributors & Field Allies</h3>
+            <div class="m-role">Rwanda • Greece • EU</div>
+            <p class="m-bio">
+              Ground support, educators, and partners who help us run pilots, validate training, and protect youth in real contexts.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (same as home) -->
+  <footer class="main-footer">
+    📧 <a href="mailto:delphin@cobalt-shield.com">delphin@cobalt-shield.com</a> &nbsp;|&nbsp;
+    📱 <a href="https://wa.me/306986761215">+30 698 676 1215</a> &nbsp;|&nbsp;
+    📍 Base: Africa × Greece <br>
+    © 2025 Cobalt Shield
+  </footer>
+
+  <script>
+    // Mobile menu toggle (same as home)
+    const menuToggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('main-nav');
+    menuToggle?.addEventListener('click', () => {
+      nav.classList.toggle('open');
+      menuToggle.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
