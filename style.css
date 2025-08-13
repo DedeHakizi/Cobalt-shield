@@ -257,3 +257,219 @@ footer {
     align-items: center;
   }
 }
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&family=Roboto:wght@400;500&display=swap');
+
+:root {
+  --cobalt: #2242ff;
+  --cobalt-dark: #14235c;
+  --accent: #ffbe0b;
+  --bg: #f6f9ff;
+  --text: #1a2233;
+  --card-bg: #fff;
+  --shadow: 0 4px 32px rgba(34,66,255,0.08);
+  --radius: 18px;
+}
+
+/* === Base === */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Roboto', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+header {
+  background: linear-gradient(90deg, var(--cobalt), #4f8cff 65%);
+  color: #fff;
+  text-align: center;
+  padding: 2rem 0 1.2rem 0;
+  box-shadow: 0 4px 16px rgba(34,66,255,0.14);
+}
+
+header h1 {
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 2.3rem;
+  margin: 0 0 0.3em 0;
+  letter-spacing: 2px;
+}
+
+header p {
+  font-size: 1.11rem;
+  opacity: 0.95;
+  margin-bottom: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+nav .nav-menu {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 2.1rem;
+  justify-content: center;
+  align-items: center;
+  margin: 1.2rem 0 0 0;
+}
+
+nav .nav-menu li {
+  display: inline;
+}
+
+nav .nav-menu a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.07rem;
+  font-weight: 500;
+  padding: 0.4rem 1.1rem;
+  border-radius: 12px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+nav .nav-menu a:hover,
+nav .nav-menu a:active,
+nav .nav-menu a[aria-current="page"] {
+  background: var(--accent);
+  color: var(--cobalt-dark);
+  box-shadow: 0 2px 10px #ffbe0b25;
+}
+
+/* === Team Section === */
+.team-section {
+  width: 100%;
+  max-width: 1100px;
+  margin: 2.5rem auto;
+  text-align: center;
+  padding: 0 1rem;
+}
+.team-section h2 {
+  color: var(--cobalt);
+  font-family: 'Montserrat', Arial, sans-serif;
+  margin-bottom: 2em;
+  font-size: 2.1em;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.team-cards {
+  display: flex;
+  gap: 2.5em;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.team-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 300px;
+  padding: 2em 1.2em 1.2em 1.2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.18s cubic-bezier(.21,.79,.43,1), box-shadow 0.18s;
+  position: relative;
+  margin-bottom: 2em;
+  will-change: transform, box-shadow;
+}
+.team-card:hover {
+  transform: translateY(-8px) scale(1.025);
+  box-shadow: 0 6px 22px rgba(25, 118, 210, 0.15), 0 2.5px 10px rgba(60, 80, 140, 0.10);
+  z-index: 2;
+}
+
+.avatar {
+  width: 98px;
+  height: 98px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 1em;
+  background: linear-gradient(135deg, #dbeafe 0%, #e0f7fa 100%);
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  background: #fff;
+  display: block;
+}
+
+.card-info h3 {
+  margin: 0 0 0.2em 0;
+  font-size: 1.18em;
+  font-weight: 700;
+  color: #213146;
+}
+.role {
+  font-size: 1em;
+  color: var(--cobalt);
+  font-weight: 500;
+  margin-bottom: 0.7em;
+}
+.bio {
+  font-size: 1.02em;
+  color: #345;
+  margin-bottom: 0;
+  line-height: 1.5;
+  min-height: 2.9em;
+}
+
+/* === Footer === */
+footer {
+  background: var(--cobalt-dark);
+  color: #fff;
+  text-align: center;
+  padding: 1.2rem 0 1rem 0;
+  margin-top: 2.5rem;
+  border-radius: 14px 14px 0 0;
+  box-shadow: 0 0 24px #14235c22;
+}
+footer .coming-soon {
+  margin-top: 0.7em;
+  color: var(--accent);
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  font-size: 1.07rem;
+}
+
+/* === Responsive === */
+@media (max-width: 950px) {
+  .team-cards {
+    gap: 1.4em;
+  }
+  .team-card {
+    width: 90vw;
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 700px) {
+  main, .team-section {
+    padding: 0 0.5rem;
+  }
+  nav .nav-menu {
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-top: 0.7em;
+  }
+  .team-cards {
+    flex-direction: column;
+    gap: 1.5em;
+    align-items: center;
+  }
+  .team-section h2 {
+    font-size: 1.5em;
+  }
+  header h1 {
+    font-size: 2rem;
+  }
+}
+
+/* === Custom Scrollbar === */
+::-webkit-scrollbar {width: 8px;}
+::-webkit-scrollbar-thumb {background: #d5e9f7; border-radius: 8px;}
