@@ -1,34 +1,168 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
   <title>Cobalt Shield | Digital Safety & Innovation</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Cobalt Shield is a digital safety and innovation initiative empowering youth across Africa with ethical tech, EV education, and smart systems.">
   <meta name="keywords" content="Cobalt Shield, digital safety, EV Africa, ethical tech, smart systems, cybersecurity, innovation, African youth, education, green tech">
   <meta name="author" content="Delphin Hakizimana">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.cobalt-shield.com">
-
-  <!-- Open Graph / Facebook / LinkedIn -->
   <meta property="og:title" content="Cobalt Shield | Digital Safety & Innovation">
   <meta property="og:description" content="Empowering African youth through tech education, EV innovation, and digital safety.">
   <meta property="og:image" content="https://www.cobalt-shield.com/images/preview.jpg">
   <meta property="og:url" content="https://www.cobalt-shield.com">
   <meta property="og:type" content="website">
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cobalt Shield | Digital Safety & Innovation">
   <meta name="twitter:description" content="Empowering youth across Africa with tech, EV solutions, and digital safety.">
   <meta name="twitter:image" content="https://www.cobalt-shield.com/images/preview.jpg">
-
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/favicon.png">
 
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --cobalt:#2242ff; --cobalt-dark:#14235c; --accent:#ffbe0b;
+      --bg:#f6f9ff; --text:#1a2233;
+      --card-bg:#ffffffea; --shadow:0 6px 26px rgba(20,35,92,.08);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:'Roboto',Arial,sans-serif;line-height:1.45}
+
+    .container{max-width:1100px;margin:0 auto;padding:0 1rem}
+    .visually-hidden{position:absolute !important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+
+    /* ===== Header / Nav ===== */
+    .main-header{
+      background:linear-gradient(90deg,var(--cobalt),#4f8cff 65%);
+      color:#fff; box-shadow:0 8px 24px rgba(34,66,255,.18);
+      position:sticky; top:0; z-index:100;
+    }
+    .header-flex{display:flex;align-items:center;gap:1rem;min-height:72px}
+    .logo{height:42px;width:auto;display:block}
+    .brand h1{font-family:'Montserrat',Arial,sans-serif;font-size:1.5rem;margin:.1rem 0 0;letter-spacing:.8px}
+    .brand .tagline{margin:.1rem 0 0;opacity:.9;font-weight:500}
+
+    .menu-toggle{margin-left:auto;background:transparent;border:none;color:#fff;cursor:pointer;display:none}
+    .menu-toggle .line{display:block;height:2px;width:24px;background:#fff;margin:5px 0;border-radius:2px;transition:transform .2s, opacity .2s}
+    .menu-toggle.active .line:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .menu-toggle.active .line:nth-child(2){opacity:0}
+    .menu-toggle.active .line:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+    .nav-menu ul{list-style:none;margin:0;padding:0;display:flex;gap:1rem;margin-left:auto}
+    .nav-menu a{
+      color:#fff;text-decoration:none;font-weight:500;
+      padding:.45rem 1rem;border-radius:10px;transition:.2s
+    }
+    .nav-menu a:hover,.nav-menu a.active{
+      background:var(--accent);color:var(--cobalt-dark);
+      box-shadow:0 4px 14px #ffbe0b33
+    }
+
+    /* Mobile nav */
+    @media (max-width:880px){
+      .menu-toggle{display:block}
+      .nav-menu{position:absolute;left:0;right:0;top:72px;background:rgba(20,35,92,.96);display:none}
+      .nav-menu.open{display:block}
+      .nav-menu ul{flex-direction:column;gap:0}
+      .nav-menu li{border-top:1px solid #ffffff22}
+      .nav-menu a{display:block}
+    }
+
+    /* ===== Hero ===== */
+    main{padding:0 0 2rem}
+    .hero{
+      position:relative;overflow:hidden;border-radius:22px;
+      background:linear-gradient(135deg,#e9f0ff 0%, #f5faff 60%);
+      box-shadow:var(--shadow);padding:3rem 2rem;margin:2rem 0;
+      display:grid;grid-template-columns:1.1fr .9fr;gap:1rem;align-items:center
+    }
+    .hero-content h2{
+      font-family:'Montserrat',Arial,sans-serif;font-size:2.2rem;margin:0 0 .6rem;color:var(--cobalt-dark)
+    }
+    .hero-content p{margin:0 0 1rem;font-size:1.08rem;max-width:52ch}
+    .cta-btn{
+      background:var(--cobalt);color:#fff;border:none;border-radius:12px;
+      padding:.9rem 1.15rem;font-weight:700;cursor:pointer;
+      box-shadow:0 8px 18px rgba(34,66,255,.22);transition:transform .15s, box-shadow .15s, background .15s
+    }
+    .cta-btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(34,66,255,.28)}
+    .cta-btn.joined{background:#1ab36b;box-shadow:0 8px 18px rgba(26,179,107,.22)}
+    #join-count{margin-left:.5em;font-size:.9em;display:none}
+
+    .hero-bg-anime{
+      height:320px;border-radius:18px;background:
+      radial-gradient(600px 180px at 120% -20%, #a0baff33, transparent 60%),
+      radial-gradient(240px 240px at -10% 90%, #ffd66655, transparent 60%),
+      linear-gradient(135deg,#eef4ff 0%, #ffffff 60%);
+      border:1px solid #cfe0ff66
+    }
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .hero-bg-anime{height:220px}
+    }
+
+    /* ===== Section boxes ===== */
+    .section-box{
+      background:var(--card-bg);border-radius:18px;box-shadow:var(--shadow);
+      padding:1.6rem 1.4rem;margin:1.4rem 0
+    }
+    .section-box h2{
+      font-family:'Montserrat',Arial,sans-serif;color:var(--cobalt);margin:.2rem 0 1rem
+    }
+
+    /* Newsletter cards */
+    #newsletter-section .newsletter-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+    .newsletter-card{background:#fff;border-radius:16px;box-shadow:0 6px 18px rgba(20,35,92,.08);overflow:hidden;display:flex;flex-direction:column}
+    .newsletter-card img{width:100%;height:180px;object-fit:cover;display:block}
+    .newsletter-content{padding:1rem}
+    .status-badge{
+      display:inline-block;background:#ffe8a6;color:#6b4b00;font-weight:700;
+      padding:.25rem .6rem;border-radius:999px;font-size:.85rem
+    }
+
+    /* Subscribe */
+    #subscribe form{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;justify-content:flex-start}
+    #subscribe input[type="email"]{
+      flex:1 1 260px;min-width:240px;padding:.8rem .9rem;border-radius:10px;border:1px solid #cfe0ff;background:#fff;
+      outline:none;box-shadow:0 4px 12px #2242ff0a
+    }
+    #subscribe .cta-btn{padding:.85rem 1rem}
+    .privacy-note{font-size:.92rem;opacity:.8;margin:.4rem 0 0}
+
+    /* Goals list */
+    .goals-list{list-style:none;padding:0;margin:.4rem 0 0;display:grid;gap:.6rem}
+    .goals-list li{
+      background:#eaf0ff;border:1px solid #d6e2ff;color:#203258;font-weight:500;
+      padding:.7rem 1rem;border-radius:10px;box-shadow:0 2px 8px #2242ff10
+    }
+
+    /* Team list (simple on home) */
+    #team .team-list{list-style:none;padding:0;margin:0;display:grid;gap:.5rem}
+    #team .team-list li{
+      background:#ffffff;border:1px solid #e7ecff;border-left:4px solid var(--cobalt);
+      padding:.6rem .9rem;border-radius:10px;box-shadow:0 2px 10px #14235c0a
+    }
+
+    /* ===== Footer ===== */
+    .main-footer{
+      text-align:center;background:var(--cobalt-dark);color:#fff;margin-top:2rem;padding:1.2rem 1rem;
+      box-shadow:0 -8px 24px #14235c22
+    }
+    .main-footer a{color:#fff;text-decoration:underline}
+
+    /* ===== Animations ===== */
+    .animate-fadein{animation:fadeIn .7s ease both}
+    .animate-fadein-delayed{animation:fadeIn .8s .15s ease both}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  </style>
 </head>
+
 <body>
   <header class="main-header">
     <div class="container header-flex">
@@ -40,9 +174,7 @@
         <p class="tagline">Protecting Youth. Powering Africa.</p>
       </div>
       <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation">
-        <span class="line"></span>
-        <span class="line"></span>
-        <span class="line"></span>
+        <span class="line"></span><span class="line"></span><span class="line"></span>
       </button>
       <nav id="main-nav" class="nav-menu" aria-label="Main Navigation">
         <ul>
@@ -60,12 +192,10 @@
     <section class="hero animate-fadein" aria-labelledby="main-hero">
       <div class="hero-content">
         <h2 id="main-hero">Digital Protection for a New Generation</h2>
-        <p>
-          Building a system that educates, empowers, and protects youth across Africa with ethical tech, smart security, and future-focused leadership.
-        </p>
+        <p>Building a system that educates, empowers, and protects youth across Africa with ethical tech, smart security, and future-focused leadership.</p>
         <button id="join-movement-btn" class="cta-btn">
           <span id="join-movement-text">Join Our Movement</span>
-          <span id="join-count" style="margin-left:0.5em; font-size:0.9em; display:none;"></span>
+          <span id="join-count"></span>
         </button>
       </div>
       <div class="hero-bg-anime"></div>
@@ -73,12 +203,10 @@
 
     <section id="vision" class="section-box animate-fadein-delayed">
       <h2>Our Mission</h2>
-      <p>
-        Cobalt Shield is more than a name — it's a legacy initiative. We stand for clean systems, transparency, youth empowerment, and responsible digital growth.
-      </p>
+      <p>Cobalt Shield is more than a name — it's a legacy initiative. We stand for clean systems, transparency, youth empowerment, and responsible digital growth.</p>
     </section>
 
-    <section id="newsletter-section" class="animate-fadein-delayed">
+    <section id="newsletter-section" class="section-box animate-fadein-delayed">
       <h2>Cobalt Shield Monthly — In Progress</h2>
       <div class="newsletter-cards">
         <article class="newsletter-card">
@@ -94,9 +222,9 @@
       </div>
     </section>
 
-    <section id="subscribe" aria-labelledby="subscribe-heading" class="animate-fadein-delayed">
+    <section id="subscribe" aria-labelledby="subscribe-heading" class="section-box animate-fadein-delayed">
       <h2 id="subscribe-heading">Subscribe for Updates</h2>
-      <form action="mailto:delphin@cobalt-cobalt.com" method="POST" enctype="text/plain" id="newsletter-form" autocomplete="off">
+      <form action="mailto:delphin@cobalt-shield.com" method="POST" enctype="text/plain" id="newsletter-form" autocomplete="off">
         <label for="email" class="visually-hidden">Email address</label>
         <input type="email" name="email" id="email" placeholder="Enter your email address" required />
         <button type="submit" class="cta-btn">Subscribe</button>
@@ -134,21 +262,25 @@
   </footer>
 
   <script>
-    // Hamburger menu animation and toggle
+    // Mobile menu
     const menuToggle = document.getElementById('menu-toggle');
     const nav = document.getElementById('main-nav');
-    menuToggle.addEventListener('click', function () {
+    menuToggle?.addEventListener('click', () => {
       nav.classList.toggle('open');
       menuToggle.classList.toggle('active');
     });
 
-    // Join Our Movement button logic
+    // Join (no backend — localStorage)
     const joinBtn = document.getElementById('join-movement-btn');
     const joinText = document.getElementById('join-movement-text');
     const joinCount = document.getElementById('join-count');
 
-    // Helper: update UI
-    function updateJoinUI(joined, count) {
+    function getJoinData(){
+      const raw = localStorage.getItem('cs_join_data');
+      return raw ? JSON.parse(raw) : { joined:false, count: 128 };
+    }
+    function setJoinData(d){ localStorage.setItem('cs_join_data', JSON.stringify(d)); }
+    function updateJoinUI(joined, count){
       joinText.textContent = joined ? "Joined!" : "Join Our Movement";
       joinBtn.classList.toggle('joined', joined);
       if (typeof count === 'number') {
@@ -156,28 +288,15 @@
         joinCount.style.display = '';
       }
     }
-    // On page load, fetch join count and status
-    async function fetchJoinStatus() {
-      try {
-        const res = await fetch('/api/join/starts');
-        const data = await res.json();
-        // We don't know if user has joined until toggle, so hide joined state until action
-        updateJoinUI(false, data.count);
-      } catch (e) {
-        joinCount.style.display = 'none';
-      }
-    }
-    fetchJoinStatus();
 
-    // Toggle join on click
-    joinBtn.addEventListener('click', async function () {
-      try {
-        const res = await fetch('/api/join/toggles', { method: 'POST' });
-        const data = await res.json();
-        updateJoinUI(data.joined, data.count);
-      } catch (e) {
-        alert("Could not join at this time. Please try again later.");
-      }
+    const initData = getJoinData();
+    updateJoinUI(initData.joined, initData.count);
+
+    joinBtn?.addEventListener('click', () => {
+      const data = getJoinData();
+      const next = { joined: !data.joined, count: data.count + (!data.joined ? 1 : -1) };
+      setJoinData(next);
+      updateJoinUI(next.joined, next.count);
     });
   </script>
 </body>
