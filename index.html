@@ -1,123 +1,144 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Cobalt Shield — Protecting Youth. Powering Africa.</title>
-  <meta name="description" content="Cobalt Shield protects and empowers youth through digital safety, ethical tech awareness, and education across Africa and beyond." />
-  <link rel="preload" href="style.css" as="style" />
+  <title>Cobalt Shield Initiative</title>
+  <meta name="description" content="Protecting youth & small orgs with digital safety, ethical energy, and practical tools."/>
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <link rel="stylesheet" href="style.css" />
-  <link rel="canonical" href="https://cobalt-shield.com/" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="index.html">
-        <img src="cobalt-logo.png" alt="Cobalt Shield logo" width="36" height="36" />
-        <span>Cobalt Shield</span>
-      </a>
-
-      <nav aria-label="Primary">
-        <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
-        <ul id="primary-nav" class="nav">
-          <li><a class="active" href="index.html">Home</a></li>
-          <li><a href="mission.html">Mission</a></li>
-          <li><a href="team.html">Team</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="support.html">Support</a></li>
-        </ul>
-      </nav>
-    </div>
+  <header class="nav">
+    <a href="#" class="brand">Cobalt&nbsp;Shield</a>
+    <nav>
+      <a href="#mission">Mission</a>
+      <a href="#map">Map</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <main id="main">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <h1>Digital Protection for a New Generation</h1>
-          <p>We educate, empower, and protect youth across Africa with ethical tech, smart security, and future-focused leadership.</p>
-          <div class="cta">
-            <a class="btn primary" href="support.html">Join Our Movement</a>
-            <a class="btn ghost" href="mission.html">Explore the Mission</a>
-          </div>
+  <section class="hero" id="top">
+    <div class="hero__copy">
+      <h1>Protecting people. <span class="accent">Building trust.</span></h1>
+      <p>Digital safety education, ethical energy literacy, and rapid-response playbooks — practical tools for schools & small organizations.</p>
+      <div class="cta">
+        <a class="btn primary" href="#contact">Get in touch</a>
+        <a class="btn ghost" href="#services">See services</a>
+      </div>
+      <ul class="trust">
+        <li>Privacy-first</li>
+        <li>Lightweight & transparent</li>
+        <li>Africa-forward mission</li>
+      </ul>
+    </div>
+    <div class="hero__anim">
+      <!-- Lottie animation (small, subtle). Replace src with your own later if you want. -->
+      <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_vnikrcia.json" background="transparent" speed="1" loop autoplay></lottie-player>
+    </div>
+  </section>
+
+  <section class="strip" id="mission">
+    <div class="container">
+      <h2>Mission</h2>
+      <p>We protect youth and small organizations through clean tech, digital safety, and ethical energy — from the classroom to the charging station.</p>
+    </div>
+  </section>
+
+  <section class="mapwrap" id="map">
+    <div class="container">
+      <h2>Where we work</h2>
+      <p class="muted">Pilot focus: Greece & Rwanda. More regions join as partnerships grow.</p>
+    </div>
+    <div id="mapid" class="map"></div>
+  </section>
+
+  <section class="cards" id="services">
+    <div class="container">
+      <h2>Services</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>School Shield Kit</h3>
+          <p>Ready-to-use lessons, parent handouts, and micro-certs for teachers. Privacy-friendly by design.</p>
+        </article>
+        <article class="card">
+          <h3>Incident Desk</h3>
+          <p>Lightweight intake & triage playbooks. Clear steps for common risks, with calm guidance.</p>
+        </article>
+        <article class="card">
+          <h3>EV Ethics Pack</h3>
+          <p>Transparent pricing signage, battery-sourcing awareness, and user-friendly charging guides.</p>
+        </article>
+        <article class="card">
+          <h3>Mini Audits</h3>
+          <p>2–3 day review. Traffic-light report + action plan you can implement quickly.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2>Contact</h2>
+      <p class="muted">Prefer clean comms. No spam. We reply calmly and clearly.</p>
+      <div class="contact-grid">
+        <div>
+          <h4>Email</h4>
+          <p><a href="mailto:delphin@cobalt-shield.com">delphin@cobalt-shield.com</a></p>
+          <h4>Call</h4>
+          <p><a href="tel:+306986761215">+30 698 676 1215</a></p>
+          <h4>WhatsApp</h4>
+          <p><a href="https://wa.me/306986761215" target="_blank" rel="noopener">Message on WhatsApp</a></p>
+          <h4>SIP (VoIP)</h4>
+          <p><a href="sip:support@cobalt-shield.com">sip:support@cobalt-shield.com</a> <span class="muted">(optional)</span></p>
         </div>
-        <div class="hero-art" aria-hidden="true"></div>
+        <form id="contactForm">
+          <label>
+            Organization
+            <input required type="text" name="org" placeholder="School / NGO / Partner"/>
+          </label>
+          <label>
+            Email
+            <input required type="email" name="email" placeholder="you@example.org"/>
+          </label>
+          <label>
+            Message
+            <textarea required name="message" rows="4" placeholder="How can we help?"></textarea>
+          </label>
+          <button class="btn primary" type="submit">Send</button>
+          <p id="formStatus" class="muted"></p>
+        </form>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- MISSION PREVIEW -->
-    <section class="split">
-      <div class="container">
-        <div class="split-col">
-          <h2>Our Mission</h2>
-          <p><strong>Cobalt Shield</strong> is a legacy initiative. We stand for clean systems, transparency, youth empowerment, and responsible digital growth.</p>
-          <ul class="pillars">
-            <li><strong>Digital Safety:</strong> training and awareness.</li>
-            <li><strong>Ethical Tech:</strong> fair, transparent solutions.</li>
-            <li><strong>Youth Empowerment:</strong> pathways to leadership.</li>
-          </ul>
-          <a class="link-arrow" href="mission.html">Read the full mission</a>
-        </div>
-        <div class="split-col card-list">
-          <article class="card">
-            <h3>School Workshops</h3>
-            <p>Practical sessions on online safety, privacy, and digital mindset.</p>
-          </article>
-          <article class="card">
-            <h3>Community Partners</h3>
-            <p>NGOs and local leaders aligned with ethical tech and education.</p>
-          </article>
-          <article class="card">
-            <h3>Research & Reports</h3>
-            <p>Monthly updates to track impact and guide better decisions.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- NEWS / MONTHLY -->
-    <section class="section">
-      <div class="container">
-        <h2>Cobalt Shield Monthly — In Progress</h2>
-        <p>We’re building steady. Updates will roll out as projects go live across pilot schools and communities.</p>
-        <a class="btn small" href="projects.html">See projects</a>
-      </div>
-    </section>
-
-    <!-- CONTACT CTA -->
-    <section class="cta-band">
-      <div class="container">
-        <h2>Partner with Us</h2>
-        <p>Schools, NGOs, and responsible sponsors — let’s build a safer digital future together.</p>
-        <a class="btn primary" href="support.html">Contact Us</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container foot">
-      <p>© <span id="year"></span> Cobalt Shield. Africa Forward. Loyalty Over Everything.</p>
-      <nav aria-label="Footer">
-        <a href="robots.txt">robots</a>
-        <a href="sitemap.xml">sitemap</a>
-        <a href="support.html">support</a>
-      </nav>
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> Cobalt Shield Initiative — Africa Forward. Loyalty Over Everything.</p>
     </div>
   </footer>
 
-  <script>
-    // mobile menu + year stamp
-    document.getElementById('year').textContent = new Date().getFullYear();
-    const btn = document.querySelector('.menu-toggle');
-    const nav = document.getElementById('primary-nav');
-    btn.addEventListener('click', () => {
-      const open = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!open));
-      nav.classList.toggle('open');
-    });
-  </script>
+  <!-- Robo Responds (lightweight assistant) -->
+  <button class="botfab" id="botFab" aria-label="Open assistant">◇</button>
+  <div class="bot" id="bot">
+    <div class="bot__head">
+      <strong>Cobalt Assistant</strong>
+      <button id="botClose" aria-label="Close">×</button>
+    </div>
+    <div class="bot__body" id="botBody">
+      <div class="msg botmsg">Hi! Ask about services, pilots, or contact. Try: “pricing”, “pilot”, “incident”.</div>
+    </div>
+    <form class="bot__input" id="botForm">
+      <input type="text" id="botText" placeholder="Type your question…" autocomplete="off" />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
-
- 
