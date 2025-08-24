@@ -7,20 +7,23 @@
   <meta name="description" content="Protecting youth & small orgs with digital safety, ethical energy, and practical tools."/>
   <link rel="preconnect" href="https://unpkg.com">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Top nav -->
   <header class="nav">
-    <a href="#" class="brand">Cobalt&nbsp;Shield</a>
+    <a href="#top" class="brand">Cobalt&nbsp;Shield</a>
     <nav>
       <a href="#mission">Mission</a>
       <a href="#map">Map</a>
       <a href="#services">Services</a>
+      <a href="#donate" class="donate-pill">Donate</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
+  <!-- Hero -->
   <section class="hero" id="top">
     <div class="hero__copy">
       <h1>Protecting people. <span class="accent">Building trust.</span></h1>
@@ -28,6 +31,7 @@
       <div class="cta">
         <a class="btn primary" href="#contact">Get in touch</a>
         <a class="btn ghost" href="#services">See services</a>
+        <a class="btn donate" href="#donate" aria-label="Donate to Cobalt Shield">Donate</a>
       </div>
       <ul class="trust">
         <li>Privacy-first</li>
@@ -36,26 +40,31 @@
       </ul>
     </div>
     <div class="hero__anim">
-      <!-- Lottie animation (small, subtle). Replace src with your own later if you want. -->
       <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_vnikrcia.json" background="transparent" speed="1" loop autoplay></lottie-player>
     </div>
   </section>
 
+  <!-- Mission -->
   <section class="strip" id="mission">
     <div class="container">
       <h2>Mission</h2>
       <p>We protect youth and small organizations through clean tech, digital safety, and ethical energy — from the classroom to the charging station.</p>
+      <div class="badges">
+        <span>Open playbooks</span><span>Human support</span><span>No data resale</span>
+      </div>
     </div>
   </section>
 
+  <!-- Map -->
   <section class="mapwrap" id="map">
     <div class="container">
       <h2>Where we work</h2>
       <p class="muted">Pilot focus: Greece & Rwanda. More regions join as partnerships grow.</p>
     </div>
-    <div id="mapid" class="map"></div>
+    <div id="mapid" class="map" role="img" aria-label="Map of Cobalt Shield pilot regions"></div>
   </section>
 
+  <!-- Services -->
   <section class="cards" id="services">
     <div class="container">
       <h2>Services</h2>
@@ -80,6 +89,38 @@
     </div>
   </section>
 
+  <!-- Donate (new, polished) -->
+  <section class="donate" id="donate" aria-labelledby="donate-title">
+    <div class="container">
+      <div class="donate__grid">
+        <div class="donate__media">
+          <!-- Placeholder image: swap to your own when ready -->
+          <img src="images/classroom-placeholder.jpg" alt="Students learning in a classroom" loading="lazy">
+          <figcaption>Your donation supports digital safety & education programs in schools like this.</figcaption>
+        </div>
+        <div class="donate__copy">
+          <h2 id="donate-title">Support Education, Empower the Future</h2>
+          <p>Help us deliver practical digital-safety lessons, incident playbooks, and ethical-energy literacy to schools and community orgs. Every contribution moves a real project forward.</p>
+
+          <div class="donate__buttons">
+            <!-- Suggested tiers (go to the same PayPal page; amounts are selectable there) -->
+            <a class="btn tier" href="https://www.paypal.com/donate?hosted_button_id=KM9T7T9C9SSX6" target="_blank" rel="noopener">€10</a>
+            <a class="btn tier" href="https://www.paypal.com/donate?hosted_button_id=KM9T7T9C9SSX6" target="_blank" rel="noopener">€25</a>
+            <a class="btn tier" href="https://www.paypal.com/donate?hosted_button_id=KM9T7T9C9SSX6" target="_blank" rel="noopener">€50</a>
+            <a class="btn tier" href="https://www.paypal.com/donate?hosted_button_id=KM9T7T9C9SSX6" target="_blank" rel="noopener">€100</a>
+          </div>
+
+          <a class="btn primary big" href="https://www.paypal.com/donate?hosted_button_id=KM9T7T9C9SSX6" target="_blank" rel="noopener" aria-label="Donate with PayPal">
+            Donate with PayPal
+          </a>
+
+          <p class="muted small">Cobalt Shield Initiative – secure processing via PayPal. For receipts or bank transfer details, <a href="#contact">contact us</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
   <section class="contact" id="contact">
     <div class="container">
       <h2>Contact</h2>
@@ -95,17 +136,14 @@
           <h4>SIP (VoIP)</h4>
           <p><a href="sip:support@cobalt-shield.com">sip:support@cobalt-shield.com</a> <span class="muted">(optional)</span></p>
         </div>
-        <form id="contactForm">
-          <label>
-            Organization
-            <input required type="text" name="org" placeholder="School / NGO / Partner"/>
+        <form id="contactForm" novalidate>
+          <label>Organization
+            <input required type="text" name="org" placeholder="School / NGO / Partner">
           </label>
-          <label>
-            Email
-            <input required type="email" name="email" placeholder="you@example.org"/>
+          <label>Email
+            <input required type="email" name="email" placeholder="you@example.org">
           </label>
-          <label>
-            Message
+          <label>Message
             <textarea required name="message" rows="4" placeholder="How can we help?"></textarea>
           </label>
           <button class="btn primary" type="submit">Send</button>
@@ -115,21 +153,22 @@
     </div>
   </section>
 
+  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <p>© <span id="year"></span> Cobalt Shield Initiative — Africa Forward. Loyalty Over Everything.</p>
     </div>
   </footer>
 
-  <!-- Robo Responds (lightweight assistant) -->
+  <!-- Robo Assistant -->
   <button class="botfab" id="botFab" aria-label="Open assistant">◇</button>
-  <div class="bot" id="bot">
+  <div class="bot" id="bot" aria-live="polite">
     <div class="bot__head">
       <strong>Cobalt Assistant</strong>
       <button id="botClose" aria-label="Close">×</button>
     </div>
     <div class="bot__body" id="botBody">
-      <div class="msg botmsg">Hi! Ask about services, pilots, or contact. Try: “pricing”, “pilot”, “incident”.</div>
+      <div class="msg botmsg">Hi! Ask about services, pilots, or contact. Try: “pricing”, “pilot”, or “incident”.</div>
     </div>
     <form class="bot__input" id="botForm">
       <input type="text" id="botText" placeholder="Type your question…" autocomplete="off" />
@@ -137,8 +176,10 @@
     </form>
   </div>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <!-- JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin></script>
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
+
