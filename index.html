@@ -9,8 +9,70 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Modern Hero Section Styles */
+    .modern-hero {
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(rgba(24,41,61,0.75), rgba(24,41,61,0.7)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+      border-radius: 0 0 2rem 2rem;
+      margin-bottom: 2rem;
+    }
+    .modern-hero__content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    .modern-hero__title {
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: 0.01em;
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.24);
+    }
+    .modern-hero__btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.75em 2.2em;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(90deg, #1e7ecb 0%, #2ed18c 100%);
+      border: none;
+      border-radius: 32px;
+      box-shadow: 0 2px 20px rgba(30,126,203,0.15);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .modern-hero__btn:hover, .modern-hero__btn:focus {
+      background: linear-gradient(90deg, #2ed18c 0%, #1e7ecb 100%);
+      color: #fff;
+      box-shadow: 0 6px 36px rgba(46,209,140,0.18);
+    }
+    @media (max-width:600px) {
+      .modern-hero__title { font-size: 2rem; }
+      .modern-hero { min-height: 40vh; }
+    }
+  </style>
 </head>
 <body>
+  <!-- Modern Hero Section (REPLACES OLD HERO) -->
+  <section class="modern-hero" id="top">
+    <div class="modern-hero__content">
+      <h1 class="modern-hero__title">Cobalt Shield Initiative</h1>
+      <a href="#mission" class="modern-hero__btn" aria-label="Learn more about Cobalt Shield Initiative">Learn More</a>
+    </div>
+  </section>
+
   <!-- Top nav -->
   <header class="nav">
     <a href="#top" class="brand">Cobalt&nbsp;Shield</a>
@@ -22,27 +84,6 @@
       <a href="#contact">Contact</a>
     </nav>
   </header>
-
-  <!-- Hero -->
-  <section class="hero" id="top">
-    <div class="hero__copy">
-      <h1>Protecting people. <span class="accent">Building trust.</span></h1>
-      <p>Digital safety education, ethical energy literacy, and rapid-response playbooks — practical tools for schools & small organizations.</p>
-      <div class="cta">
-        <a class="btn primary" href="#contact">Get in touch</a>
-        <a class="btn ghost" href="#services">See services</a>
-        <a class="btn donate" href="#donate" aria-label="Donate to Cobalt Shield">Donate</a>
-      </div>
-      <ul class="trust">
-        <li>Privacy-first</li>
-        <li>Lightweight & transparent</li>
-        <li>Africa-forward mission</li>
-      </ul>
-    </div>
-    <div class="hero__anim">
-      <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_vnikrcia.json" background="transparent" speed="1" loop autoplay></lottie-player>
-    </div>
-  </section>
 
   <!-- Mission -->
   <section class="strip" id="mission">
@@ -182,4 +223,3 @@
   <script src="app.js"></script>
 </body>
 </html>
-
