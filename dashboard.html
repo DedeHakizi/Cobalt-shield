@@ -7,142 +7,77 @@
   <meta name="description" content="Cobalt Shield Initiative progress dashboard: cadence, meetings, projects, team velocity, and growth index." />
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <style>
-    :root {
-      --brand: #0f4c81;          /* Cobalt blue */
-      --brand-2: #1d6fa5;        /* Deeper cobalt */
-      --accent: #17a2b8;         /* Accent cyan */
-      --ink: #0b1220;            /* Text */
-      --muted: #6b7280;          /* Muted text */
-      --bg: #f6f8fb;             /* Page background */
-      --panel: #ffffff;          /* Cards */
-      --ok: #10b981;             /* Green */
-      --warn: #f59e0b;           /* Amber */
-      --bad: #ef4444;            /* Red */
-      --line: #e5e7eb;           /* Borders */
-      --shadow: 0 10px 25px rgba(16,24,40,.08);
-      --radius: 14px;
+    :root{
+      --brand:#0f4c81; --brand-2:#1d6fa5; --accent:#17a2b8;
+      --ink:#0b1220; --muted:#6b7280; --bg:#f6f8fb; --panel:#ffffff;
+      --ok:#10b981; --warn:#f59e0b; --bad:#ef4444; --line:#e5e7eb;
+      --shadow:0 10px 25px rgba(16,24,40,.08); --radius:14px;
     }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font: 15px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-      color: var(--ink);
-      background: var(--bg);
-    }
-    a { color: var(--brand); text-decoration: none; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;color:var(--ink);background:var(--bg)}
+    a{color:var(--brand);text-decoration:none}
 
-    /* Topbar to match site index */
-    .topbar{
-      position: sticky; top: 0; z-index: 20;
-      background:#fff; border-bottom:1px solid var(--line);
-      display:flex; align-items:center; gap:14px; justify-content:space-between;
-      padding:10px clamp(14px,3vw,28px);
-      box-shadow: var(--shadow);
-    }
+    /* Topbar */
+    .topbar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);
+      display:flex;align-items:center;gap:14px;justify-content:space-between;padding:10px clamp(14px,3vw,28px);box-shadow:var(--shadow)}
     .logo{display:grid}
-    .logo b{font-weight:800; letter-spacing:.2px; color:#0a2e4a}
+    .logo b{font-weight:800;letter-spacing:.2px;color:#0a2e4a}
     .logo small{color:var(--muted)}
-    .nav{display:flex; gap:16px; flex-wrap:wrap}
-    .nav a{font-weight:600; color:#1f2937; padding:8px 10px; border-radius:10px}
-    .nav a.active, .nav a:hover{background:#eef6ff; color:var(--brand)}
-    .cta{display:flex; gap:10px}
-    .btn{
-      background: #fff;
-      color: var(--brand);
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--brand);
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform .05s ease, box-shadow .2s ease;
-      box-shadow: 0 6px 16px rgba(0,0,0,.06);
-    }
-    .btn.primary{ background: linear-gradient(90deg, var(--brand), var(--brand-2)); color:#fff; border-color:transparent; }
-    .btn:hover { transform: translateY(-1px); }
+    .nav{display:flex;gap:16px;flex-wrap:wrap}
+    .nav a{font-weight:600;color:#1f2937;padding:8px 10px;border-radius:10px}
+    .nav a.active,.nav a:hover{background:#eef6ff;color:var(--brand)}
+    .cta{display:flex;gap:10px}
+    .btn{background:#fff;color:var(--brand);padding:10px 14px;border-radius:999px;border:1px solid var(--brand);
+      font-weight:700;cursor:pointer;transition:transform .05s,box-shadow .2s;box-shadow:0 6px 16px rgba(0,0,0,.06)}
+    .btn.primary{background:linear-gradient(90deg,var(--brand),var(--brand-2));color:#fff;border-color:transparent}
+    .btn:hover{transform:translateY(-1px)}
 
     /* Hero */
-    .hero{
-      background: linear-gradient(180deg,#f0f7ff,rgba(240,247,255,0));
-      padding: 20px clamp(16px,3vw,28px) 10px;
-    }
-    .hero h1{margin:6px 0 4px; font-size:clamp(20px,2.4vw,30px); font-weight:900; color:#0a2e4a}
-    .hero p{margin:0; color:#35516a}
+    .hero{background:linear-gradient(180deg,#f0f7ff,rgba(240,247,255,0));padding:20px clamp(16px,3vw,28px) 10px}
+    .hero h1{margin:6px 0 4px;font-size:clamp(20px,2.4vw,30px);font-weight:900;color:#0a2e4a}
+    .hero p{margin:0;color:#35516a}
 
-    .container {
-      padding: 22px clamp(14px, 3vw, 28px) 36px;
-      display: grid;
-      gap: 22px;
-    }
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 16px;
-    }
-    .card h3 {
-      margin: 0 0 10px;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: .8px;
-      color: var(--muted);
-    }
+    /* Layout */
+    .container{padding:22px clamp(14px,3vw,28px) 36px;display:grid;gap:22px}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
+    .card h3{margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
+    .grid{display:grid;gap:22px}
+    .grid.cols-12{grid-template-columns:repeat(12,minmax(0,1fr))}
+    .span-3{grid-column:span 3}.span-4{grid-column:span 4}.span-6{grid-column:span 6}.span-8{grid-column:span 8}.span-12{grid-column:span 12}
+    @media (max-width:1000px){.span-3,.span-4,.span-6,.span-8{grid-column:span 12}}
 
-    .grid { display:grid; gap:22px; }
-    .grid.cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
-    .span-3 { grid-column: span 3; }
-    .span-4 { grid-column: span 4; }
-    .span-6 { grid-column: span 6; }
-    .span-8 { grid-column: span 8; }
-    .span-12 { grid-column: span 12; }
-    @media (max-width: 1000px) { .span-3, .span-4, .span-6, .span-8 { grid-column: span 12; } }
+    /* KPIs */
+    .kpis{display:grid;grid-template-columns:repeat(5,minmax(120px,1fr));gap:14px}
+    @media (max-width:1100px){.kpis{grid-template-columns:repeat(2,1fr)}}
+    .kpi{background:linear-gradient(180deg,#fff,#f8fbff);border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:8px}
+    .kpi .label{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.8px}
+    .kpi .value{font-size:26px;font-weight:800}
+    .kpi .delta{font-size:12px;font-weight:700}
+    .delta.up{color:var(--ok)} .delta.down{color:var(--bad)}
+    .progress{height:10px;width:100%;background:#eef2f7;border-radius:999px;overflow:hidden;border:1px solid var(--line)}
+    .bar{height:100%;background:var(--brand);width:0%;transition:width .8s ease}
+    .muted{color:var(--muted)} .small{font-size:12px} .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .table{width:100%;border-collapse:collapse;font-size:14px}
+    .table th,.table td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left}
+    .table th{text-transform:uppercase;letter-spacing:.8px;font-size:12px;color:var(--muted)}
+    footer{padding:30px;text-align:center;color:var(--muted)}
 
-    .kpis {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(120px, 1fr));
-      gap: 14px;
-    }
-    @media (max-width: 1100px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
-    .kpi {
-      background: linear-gradient(180deg,#fff, #f8fbff);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 14px;
-      display: grid;
-      gap: 8px;
-    }
-    .kpi .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .8px; }
-    .kpi .value { font-size: 26px; font-weight: 800; }
-    .kpi .delta { font-size: 12px; font-weight: 700; }
-    .delta.up { color: var(--ok); }
-    .delta.down { color: var(--bad); }
-
-    .progress { height: 10px; width: 100%; background: #eef2f7; border-radius: 999px; overflow: hidden; border: 1px solid var(--line); }
-    .bar { height: 100%; background: var(--brand); width: 0%; transition: width .8s ease; }
-
-    .muted { color: var(--muted); }
-    .small { font-size: 12px; }
-    .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
-
-    .table { width: 100%; border-collapse: collapse; font-size: 14px; }
-    .table th, .table td { padding: 10px 8px; border-bottom: 1px solid var(--line); text-align: left; }
-    .table th { text-transform: uppercase; letter-spacing: .8px; font-size: 12px; color: var(--muted); }
-
-    .chip {
-      display: inline-flex; align-items: center; gap: 6px;
-      border-radius: 999px; padding: 6px 10px; border: 1px solid var(--line);
-      font-size: 12px; background: #f8fafc;
-    }
-    .chip.ok { background: #ecfdf5; border-color: #bbf7d0; }
-    .chip.warn { background: #fffbeb; border-color: #fde68a; }
-    .chip.bad { background: #fef2f2; border-color: #fecaca; }
-
-    footer { padding: 30px; text-align: center; color: var(--muted); }
+    /* --- Bot styles (inline so it works here too) --- */
+    .botfab{position:fixed;right:16px;bottom:16px;border:0;background:#0f4c81;color:#fff;width:48px;height:48px;border-radius:50%;box-shadow:0 8px 18px rgba(0,0,0,.18);font-size:18px;cursor:pointer}
+    .bot{position:fixed;right:16px;bottom:80px;width:320px;max-width:95vw;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.2);display:none;overflow:hidden}
+    .bot.open{display:block}
+    .bot__head{padding:10px 12px;background:#0f4c81;color:#fff;display:flex;justify-content:space-between;align-items:center}
+    .bot__body{max-height:260px;overflow:auto;padding:12px;display:grid;gap:8px}
+    .bot__input{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}
+    .bot__input input{flex:1;padding:8px 10px;border:1px solid var(--line);border-radius:8px}
+    .bot__input button{padding:8px 12px;border-radius:8px;border:1px solid var(--brand);background:#0f4c81;color:#fff}
+    .msg{padding:8px 10px;border-radius:10px}
+    .botmsg{background:#eef6ff} .usermsg{background:#ecfdf5}
   </style>
 </head>
 <body>
-  <!-- Topbar (matches site index) -->
+  <!-- Topbar -->
   <div class="topbar">
     <div class="logo">
       <b>Cobalt Shield</b>
@@ -154,7 +89,7 @@
       <a href="/team.html">Team</a>
       <a href="/projects.html">Projects</a>
       <a href="/support.html">Support</a>
-      <a class="active" href="#">Dashboard</a>
+      <a class="active" href="/dashboard.html">Dashboard</a>
     </nav>
     <div class="cta">
       <a class="btn" href="mailto:delphin@cobalt-shield.com">Contact</a>
@@ -174,12 +109,11 @@
       <div class="kpis" id="kpiWrap"></div>
       <div class="row muted small">
         <span>Legend: Growth (monthly) · Cadence (weekly)</span>
-        <span class="small muted" style="margin-left:auto">Last updated: <span id="lastUpdatedMeta"></span></span>
+        <span class="right">Last updated: <span id="lastUpdatedMeta"></span></span>
       </div>
     </section>
 
     <div class="grid cols-12">
-      <!-- Growth & Cadence Charts -->
       <section class="card span-8">
         <h3>Growth & Cadence</h3>
         <canvas id="growthChart" height="140"></canvas>
@@ -187,394 +121,258 @@
         <canvas id="cadenceChart" height="140"></canvas>
       </section>
 
-      <!-- Meetings Mix -->
       <section class="card span-4">
         <h3>Meetings Mix (30 days)</h3>
         <canvas id="meetingsPie" height="280"></canvas>
         <p class="small muted">Source: manual data block (sync to CRM later)</p>
       </section>
 
-      <!-- Projects -->
       <section class="card span-6">
         <h3>Projects · Completion</h3>
         <div id="projectsList"></div>
       </section>
 
-      <!-- Team Velocity (Core) -->
       <section class="card span-6">
         <h3>Team · Velocity & Load (Core)</h3>
         <table class="table" id="teamTable">
-          <thead>
-            <tr>
-              <th>Member</th>
-              <th>Role</th>
-              <th>Velocity</th>
-              <th>Open</th>
-              <th>On-time %</th>
-              <th>Focus</th>
-            </tr>
-          </thead>
+          <thead><tr><th>Member</th><th>Role</th><th>Velocity</th><th>Open</th><th>On-time %</th><th>Focus</th></tr></thead>
           <tbody></tbody>
         </table>
       </section>
 
-      <!-- Partner Teams -->
       <section class="card span-12">
         <h3>Partner Teams</h3>
         <table class="table" id="partnerTable">
-          <thead>
-            <tr>
-              <th>Partner</th>
-              <th>POC</th>
-              <th>Scope</th>
-              <th>Open Items</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Filled by DATA.partnerTeams -->
-          </tbody>
+          <thead><tr><th>Partner</th><th>POC</th><th>Scope</th><th>Open Items</th><th>Status</th></tr></thead>
+          <tbody></tbody>
         </table>
       </section>
 
-      <!-- Roadmap / Milestones -->
       <section class="card span-8">
         <h3>Roadmap · Next 90 Days</h3>
         <div id="milestoneList"></div>
       </section>
 
-      <!-- Upcoming Meetings -->
       <section class="card span-4">
         <h3>Upcoming Meetings</h3>
         <div id="meetingsList"></div>
       </section>
 
-      <!-- Org Growth Index -->
       <section class="card span-12">
         <h3>Organization Growth Index</h3>
-        <div class="row" style="gap:14px; align-items:center;">
-          <div style="min-width:240px; flex:1;">
+        <div class="row" style="gap:14px;align-items:center">
+          <div style="min-width:240px;flex:1">
             <div class="card" style="padding:12px">
               <div class="row">
                 <strong>Growth Index</strong>
                 <span id="growthBadge" class="chip ok">Healthy</span>
                 <span class="right small muted" id="growthMeta"></span>
               </div>
-              <div class="progress" style="margin-top:8px;">
-                <div id="growthBar" class="bar"></div>
-              </div>
+              <div class="progress" style="margin-top:8px"><div id="growthBar" class="bar"></div></div>
             </div>
           </div>
-          <div style="flex:2;">
-            <canvas id="orgChart" height="120"></canvas>
-          </div>
+          <div style="flex:2"><canvas id="orgChart" height="120"></canvas></div>
         </div>
       </section>
     </div>
   </main>
 
-  <footer>
-    © <span id="year"></span> Cobalt Shield Initiative · Africa Forward. Loyalty Over Everything.
-  </footer>
+  <footer>© <span id="year"></span> Cobalt Shield Initiative · Africa Forward. Loyalty Over Everything.</footer>
 
   <!-- Charts -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
-  /* ========= EDIT DATA HERE ========= */
-  const DATA = {
-    meta: { lastUpdated: "2025-08-31 21:00 EEST" },
-    kpis: [
-      { label: "Total Meetings (MTD)", value: 18, delta: +20 },
-      { label: "Open Actions", value: 32, delta: -10 },
-      { label: "Closed Actions (MTD)", value: 64, delta: +12 },
-      { label: "On-time Delivery", value: "92%", delta: +3 },
-      { label: "Growth Index", value: "78/100", delta: +6 },
-    ],
-    growthMonthly: {
-      labels: ["Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
-      values: [28, 34, 38, 45, 49, 58, 0, 0, 0, 0]
-    },
-    cadenceWeekly: {
-      labels: ["Wk22","Wk23","Wk24","Wk25","Wk26","Wk27","Wk28","Wk29","Wk30","Wk31","Wk32","Wk33","Wk34"],
-      values:  [  6,    5,    7,    8,    5,    9,    7,    6,    8,    10,   11,   9,     12 ]
-    },
-    meetingsMix: {
-      labels: ["Partners", "Schools", "NGOs", "Internal", "Investors"],
-      values: [10, 6, 8, 12, 4]
-    },
-    projects: [
-      { name: "Website v1 polish", pct: 72, status: "on-track" },
-      { name: "Email & MX hardening", pct: 60, status: "on-track" },
-      { name: "Pilot: Rwanda school outreach", pct: 35, status: "at-risk" },
-      { name: "Funding deck (v2)", pct: 40, status: "slipping" },
-      { name: "TikTok presence (educational)", pct: 55, status: "on-track" }
-    ],
-    /* Core Team: you + internal collaborators */
-    team: [
-      { name: "Delphin Hakizimana", role: "CEO / Ops", velocity: 32, open: 14, ontime: 95, focus: "High" },
-      { name: "Mixalis", role: "Local EU Outreach", velocity: 18, open: 5, ontime: 88, focus: "Med" },
-      { name: "Panagiotis", role: "Advisor", velocity: 9, open: 2, ontime: 92, focus: "Low" },
-      { name: "Shalom", role: "Research Trainer", velocity: 14, open: 6, ontime: 86, focus: "Med" }
-    ],
-    /* Partner Teams table: organizations you work with */
-    partnerTeams: [
-      { partner: "Ionity (MSP context)", poc: "TBD", scope: "Charging support / MSP alignment", open: 3, status: "active" },
-      { partner: "Electra", poc: "TBD", scope: "EV support operations", open: 2, status: "active" },
-      { partner: "Spark Alliance", poc: "TBD", scope: "Fast-charging pricing & guidance", open: 4, status: "pending" }
-    ],
-    milestones: [
-      { title: "Secure Greek sponsor aligned with mission", when: "Sep 15", risk: "medium", owner: "Delphin" },
-      { title: "Rwanda pilot (MoU draft ready)", when: "Sep 28", risk: "high", owner: "Shalom" },
-      { title: "Deck v2 + 3 partner intros", when: "Oct 10", risk: "low", owner: "Delphin" },
-      { title: "Email: support@ setup + DMARC pass", when: "Oct 18", risk: "low", owner: "Delphin" }
-    ],
-    upcomingMeetings: [
-      { title: "Intro call — NGO lead", when: "Sep 02 · 10:00", type: "NGO", status: "confirmed" },
-      { title: "Coffee chat — potential Greek sponsor", when: "Sep 04 · 12:30", type: "Investor", status: "pending" },
-      { title: "Sync — Research Trainer", when: "Sep 05 · 09:00", type: "Internal", status: "confirmed" }
-    ],
-    orgIndex: {
-      score: 78, // 0-100
-      meta: "Inputs: cadence · delivery · pipeline · ops",
-      seriesLabels: ["Ops Hygiene","Pipeline","Delivery","Funding","Reach"],
-      seriesValues: [72, 68, 84, 55, 70]
+    /* ==== EDIT DATA HERE ==== */
+    const DATA = {
+      meta:{ lastUpdated:"2025-08-31 21:00 EEST" },
+      kpis:[
+        { label:"Total Meetings (MTD)", value:18, delta:+20 },
+        { label:"Open Actions", value:32, delta:-10 },
+        { label:"Closed Actions (MTD)", value:64, delta:+12 },
+        { label:"On-time Delivery", value:"92%", delta:+3 },
+        { label:"Growth Index", value:"78/100", delta:+6 },
+      ],
+      growthMonthly:{ labels:["Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"], values:[28,34,38,45,49,58,0,0,0,0] },
+      cadenceWeekly:{ labels:["Wk22","Wk23","Wk24","Wk25","Wk26","Wk27","Wk28","Wk29","Wk30","Wk31","Wk32","Wk33","Wk34"], values:[6,5,7,8,5,9,7,6,8,10,11,9,12] },
+      meetingsMix:{ labels:["Partners","Schools","NGOs","Internal","Investors"], values:[10,6,8,12,4] },
+      projects:[
+        { name:"Website v1 polish", pct:72, status:"on-track" },
+        { name:"Email & MX hardening", pct:60, status:"on-track" },
+        { name:"Pilot: Rwanda school outreach", pct:35, status:"at-risk" },
+        { name:"Funding deck (v2)", pct:40, status:"slipping" },
+        { name:"TikTok presence (educational)", pct:55, status:"on-track" }
+      ],
+      team:[
+        { name:"Delphin Hakizimana", role:"CEO / Ops", velocity:32, open:14, ontime:95, focus:"High" },
+        { name:"Mixalis", role:"Local EU Outreach", velocity:18, open:5, ontime:88, focus:"Med" },
+        { name:"Panagiotis", role:"Advisor", velocity:9, open:2, ontime:92, focus:"Low" },
+        { name:"Shalom", role:"Research Trainer", velocity:14, open:6, ontime:86, focus:"Med" }
+      ],
+      partnerTeams:[
+        { partner:"Ionity (MSP context)", poc:"TBD", scope:"Charging support / MSP alignment", open:3, status:"active" },
+        { partner:"Electra", poc:"TBD", scope:"EV support operations", open:2, status:"active" },
+        { partner:"Spark Alliance", poc:"TBD", scope:"Fast-charging pricing & guidance", open:4, status:"pending" }
+      ],
+      milestones:[
+        { title:"Secure Greek sponsor aligned with mission", when:"Sep 15", risk:"medium", owner:"Delphin" },
+        { title:"Rwanda pilot (MoU draft ready)", when:"Sep 28", risk:"high", owner:"Shalom" },
+        { title:"Deck v2 + 3 partner intros", when:"Oct 10", risk:"low", owner:"Delphin" },
+        { title:"Email: support@ setup + DMARC pass", when:"Oct 18", risk:"low", owner:"Delphin" }
+      ],
+      upcomingMeetings:[
+        { title:"Intro call — NGO lead", when:"Sep 02 · 10:00", type:"NGO", status:"confirmed" },
+        { title:"Coffee chat — potential Greek sponsor", when:"Sep 04 · 12:30", type:"Investor", status:"pending" },
+        { title:"Sync — Research Trainer", when:"Sep 05 · 09:00", type:"Internal", status:"confirmed" }
+      ],
+      orgIndex:{ score:78, meta:"Inputs: cadence · delivery · pipeline · ops", seriesLabels:["Ops Hygiene","Pipeline","Delivery","Funding","Reach"], seriesValues:[72,68,84,55,70] }
+    };
+
+    const $ = (s,r=document)=>r.querySelector(s);
+
+    function setKPIs(){
+      const wrap = $("#kpiWrap"); wrap.innerHTML="";
+      DATA.kpis.forEach(k=>{
+        const d = typeof k.delta==="number"?k.delta:0;
+        const dir = d>=0?"up":"down"; const sign = d>=0?"+":"";
+        const div = document.createElement("div");
+        div.className="kpi";
+        div.innerHTML=`
+          <div class="label">${k.label}</div>
+          <div class="value">${k.value}</div>
+          <div class="delta ${dir}">${sign}${d}% vs prev</div>`;
+        wrap.appendChild(div);
+      });
+      $("#lastUpdated").textContent = "· Updated " + DATA.meta.lastUpdated;
+      $("#lastUpdatedMeta").textContent = DATA.meta.lastUpdated;
     }
-  };
 
-  /* ======= Dashboard logic ======= */
-  const $ = (sel, root=document) => root.querySelector(sel);
+    function setProjects(){
+      const list=$("#projectsList"); list.innerHTML="";
+      DATA.projects.forEach(p=>{
+        const lvl=p.status==="on-track"?"ok":(p.status==="at-risk"?"warn":"bad");
+        const item=document.createElement("div");
+        item.className="card"; item.style.padding="12px";
+        item.innerHTML=`
+          <div class="row">
+            <strong>${p.name}</strong>
+            <span class="chip ${lvl}">${p.status}</span>
+            <span class="right small muted">${p.pct}%</span>
+          </div>
+          <div class="progress" style="margin-top:8px"><div class="bar" style="width:${p.pct}%"></div></div>`;
+        list.appendChild(item);
+      });
+    }
 
-  function setKPIs() {
-    const wrap = $("#kpiWrap");
-    wrap.innerHTML = "";
-    DATA.kpis.forEach(k => {
-      const deltaNum = (typeof k.delta === "number") ? k.delta : 0;
-      const dir = deltaNum >= 0 ? "up" : "down";
-      const sign = deltaNum >= 0 ? "+" : "";
-      const div = document.createElement("div");
-      div.className = "kpi";
-      div.innerHTML = `
-        <div class="label">${k.label}</div>
-        <div class="value">${k.value}</div>
-        <div class="delta ${dir}">${sign}${deltaNum}% vs prev</div>
-      `;
-      wrap.appendChild(div);
-    });
-    $("#lastUpdated").textContent = "· Updated " + DATA.meta.lastUpdated;
-    $("#lastUpdatedMeta").textContent = DATA.meta.lastUpdated;
-  }
+    function setTeam(){
+      const tbody=$("#teamTable tbody"); tbody.innerHTML="";
+      DATA.team.forEach(m=>{
+        const tr=document.createElement("tr");
+        tr.innerHTML=`<td>${m.name}</td><td>${m.role}</td><td>${m.velocity}</td><td>${m.open}</td><td>${m.ontime}%</td><td>${m.focus}</td>`;
+        tbody.appendChild(tr);
+      });
+    }
 
-  function setProjects() {
-    const list = $("#projectsList");
-    list.innerHTML = "";
-    DATA.projects.forEach(p => {
-      const level = p.status === "on-track" ? "ok" : (p.status === "at-risk" ? "warn" : "bad");
-      const item = document.createElement("div");
-      item.className = "card";
-      item.style.padding = "12px";
-      item.innerHTML = `
-        <div class="row">
-          <strong>${p.name}</strong>
-          <span class="chip ${level}">${p.status}</span>
-          <span class="right small muted">${p.pct}%</span>
-        </div>
-        <div class="progress" style="margin-top:8px;">
-          <div class="bar" style="width:${p.pct}%"></div>
-        </div>
-      `;
-      list.appendChild(item);
-    });
-  }
+    function setPartners(){
+      const tbody=$("#partnerTable tbody"); tbody.innerHTML="";
+      DATA.partnerTeams.forEach(p=>{
+        const chip=p.status==="active"?"ok":(p.status==="pending"?"warn":"bad");
+        const tr=document.createElement("tr");
+        tr.innerHTML=`<td>${p.partner}</td><td>${p.poc}</td><td>${p.scope}</td><td>${p.open}</td><td><span class="chip ${chip}">${p.status}</span></td>`;
+        tbody.appendChild(tr);
+      });
+    }
 
-  function setTeam() {
-    const tbody = $("#teamTable tbody");
-    tbody.innerHTML = "";
-    DATA.team.forEach(m => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${m.name}</td>
-        <td>${m.role}</td>
-        <td>${m.velocity}</td>
-        <td>${m.open}</td>
-        <td>${m.ontime}%</td>
-        <td>${m.focus}</td>
-      `;
-      tbody.appendChild(tr);
-    });
-  }
+    function setMilestones(){
+      const list=$("#milestoneList"); list.innerHTML="";
+      DATA.milestones.forEach(ms=>{
+        const lvl=ms.risk==="low"?"ok":(ms.risk==="medium"?"warn":"bad");
+        const item=document.createElement("div");
+        item.className="card"; item.style.padding="12px";
+        item.innerHTML=`<div class="row"><strong>${ms.title}</strong><span class="chip ${lvl}">risk: ${ms.risk}</span><span class="right small muted">owner: ${ms.owner} · due ${ms.when}</span></div>`;
+        list.appendChild(item);
+      });
+    }
 
-  function setPartners(){
-    const tbody = $("#partnerTable tbody");
-    tbody.innerHTML = "";
-    DATA.partnerTeams.forEach(p=>{
-      const statusChip = p.status === "active" ? "ok" : (p.status === "pending" ? "warn" : "bad");
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${p.partner}</td>
-        <td>${p.poc}</td>
-        <td>${p.scope}</td>
-        <td>${p.open}</td>
-        <td><span class="chip ${statusChip}">${p.status}</span></td>
-      `;
-      tbody.appendChild(tr);
-    });
-  }
+    function setMeetings(){
+      const list=$("#meetingsList"); list.innerHTML="";
+      DATA.upcomingMeetings.forEach(m=>{
+        const lvl=m.status==="confirmed"?"ok":(m.status==="pending"?"warn":"bad");
+        const item=document.createElement("div");
+        item.className="card"; item.style.padding="12px";
+        item.innerHTML=`<div class="row"><strong>${m.title}</strong><span class="chip ${lvl}">${m.status}</span><span class="right small muted">${m.type} · ${m.when}</span></div>`;
+        list.appendChild(item);
+      });
+    }
 
-  function setMilestones() {
-    const list = $("#milestoneList");
-    list.innerHTML = "";
-    DATA.milestones.forEach(ms => {
-      const lvl = ms.risk === "low" ? "ok" : (ms.risk === "medium" ? "warn" : "bad");
-      const item = document.createElement("div");
-      item.className = "card";
-      item.style.padding = "12px";
-      item.innerHTML = `
-        <div class="row">
-          <strong>${ms.title}</strong>
-          <span class="chip ${lvl}">risk: ${ms.risk}</span>
-          <span class="right small muted">owner: ${ms.owner} · due ${ms.when}</span>
-        </div>
-      `;
-      list.appendChild(item);
-    });
-  }
+    let growthChart,cadenceChart,meetingsPie,orgChart;
+    function setCharts(){
+      if(growthChart)growthChart.destroy(); if(cadenceChart)cadenceChart.destroy(); if(meetingsPie)meetingsPie.destroy(); if(orgChart)orgChart.destroy();
+      const ctx1=document.getElementById("growthChart").getContext("2d");
+      const ctx2=document.getElementById("cadenceChart").getContext("2d");
+      const ctx3=document.getElementById("meetingsPie").getContext("2d");
+      const ctx4=document.getElementById("orgChart").getContext("2d");
 
-  function setMeetings() {
-    const list = $("#meetingsList");
-    list.innerHTML = "";
-    DATA.upcomingMeetings.forEach(m => {
-      const statusClass = m.status === "confirmed" ? "ok" : (m.status === "pending" ? "warn" : "bad");
-      const item = document.createElement("div");
-      item.className = "card";
-      item.style.padding = "12px";
-      item.innerHTML = `
-        <div class="row">
-          <strong>${m.title}</strong>
-          <span class="chip ${statusClass}">${m.status}</span>
-          <span class="right small muted">${m.type} · ${m.when}</span>
-        </div>
-      `;
-      list.appendChild(item);
-    });
-  }
+      growthChart=new Chart(ctx1,{type:"line",data:{labels:DATA.growthMonthly.labels,datasets:[{label:"Growth (Index)",data:DATA.growthMonthly.values,fill:false,tension:.35}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
+      cadenceChart=new Chart(ctx2,{type:"bar",data:{labels:DATA.cadenceWeekly.labels,datasets:[{label:"Meetings per Week",data:DATA.cadenceWeekly.values}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
+      meetingsPie=new Chart(ctx3,{type:"doughnut",data:{labels:DATA.meetingsMix.labels,datasets:[{data:DATA.meetingsMix.values}]},options:{responsive:true,plugins:{legend:{position:"bottom"}}}});
+      orgChart=new Chart(ctx4,{type:"radar",data:{labels:DATA.orgIndex.seriesLabels,datasets:[{label:"Index",data:DATA.orgIndex.seriesValues}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{r:{suggestedMin:0,suggestedMax:100,ticks:{stepSize:20}}}}});
+    }
 
-  // Charts
-  let growthChart, cadenceChart, meetingsPie, orgChart;
-  function setCharts() {
-    if (growthChart) growthChart.destroy();
-    if (cadenceChart) cadenceChart.destroy();
-    if (meetingsPie) meetingsPie.destroy();
-    if (orgChart) orgChart.destroy();
+    function setOrgIndex(){
+      const score=DATA.orgIndex.score;
+      document.getElementById("growthBar").style.width = score + "%";
+      document.getElementById("growthMeta").textContent = DATA.orgIndex.meta;
+      const badge=document.getElementById("growthBadge");
+      badge.textContent = score>=75?"Healthy":(score>=55?"Watch":"Weak");
+      badge.className = "chip " + (score>=75?"ok":(score>=55?"warn":"bad"));
+    }
 
-    const ctx1 = document.getElementById("growthChart").getContext("2d");
-    const ctx2 = document.getElementById("cadenceChart").getContext("2d");
-    const ctx3 = document.getElementById("meetingsPie").getContext("2d");
-    const ctx4 = document.getElementById("orgChart").getContext("2d");
+    document.getElementById("exportBtn").addEventListener("click",()=>window.print());
 
-    growthChart = new Chart(ctx1, {
-      type: "line",
-      data: {
-        labels: DATA.growthMonthly.labels,
-        datasets: [{ label: "Growth (Index)", data: DATA.growthMonthly.values, fill: false, tension: 0.35 }]
-      },
-      options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
-    });
-
-    cadenceChart = new Chart(ctx2, {
-      type: "bar",
-      data: {
-        labels: DATA.cadenceWeekly.labels,
-        datasets: [{ label: "Meetings per Week", data: DATA.cadenceWeekly.values }]
-      },
-      options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
-    });
-
-    meetingsPie = new Chart(ctx3, {
-      type: "doughnut",
-      data: { labels: DATA.meetingsMix.labels, datasets: [{ data: DATA.meetingsMix.values }] },
-      options: { responsive: true, plugins: { legend: { position: "bottom" } } }
-    });
-
-    orgChart = new Chart(ctx4, {
-      type: "radar",
-      data: { labels: DATA.orgIndex.seriesLabels, datasets: [{ label: "Index", data: DATA.orgIndex.seriesValues }] },
-      options: {
-        responsive: true,
-        plugins: { legend: { display: false } },
-        scales: { r: { suggestedMin: 0, suggestedMax: 100, ticks: { stepSize: 20 } } }
-      }
-    });
-  }
-
-  function setOrgIndex() {
-    const score = DATA.orgIndex.score;
-    document.getElementById("growthBar").style.width = score + "%";
-    document.getElementById("growthMeta").textContent = DATA.orgIndex.meta;
-    const badge = document.getElementById("growthBadge");
-    badge.textContent = score >= 75 ? "Healthy" : (score >= 55 ? "Watch" : "Weak");
-    badge.className = "chip " + (score >= 75 ? "ok" : (score >= 55 ? "warn" : "bad"));
-  }
-
-  // Export PDF (prints the page cleanly)
-  document.getElementById("exportBtn").addEventListener("click", () => window.print());
-
-  // Init
-  setKPIs();
-  setProjects();
-  setTeam();
-  setPartners();
-  setMilestones();
-  setMeetings();
-  setCharts();
-  setOrgIndex();
-  document.getElementById("year").textContent = new Date().getFullYear();
+    // Init
+    setKPIs(); setProjects(); setTeam(); setPartners(); setMilestones(); setMeetings(); setCharts(); setOrgIndex();
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
-</body>
+
   <!-- ===== BOT ===== -->
-<button class="botfab" id="botFab" aria-label="Open assistant">◇</button>
-<div class="bot" id="bot" aria-live="polite">
-  <div class="bot__head">
-    <strong>Cobalt Assistant</strong>
-    <button id="botClose" aria-label="Close">×</button>
+  <button class="botfab" id="botFab" aria-label="Open assistant">◇</button>
+  <div class="bot" id="bot" aria-live="polite">
+    <div class="bot__head">
+      <strong>Cobalt Assistant</strong>
+      <button id="botClose" aria-label="Close">×</button>
+    </div>
+    <div class="bot__body" id="botBody">
+      <div class="msg botmsg">Hi! Ask about services, pilots, or contact. Try: “pricing”, “pilot”, or “incident”.</div>
+    </div>
+    <form class="bot__input" id="botForm">
+      <input type="text" id="botText" placeholder="Type your question…" autocomplete="off" />
+      <button type="submit">Send</button>
+    </form>
   </div>
-  <div class="bot__body" id="botBody">
-    <div class="msg botmsg">Hi! Ask about services, pilots, or contact. Try: “pricing”, “pilot”, or “incident”.</div>
-  </div>
-  <form class="bot__input" id="botForm">
-    <input type="text" id="botText" placeholder="Type your question…" autocomplete="off" />
-    <button type="submit">Send</button>
-  </form>
-</div>
+  <script>
+    // Bot logic
+    const bot=document.getElementById('bot'), fab=document.getElementById('botFab'), closeB=document.getElementById('botClose'),
+          bodyEl=document.getElementById('botBody'), form=document.getElementById('botForm'), input=document.getElementById('botText');
+    fab.onclick=()=>bot.classList.add('open'); closeB.onclick=()=>bot.classList.remove('open');
+    const replies={
+      pricing:"Our pricing is transparent and tailored. Mini audits start simple; education packs are sponsor-friendly. Email delphin@cobalt-shield.com.",
+      pilot:"We’re scheduling low-cost pilots for schools/NGOs in Greece & Rwanda. Share your org and goals via the contact form.",
+      incident:"Breathe. For urgent risks, write 'incident' + summary in the form. We’ll guide calmly with clear next steps.",
+      donate:"Donate now via the PayPal button above, or email delphin@cobalt-shield.com for bank transfer details."
+    };
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      const text=(input.value||"").trim(); if(!text) return;
+      bodyEl.insertAdjacentHTML('beforeend', `<div class="msg usermsg">${text}</div>`); input.value="";
+      const key=Object.keys(replies).find(k=>text.toLowerCase().includes(k));
+      const answer=key?replies[key]:"I can help with pricing, pilots, incidents, and donations. Try those keywords.";
+      bodyEl.insertAdjacentHTML('beforeend', `<div class="msg botmsg">${answer}</div>`); bodyEl.scrollTop=bodyEl.scrollHeight;
+    });
+  </script>
 
-<script>
-  // Bot logic
-  const bot    = document.getElementById('bot');
-  const fab    = document.getElementById('botFab');
-  const closeB = document.getElementById('botClose');
-  const bodyEl = document.getElementById('botBody');
-  const form   = document.getElementById('botForm');
-  const input  = document.getElementById('botText');
-
-  fab.onclick = ()=> bot.classList.add('open');
-  closeB.onclick = ()=> bot.classList.remove('open');
-
-  const replies = {
-    pricing: "Our pricing is transparent and tailored. Mini audits start simple; education packs are sponsor-friendly. Email delphin@cobalt-shield.com.",
-    pilot: "We’re scheduling low-cost pilots for schools/NGOs in Greece & Rwanda. Share your org and goals via the contact form.",
-    incident: "Breathe. For urgent risks, write 'incident' + summary in the form. We’ll guide calmly with clear next steps.",
-    donate: "Donate now via the PayPal button above, or email delphin@cobalt-shield.com for bank transfer details."
-  };
-
-  form.addEventListener('submit', (e)=>{
-    e.preventDefault();
-    const text = (input.value || "").trim();
-    if(!text) return;
-    bodyEl.insertAdjacentHTML('beforeend', `<div class="msg usermsg">${text}</div>`);
-    input.value = "";
-    const key = Object.keys(replies).find(k => text.toLowerCase().includes(k));
-    const answer = key ? replies[key] : "I can help with pricing, pilots, incidents, and donations. Try those keywords.";
-    bodyEl.insertAdjacentHTML('beforeend', `<div class="msg botmsg">${answer}</div>`);
-    bodyEl.scrollTop = bodyEl.scrollHeight;
-  });
-</script>
+  <!-- year setter -->
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+  <!-- Chart.js loaded earlier -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
 </html>
