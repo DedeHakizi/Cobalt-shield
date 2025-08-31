@@ -6,128 +6,162 @@
   <title>Cobalt Shield Initiative</title>
   <meta name="description" content="Protecting youth & small orgs with digital safety, ethical energy, and practical tools."/>
   <meta name="theme-color" content="#0f4c81">
-  <link rel="stylesheet" href="style.css?v=2" />
+  <link rel="stylesheet" href="style.css?v=9">
 </head>
+
 <body>
-  <!-- ===== NAV ===== -->
-  <header class="nav" role="banner">
+  <!-- NAV -->
+  <header class="nav">
     <div class="container nav__inner">
-      <a href="#top" class="brand" aria-label="Cobalt Shield Initiative home">
-        Cobalt<span>Shield</span>
-      </a>
-      <nav class="nav__links" id="navLinks" role="navigation" aria-label="Main menu">
+      <a href="#top" class="brand">Cobalt<span>Shield</span></a>
+      <nav class="nav__links" id="navLinks">
         <a href="#mission">Mission</a>
         <a href="#impact">Impact</a>
         <a href="#services">Services</a>
+        <a href="/dashboard.html" class="pill">Dashboard</a>
         <a href="#donate" class="pill">Donate</a>
         <a href="#contact">Contact</a>
       </nav>
-      <button class="nav__burger" id="burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+      <button class="nav__burger" id="burger" aria-label="Toggle menu">☰</button>
     </div>
   </header>
 
-  <!-- ===== HERO ===== -->
+  <!-- HERO -->
   <section class="hero" id="top">
     <div class="container hero__content">
       <h1>Cobalt Shield Initiative</h1>
       <p>Protecting youth & small organizations with <b>digital safety</b>, <b>clean technology</b>, and <b>ethical energy</b> tools.</p>
       <div class="hero__cta">
-        <a href="#mission" class="btn">Learn More</a>
+        <a href="/dashboard.html" class="btn">Open Dashboard</a>
+        <a href="#mission" class="btn btn--ghost">Learn More</a>
         <a href="#donate" class="btn btn--ghost">Support</a>
+        <a href="https://wa.me/306986761215" target="_blank" class="btn btn--whatsapp">WhatsApp</a>
       </div>
     </div>
   </section>
 
-  <!-- ===== MISSION ===== -->
+  <!-- MISSION -->
   <section class="section" id="mission">
     <div class="container">
       <h2>Mission</h2>
       <p class="muted">From the classroom to the charging station — practical protection, calm guidance, zero data resale.</p>
+      <ul class="chips">
+        <li>Open playbooks</li>
+        <li>Human support</li>
+        <li>Privacy by default</li>
+        <li>Africa ↔ Europe bridge</li>
+      </ul>
     </div>
   </section>
 
-  <!-- ===== IMPACT ===== -->
+  <!-- IMPACT -->
   <section class="section section--alt" id="impact">
     <div class="container">
-      <h2>Impact</h2>
+      <h2>Impact, not noise</h2>
       <div class="impact">
-        <div class="impact__kpi"><div class="impact__num">64</div><div class="impact__label">Actions closed</div></div>
+        <div class="impact__kpi"><div class="impact__num">64</div><div class="impact__label">Actions closed (MTD)</div></div>
         <div class="impact__kpi"><div class="impact__num">92%</div><div class="impact__label">On-time delivery</div></div>
         <div class="impact__kpi"><div class="impact__num">18</div><div class="impact__label">Meetings this month</div></div>
         <div class="impact__kpi"><div class="impact__num">78/100</div><div class="impact__label">Growth index</div></div>
       </div>
-    </div>
-  </section>
-
-  <!-- ===== SERVICES ===== -->
-  <section class="section" id="services">
-    <div class="container">
-      <h2>Services</h2>
-      <div class="grid">
-        <article class="card"><h3>School Shield Kit</h3><p>Ready lessons, parent handouts, and micro-certs.</p></article>
-        <article class="card"><h3>Incident Desk</h3><p>Lightweight playbooks and clear steps for common risks.</p></article>
-        <article class="card"><h3>EV Ethics Pack</h3><p>Transparent pricing signage, sourcing awareness, charging guides.</p></article>
-        <article class="card"><h3>Mini Audits</h3><p>2–3 day review, traffic-light report + action plan.</p></article>
+      <div class="impact__cta">
+        <a href="/dashboard.html" class="btn">View Ops Dashboard</a>
+        <a href="#contact" class="btn btn--ghost">Talk to us</a>
       </div>
     </div>
   </section>
 
-  <!-- ===== DONATE ===== -->
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="container">
+      <h2>Services</h2>
+      <div class="grid">
+        <article class="card"><h3>School Shield Kit</h3><p>Ready lessons, parent handouts, micro-certs.</p></article>
+        <article class="card"><h3>Incident Desk</h3><p>Lightweight intake & triage playbooks.</p></article>
+        <article class="card"><h3>EV Ethics Pack</h3><p>Transparent pricing signage & sourcing literacy.</p></article>
+        <article class="card"><h3>Mini Audits</h3><p>2–3 day review. Traffic-light report + action plan.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DONATE (PayPal Smart Buttons – one-time amount) -->
   <section class="section section--alt" id="donate">
     <div class="container">
       <h2>Support Education, Empower the Future</h2>
-      <p>Every contribution powers digital-safety education and clean-energy literacy.</p>
-      <div id="paypal-button-container" style="max-width:400px;margin:20px auto;"></div>
-      <p id="paypal-status" class="muted small"></p>
+      <p class="muted">Every contribution powers digital-safety education and clean-energy literacy.</p>
+
+      <div class="donate__box">
+        <label class="amount">
+          <span>Amount (EUR)</span>
+          <input id="cs-amount" type="number" min="1" step="1" value="25">
+        </label>
+        <div id="paypal-button-container"></div>
+        <p id="paypal-status" class="muted small"></p>
+      </div>
     </div>
   </section>
 
-  <!-- ===== CONTACT ===== -->
+  <!-- CONTACT -->
   <section class="section" id="contact">
     <div class="container">
       <h2>Contact</h2>
-      <p>Email: <a href="mailto:delphin@cobalt-shield.com">delphin@cobalt-shield.com</a></p>
-      <p>WhatsApp: <a href="https://wa.me/306986761215" target="_blank" rel="noopener">+30 698 676 1215</a></p>
+      <div class="contact__grid">
+        <div>
+          <p>Email: <a href="mailto:delphin@cobalt-shield.com">delphin@cobalt-shield.com</a></p>
+          <p>WhatsApp: <a href="https://wa.me/306986761215" target="_blank">+30 698 676 1215</a></p>
+        </div>
+        <form id="contactForm" class="form" novalidate>
+          <label>Organization<input required type="text" name="org" placeholder="School / NGO / Partner"></label>
+          <label>Email<input required type="email" name="email" placeholder="you@example.org"></label>
+          <label>Message<textarea required name="message" rows="4" placeholder="How can we help?"></textarea></label>
+          <button class="btn" type="submit">Send</button>
+          <p id="formStatus" class="muted small"></p>
+        </form>
+      </div>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- FOOTER -->
   <footer class="footer">
-    <div class="container">
-      <p>© <span id="year"></span> Cobalt Shield Initiative — Africa Forward. Loyalty Over Everything.</p>
-    </div>
+    <div class="container"><p>© <span id="year"></span> Cobalt Shield Initiative — Africa Forward. Loyalty Over Everything.</p></div>
   </footer>
 
-  <!-- PayPal SDK -->
-  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_LIVE_CLIENT_ID&currency=EUR"></script>
-  <script>
-    // Dynamic year
-    document.getElementById('year').textContent = new Date().getFullYear();
-    // PayPal status
-    const statusEl = document.getElementById('paypal-status');
-    if (window.paypal) {
-      paypal.Buttons({
-        style: { shape: 'pill', height: 40 },
-        createOrder: (data, actions) => actions.order.create({
-          purchase_units: [{
-            description: 'Cobalt Shield Support',
-            amount: { value: '25.00', currency_code: 'EUR' }
-          }]
-        }),
-        onApprove: (data, actions) => actions.order.capture().then(order => {
-          statusEl.textContent = "✅ Thanks! Transaction ID: " + order.id;
-        }),
-        onError: err => { statusEl.textContent = "⚠️ Payment failed."; }
-      }).render('#paypal-button-container');
-    }
+  <!-- Mobile sticky contact bar -->
+  <div class="stickybar">
+    <a href="tel:+306986761215">📞 Call</a>
+    <a href="https://wa.me/306986761215" target="_blank">🟢 WhatsApp</a>
+    <a href="mailto:delphin@cobalt-shield.com">✉️ Email</a>
+  </div>
 
-    // Responsive burger nav
-    const burger = document.getElementById('burger');
-    const navLinks = document.getElementById('navLinks');
-    burger.addEventListener('click', () => {
-      navLinks.classList.toggle('nav__links--open');
-      burger.setAttribute('aria-expanded', navLinks.classList.contains('nav__links--open'));
+  <!-- PayPal SDK (replace YOUR_LIVE_CLIENT_ID) -->
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_LIVE_CLIENT_ID&currency=EUR"></script>
+
+  <script>
+    // Year + burger + contact form
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('burger').onclick = () =>
+      document.getElementById('navLinks').classList.toggle('open');
+    document.getElementById('contactForm').addEventListener('submit', (e)=>{
+      e.preventDefault(); document.getElementById('formStatus').textContent="Thanks — we’ll reply shortly."; e.target.reset();
     });
+
+    // PayPal one-time payment with custom amount
+    (function(){
+      const amountInput = document.getElementById('cs-amount');
+      const statusEl = document.getElementById('paypal-status');
+      paypal.Buttons({
+        style:{ shape:'pill', height:40 },
+        createOrder:(data, actions)=>{
+          const v = parseFloat(amountInput.value||'0');
+          if(!(v>0)){ alert('Enter a valid amount'); throw new Error('invalid amount'); }
+          return actions.order.create({ purchase_units:[{ description:'Cobalt Shield Support', amount:{ currency_code:'EUR', value:v.toFixed(2) } }] });
+        },
+        onApprove:(data, actions)=>actions.order.capture().then(o=>{
+          statusEl.textContent = '✅ Thanks! Transaction ID: ' + o.id;
+        }),
+        onError: err => { console.error(err); statusEl.textContent='⚠️ Payment failed. Try again or email us.'; }
+      }).render('#paypal-button-container');
+    })();
   </script>
 </body>
 </html>
