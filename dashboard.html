@@ -530,4 +530,51 @@
   document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
+  <!-- ===== BOT ===== -->
+<button class="botfab" id="botFab" aria-label="Open assistant">◇</button>
+<div class="bot" id="bot" aria-live="polite">
+  <div class="bot__head">
+    <strong>Cobalt Assistant</strong>
+    <button id="botClose" aria-label="Close">×</button>
+  </div>
+  <div class="bot__body" id="botBody">
+    <div class="msg botmsg">Hi! Ask about services, pilots, or contact. Try: “pricing”, “pilot”, or “incident”.</div>
+  </div>
+  <form class="bot__input" id="botForm">
+    <input type="text" id="botText" placeholder="Type your question…" autocomplete="off" />
+    <button type="submit">Send</button>
+  </form>
+</div>
+
+<script>
+  // Bot logic
+  const bot    = document.getElementById('bot');
+  const fab    = document.getElementById('botFab');
+  const closeB = document.getElementById('botClose');
+  const bodyEl = document.getElementById('botBody');
+  const form   = document.getElementById('botForm');
+  const input  = document.getElementById('botText');
+
+  fab.onclick = ()=> bot.classList.add('open');
+  closeB.onclick = ()=> bot.classList.remove('open');
+
+  const replies = {
+    pricing: "Our pricing is transparent and tailored. Mini audits start simple; education packs are sponsor-friendly. Email delphin@cobalt-shield.com.",
+    pilot: "We’re scheduling low-cost pilots for schools/NGOs in Greece & Rwanda. Share your org and goals via the contact form.",
+    incident: "Breathe. For urgent risks, write 'incident' + summary in the form. We’ll guide calmly with clear next steps.",
+    donate: "Donate now via the PayPal button above, or email delphin@cobalt-shield.com for bank transfer details."
+  };
+
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const text = (input.value || "").trim();
+    if(!text) return;
+    bodyEl.insertAdjacentHTML('beforeend', `<div class="msg usermsg">${text}</div>`);
+    input.value = "";
+    const key = Object.keys(replies).find(k => text.toLowerCase().includes(k));
+    const answer = key ? replies[key] : "I can help with pricing, pilots, incidents, and donations. Try those keywords.";
+    bodyEl.insertAdjacentHTML('beforeend', `<div class="msg botmsg">${answer}</div>`);
+    bodyEl.scrollTop = bodyEl.scrollHeight;
+  });
+</script>
 </html>
