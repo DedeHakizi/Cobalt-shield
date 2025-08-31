@@ -1,0 +1,571 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cobalt Shield — Ops Dashboard</title>
+  <meta name="description" content="Cobalt Shield Initiative progress dashboard: cadence, meetings, projects, team velocity, and growth index." />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <style>
+    :root {
+      --brand: #0f4c81;          /* Cobalt blue */
+      --brand-2: #17a2b8;        /* Accent cyan */
+      --ink: #0b1220;            /* Text */
+      --muted: #6b7280;          /* Muted text */
+      --bg: #f6f8fb;             /* Page background */
+      --panel: #ffffff;          /* Cards */
+      --ok: #10b981;             /* Green */
+      --warn: #f59e0b;           /* Amber */
+      --bad: #ef4444;            /* Red */
+      --line: #e5e7eb;           /* Borders */
+      --shadow: 0 10px 25px rgba(16,24,40,.08);
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font: 15px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--ink);
+      background: var(--bg);
+    }
+    a { color: var(--brand); text-decoration: none; }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: linear-gradient(90deg, var(--brand), #1d6fa5);
+      color: #fff;
+      padding: 16px clamp(16px, 3vw, 28px);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 12px;
+      box-shadow: var(--shadow);
+    }
+    .brand {
+      display: grid;
+      gap: 2px;
+    }
+    .brand h1 {
+      margin: 0; font-size: clamp(18px, 2.2vw, 26px); letter-spacing: .2px; font-weight: 800;
+    }
+    .brand p { margin: 0; opacity: .9; font-size: 13px; }
+    .header-actions { display: flex; gap: 10px; align-items: center; }
+    .btn {
+      background: #fff;
+      color: var(--brand);
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.35);
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .05s ease, box-shadow .2s ease;
+      box-shadow: 0 6px 16px rgba(0,0,0,.08);
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .container {
+      padding: 22px clamp(14px, 3vw, 28px) 36px;
+      display: grid;
+      gap: 22px;
+    }
+    .grid {
+      display: grid;
+      gap: 22px;
+    }
+    /* 12-column fluid grid */
+    .grid.cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+    .span-3 { grid-column: span 3; }
+    .span-4 { grid-column: span 4; }
+    .span-6 { grid-column: span 6; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
+    @media (max-width: 1000px) {
+      .span-3, .span-4, .span-6, .span-8 { grid-column: span 12; }
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: var(--muted);
+    }
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(120px, 1fr));
+      gap: 14px;
+    }
+    @media (max-width: 1100px) {
+      .kpis { grid-template-columns: repeat(2, 1fr); }
+    }
+    .kpi {
+      background: linear-gradient(180deg,#fff, #f8fbff);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      display: grid;
+      gap: 8px;
+    }
+    .kpi .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .8px; }
+    .kpi .value { font-size: 26px; font-weight: 800; }
+    .kpi .delta { font-size: 12px; font-weight: 700; }
+    .delta.up { color: var(--ok); }
+    .delta.down { color: var(--bad); }
+    .charts { display: grid; gap: 22px; }
+    .list {
+      display: grid; gap: 12px;
+    }
+    .item {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 12px;
+      display: grid;
+      gap: 6px;
+    }
+    .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      font-size: 12px;
+      background: #f8fafc;
+    }
+    .chip.ok { background: #ecfdf5; border-color: #bbf7d0; }
+    .chip.warn { background: #fffbeb; border-color: #fde68a; }
+    .chip.bad { background: #fef2f2; border-color: #fecaca; }
+    .progress {
+      height: 10px; width: 100%;
+      background: #eef2f7; border-radius: 999px; overflow: hidden;
+      border: 1px solid var(--line);
+    }
+    .bar { height: 100%; background: var(--brand); width: 0%; transition: width .8s ease; }
+    .muted { color: var(--muted); }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .table th, .table td {
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    .table th {
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    footer {
+      padding: 30px;
+      text-align: center;
+      color: var(--muted);
+    }
+    .legend { display: flex; gap: 12px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; background: var(--brand); }
+    .dot.alt { background: var(--brand-2); }
+    .right { margin-left: auto; }
+    .small { font-size: 12px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <h1>COBALT SHIELD — OPS DASHBOARD</h1>
+      <p>Africa Forward. Loyalty Over Everything.</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn" id="exportBtn">Export PDF</button>
+      <button class="btn" id="darkBtn">Dark</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- KPIs -->
+    <section class="card">
+      <h3>Key Pulse</h3>
+      <div class="kpis" id="kpiWrap"></div>
+      <div class="row muted small">
+        <div class="legend">
+          <span><i class="dot"></i>Monthly Growth</span>
+          <span><i class="dot alt"></i>Weekly Cadence</span>
+        </div>
+        <div class="right">Last updated: <span id="lastUpdated"></span></div>
+      </div>
+    </section>
+
+    <div class="grid cols-12">
+      <!-- Growth & Cadence Charts -->
+      <section class="card span-8">
+        <h3>Growth & Cadence</h3>
+        <div class="charts">
+          <canvas id="growthChart" height="140"></canvas>
+          <canvas id="cadenceChart" height="140"></canvas>
+        </div>
+      </section>
+
+      <!-- Meetings Mix -->
+      <section class="card span-4">
+        <h3>Meetings Mix (30 days)</h3>
+        <canvas id="meetingsPie" height="280"></canvas>
+        <div class="row muted small" style="margin-top:10px;">
+          <span>Source: CRM · Sync: manual update in data block</span>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section class="card span-6">
+        <h3>Projects · Completion</h3>
+        <div class="list" id="projectsList"></div>
+      </section>
+
+      <!-- Team Velocity -->
+      <section class="card span-6">
+        <h3>Team · Velocity & Load</h3>
+        <table class="table" id="teamTable">
+          <thead>
+            <tr>
+              <th>Member</th>
+              <th>Role</th>
+              <th>Velocity</th>
+              <th>Open</th>
+              <th>On-time %</th>
+              <th>Focus</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <!-- Roadmap / Milestones -->
+      <section class="card span-8">
+        <h3>Roadmap · Next 90 Days</h3>
+        <div class="list" id="milestoneList"></div>
+      </section>
+
+      <!-- Upcoming Meetings -->
+      <section class="card span-4">
+        <h3>Upcoming Meetings</h3>
+        <div class="list" id="meetingsList"></div>
+      </section>
+
+      <!-- Org Growth Index -->
+      <section class="card span-12">
+        <h3>Organization Growth Index</h3>
+        <div class="row" style="gap:14px; align-items:center;">
+          <div style="min-width:240px; flex:1;">
+            <div class="item">
+              <div class="row">
+                <strong>Growth Index</strong>
+                <span id="growthBadge" class="chip ok">Healthy</span>
+                <span class="right small muted" id="growthMeta"></span>
+              </div>
+              <div class="progress" style="margin-top:8px;">
+                <div id="growthBar" class="bar"></div>
+              </div>
+            </div>
+          </div>
+          <div style="flex:2;">
+            <canvas id="orgChart" height="120"></canvas>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Cobalt Shield Initiative · Built with discipline — brick by brick.
+  </footer>
+
+  <!-- Charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+  /* =========================================================
+     EDIT DATA HERE — quick config for Delphin (bruv zone)
+     Update numbers weekly; the visuals will auto-refresh.
+     ========================================================= */
+  const DATA = {
+    meta: {
+      lastUpdated: "2025-08-31 21:00 EEST"
+    },
+    kpis: [
+      { label: "Total Meetings (MTD)", value: 18, delta: +20 },
+      { label: "Open Actions", value: 32, delta: -10 },
+      { label: "Closed Actions (MTD)", value: 64, delta: +12 },
+      { label: "On-time Delivery", value: "92%", delta: +3 },
+      { label: "Growth Index", value: "78/100", delta: +6 },
+    ],
+    growthMonthly: {
+      labels: ["Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+      values: [28, 34, 38, 45, 49, 58, 0, 0, 0, 0]  // fill forward as you go
+    },
+    cadenceWeekly: {
+      labels: ["Wk22","Wk23","Wk24","Wk25","Wk26","Wk27","Wk28","Wk29","Wk30","Wk31","Wk32","Wk33","Wk34"],
+      values:  [  6,    5,    7,    8,    5,    9,    7,    6,    8,    10,   11,   9,     12 ]
+    },
+    meetingsMix: {
+      labels: ["Partners", "Schools", "NGOs", "Internal", "Investors"],
+      values: [10, 6, 8, 12, 4]
+    },
+    projects: [
+      { name: "Website v1 polish", pct: 72, status: "on-track" },
+      { name: "Email & MX hardening", pct: 60, status: "on-track" },
+      { name: "Pilot: Rwanda school outreach", pct: 35, status: "at-risk" },
+      { name: "Funding deck (v2)", pct: 40, status: "slipping" },
+      { name: "TikTok presence (educational)", pct: 55, status: "on-track" }
+    ],
+    team: [
+      { name: "Delphin", role: "CEO / Ops", velocity: 32, open: 14, ontime: 95, focus: "High" },
+      { name: "Mixalis", role: "Local EU Outreach", velocity: 18, open: 5, ontime: 88, focus: "Med" },
+      { name: "Panagiotis", role: "Advisor", velocity: 9, open: 2, ontime: 92, focus: "Low" },
+      { name: "Shalom", role: "Research Trainer", velocity: 14, open: 6, ontime: 86, focus: "Med" }
+    ],
+    milestones: [
+      { title: "Secure Greek sponsor aligned with mission", when: "Sep 15", risk: "medium", owner: "Delphin" },
+      { title: "Rwanda pilot (MoU draft ready)", when: "Sep 28", risk: "high", owner: "Shalom" },
+      { title: "Deck v2 + 3 partner intros", when: "Oct 10", risk: "low", owner: "Delphin" },
+      { title: "Email: support@ setup + DMARC pass", when: "Oct 18", risk: "low", owner: "Delphin" }
+    ],
+    upcomingMeetings: [
+      { title: "Intro call — NGO lead", when: "Sep 02 · 10:00", type: "NGO", status: "confirmed" },
+      { title: "Coffee chat — potential Greek sponsor", when: "Sep 04 · 12:30", type: "Investor", status: "pending" },
+      { title: "Sync — Research Trainer", when: "Sep 05 · 09:00", type: "Internal", status: "confirmed" }
+    ],
+    orgIndex: {
+      score: 78, // 0-100
+      meta: "10 inputs: meetings cadence, delivery, partner pipeline, ops hygiene",
+      seriesLabels: ["Ops Hygiene","Pipeline","Delivery","Funding","Reach"],
+      seriesValues: [72, 68, 84, 55, 70]
+    }
+  };
+
+  /* ============== Dashboard logic ============== */
+  const $ = (sel, root=document) => root.querySelector(sel);
+  const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
+
+  function setKPIs() {
+    const wrap = $("#kpiWrap");
+    wrap.innerHTML = "";
+    DATA.kpis.forEach(k => {
+      const deltaNum = (typeof k.delta === "number") ? k.delta : 0;
+      const dir = deltaNum >= 0 ? "up" : "down";
+      const sign = deltaNum >= 0 ? "+" : "";
+      const div = document.createElement("div");
+      div.className = "kpi";
+      div.innerHTML = \`
+        <div class="label">\${k.label}</div>
+        <div class="value">\${k.value}</div>
+        <div class="delta \${dir}">\${sign}\${deltaNum}% vs prev</div>
+      \`;
+      wrap.appendChild(div);
+    });
+    $("#lastUpdated").textContent = DATA.meta.lastUpdated;
+  }
+
+  function setProjects() {
+    const list = $("#projectsList");
+    list.innerHTML = "";
+    DATA.projects.forEach(p => {
+      const chipClass = p.status === "on-track" ? "ok" : (p.status === "at-risk" ? "warn" : "bad");
+      const item = document.createElement("div");
+      item.className = "item";
+      item.innerHTML = \`
+        <div class="row">
+          <strong>\${p.name}</strong>
+          <span class="chip \${chipClass}">\${p.status}</span>
+          <span class="right muted small">\${p.pct}%</span>
+        </div>
+        <div class="progress"><div class="bar" style="width:\${p.pct}%"></div></div>
+      \`;
+      list.appendChild(item);
+    });
+  }
+
+  function setTeam() {
+    const tbody = $("#teamTable tbody");
+    tbody.innerHTML = "";
+    DATA.team.forEach(m => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = \`
+        <td>\${m.name}</td>
+        <td>\${m.role}</td>
+        <td>\${m.velocity}</td>
+        <td>\${m.open}</td>
+        <td>\${m.ontime}%</td>
+        <td>\${m.focus}</td>
+      \`;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function setMilestones() {
+    const list = $("#milestoneList");
+    list.innerHTML = "";
+    DATA.milestones.forEach(ms => {
+      const lvl = ms.risk === "low" ? "ok" : (ms.risk === "medium" ? "warn" : "bad");
+      const item = document.createElement("div");
+      item.className = "item";
+      item.innerHTML = \`
+        <div class="row">
+          <strong>\${ms.title}</strong>
+          <span class="chip \${lvl}">risk: \${ms.risk}</span>
+          <span class="right small muted">owner: \${ms.owner} · due \${ms.when}</span>
+        </div>
+      \`;
+      list.appendChild(item);
+    });
+  }
+
+  function setMeetings() {
+    const list = $("#meetingsList");
+    list.innerHTML = "";
+    DATA.upcomingMeetings.forEach(m => {
+      const statusClass = m.status === "confirmed" ? "ok" : (m.status === "pending" ? "warn" : "bad");
+      const item = document.createElement("div");
+      item.className = "item";
+      item.innerHTML = \`
+        <div class="row">
+          <strong>\${m.title}</strong>
+          <span class="chip \${statusClass}">\${m.status}</span>
+          <span class="right small muted">\${m.type} · \${m.when}</span>
+        </div>
+      \`;
+      list.appendChild(item);
+    });
+  }
+
+  // Charts
+  let growthChart, cadenceChart, meetingsPie, orgChart;
+  function setCharts() {
+    if (growthChart) growthChart.destroy();
+    if (cadenceChart) cadenceChart.destroy();
+    if (meetingsPie) meetingsPie.destroy();
+    if (orgChart) orgChart.destroy();
+
+    const ctx1 = document.getElementById("growthChart").getContext("2d");
+    const ctx2 = document.getElementById("cadenceChart").getContext("2d");
+    const ctx3 = document.getElementById("meetingsPie").getContext("2d");
+    const ctx4 = document.getElementById("orgChart").getContext("2d");
+
+    growthChart = new Chart(ctx1, {
+      type: "line",
+      data: {
+        labels: DATA.growthMonthly.labels,
+        datasets: [{
+          label: "Growth (Index)",
+          data: DATA.growthMonthly.values,
+          fill: false,
+          tension: 0.35
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true } }
+      }
+    });
+
+    cadenceChart = new Chart(ctx2, {
+      type: "bar",
+      data: {
+        labels: DATA.cadenceWeekly.labels,
+        datasets: [{
+          label: "Meetings per Week",
+          data: DATA.cadenceWeekly.values
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true } }
+      }
+    });
+
+    meetingsPie = new Chart(ctx3, {
+      type: "doughnut",
+      data: {
+        labels: DATA.meetingsMix.labels,
+        datasets: [{ data: DATA.meetingsMix.values }]
+      },
+      options: { responsive: true, plugins: { legend: { position: "bottom" } } }
+    });
+
+    orgChart = new Chart(ctx4, {
+      type: "radar",
+      data: {
+        labels: DATA.orgIndex.seriesLabels,
+        datasets: [{
+          label: "Index",
+          data: DATA.orgIndex.seriesValues
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          r: { suggestedMin: 0, suggestedMax: 100, ticks: { stepSize: 20 } }
+        }
+      }
+    });
+  }
+
+  function setOrgIndex() {
+    const score = DATA.orgIndex.score;
+    $("#growthBar").style.width = score + "%";
+    $("#growthMeta").textContent = DATA.orgIndex.meta;
+    const badge = $("#growthBadge");
+    badge.textContent = score >= 75 ? "Healthy" : (score >= 55 ? "Watch" : "Weak");
+    badge.className = "chip " + (score >= 75 ? "ok" : (score >= 55 ? "warn" : "bad"));
+  }
+
+  // Export PDF (prints the page cleanly)
+  $("#exportBtn").addEventListener("click", () => window.print());
+
+  // Dark toggle (simple: flips CSS vars)
+  const DARK_VARS = {
+    "--bg":"#0b1220",
+    "--panel":"#0f172a",
+    "--ink":"#e6edf3",
+    "--muted":"#94a3b8",
+    "--line":"#1f2937",
+    "--shadow":"0 10px 25px rgba(0,0,0,.35)"
+  };
+  const LIGHT_VARS = {
+    "--bg":"#f6f8fb",
+    "--panel":"#ffffff",
+    "--ink":"#0b1220",
+    "--muted":"#6b7280",
+    "--line":"#e5e7eb",
+    "--shadow":"0 10px 25px rgba(16,24,40,.08)"
+  };
+  const darkBtn = $("#darkBtn");
+  let dark = false;
+  darkBtn.addEventListener("click", () => {
+    dark = !dark;
+    darkBtn.textContent = dark ? "Light" : "Dark";
+    const vars = dark ? DARK_VARS : LIGHT_VARS;
+    Object.entries(vars).forEach(([k,v]) => document.documentElement.style.setProperty(k,v));
+  });
+
+  // Init
+  setKPIs();
+  setProjects();
+  setTeam();
+  setMilestones();
+  setMeetings();
+  setCharts();
+  setOrgIndex();
+  $("#year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
