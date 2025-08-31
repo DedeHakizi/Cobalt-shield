@@ -6,137 +6,128 @@
   <title>Cobalt Shield Initiative</title>
   <meta name="description" content="Protecting youth & small orgs with digital safety, ethical energy, and practical tools."/>
   <meta name="theme-color" content="#0f4c81">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Cobalt Shield Initiative">
-  <meta property="og:description" content="Protecting youth & small orgs with digital safety, ethical energy, and practical tools.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://cobalt-shield.com/">
-
-  <!-- Vendor CSS -->
-  <link rel="preconnect" href="https://unpkg.com">
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin>
-
-  <!-- Site CSS -->
-  <link rel="stylesheet" href="style.css?v=9" />
-
-  <style>
-    :root {
-      --primary: #0f4c81;
-      --accent: #00c9a7;
-      --bg-light: #f5f8fa;
-      --text-dark: #23272f;
-      --muted: #7a869a;
-      --radius: 1.1em;
-      --transition: 0.18s cubic-bezier(.4,0,.2,1);
-    }
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg-light); color: var(--text-dark); font-family: 'Segoe UI', Arial, sans-serif; margin: 0; }
-    .container { width: 90%; max-width: 1100px; margin: auto; }
-    .nav { background: #fff; box-shadow: 0 2px 10px #0f4c8110; position: sticky; top: 0; z-index: 100; }
-    .nav__inner { display: flex; align-items: center; justify-content: space-between; padding: 1.2em 0; }
-    .brand { font-weight: bold; font-size: 1.3em; color: var(--primary); text-decoration: none; letter-spacing: -1px; }
-    .brand span { color: var(--accent); }
-    .nav__links a { color: var(--text-dark); margin-left: 1.2em; text-decoration: none; padding: 0.4em 0.8em; border-radius: var(--radius); transition: background var(--transition), color var(--transition); }
-    .nav__links a:hover, .nav__links .pill, .nav__links a:focus { background: var(--accent); color: #fff; }
-    .nav__links .pill { background: var(--primary); color: #fff; }
-    .nav__burger { display: none; font-size: 1.7em; background: none; border: none; cursor: pointer; }
-    @media (max-width: 800px) {
-      .nav__links { display: none; position: absolute; right: 0; top: 100%; background: #fff; box-shadow: 0 4px 16px #0f4c8122; flex-direction: column; }
-      .nav__links.open { display: flex; }
-      .nav__burger { display: block; }
-    }
-    .hero { background: linear-gradient(120deg, #0f4c81 60%, #00c9a7 100%); color: #fff; padding: 5em 0 2.2em; position: relative; overflow: hidden; }
-    .hero__bg { position: absolute; inset: 0; opacity: 0.14; background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1400&q=80') center/cover; z-index: 0; animation: fadeInBg 2s; }
-    @keyframes fadeInBg { from { opacity: 0; } to { opacity: 0.14; } }
-    .hero__content { position: relative; z-index: 1; max-width: 650px; }
-    .hero__cta .btn { margin: 0.7em 0.5em 0 0; }
-    .btn, .btn:visited { display: inline-block; background: var(--primary); color: #fff; padding: 0.7em 1.5em; border-radius: var(--radius); border: none; font-weight: 600; text-decoration: none; transition: background var(--transition), color var(--transition), transform .13s; box-shadow: 0 1px 3px #0f4c8120; cursor: pointer; }
-    .btn--ghost { background: #fff; color: var(--primary); border: 1.5px solid var(--primary); }
-    .btn--ghost:hover, .btn--ghost:focus { background: var(--accent); color: #fff; }
-    .btn--wide { min-width: 210px; }
-    .btn--pro { background: var(--accent); color: #fff; }
-    .btn--whatsapp { background: #25d366; color: #fff; }
-    .btn:active { transform: scale(.97); }
-    .muted { color: var(--muted); }
-    .section { padding: 3.5em 0; }
-    .section--alt { background: #f1f7fb; }
-    .section__head h2 { margin-bottom: 0.25em; font-size: 2em; }
-    .chips { list-style: none; display: flex; gap: .7em; padding: 0; margin: 1.3em 0 0; flex-wrap: wrap; }
-    .chips li { background: var(--accent); color: #fff; padding: .45em 1.1em; border-radius: var(--radius); font-weight: 500; }
-    .impact { display: flex; gap: 2em; justify-content: center; margin: 2.5em 0 1.5em; flex-wrap: wrap; }
-    .impact__kpi { text-align: center; }
-    .impact__num { font-size: 2.1em; font-weight: bold; }
-    .impact__label { color: var(--muted); margin-top: .2em; }
-    .impact__cta { text-align: center; }
-    .map { width: 100%; height: 280px; border-radius: var(--radius); margin-top: 1.2em; }
-    .partners { display: flex; flex-wrap: wrap; gap: .8em; margin-top: 1.5em; }
-    .partner { background: #e8f1fa; color: var(--primary); padding: .5em 1em; border-radius: var(--radius); font-weight: 500; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.2em; }
-    .card { background: #fff; border-radius: var(--radius); box-shadow: 0 1px 8px #0f4c8120; overflow: hidden; transition: transform var(--transition), box-shadow var(--transition); }
-    .card:hover, .card:focus-within { transform: translateY(-6px) scale(1.015); box-shadow: 0 4px 18px #0f4c8130; }
-    .card__img { height: 140px; background: #ddd center/cover; }
-    .card__body { padding: 1.2em 1em; }
-    .tape { display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 1.2em; }
-    .tape::-webkit-scrollbar { display: none; }
-    .quote { min-width: 260px; background: #fff; border-radius: var(--radius); box-shadow: 0 1px 6px #0f4c8114; padding: 1.3em; margin: 0; }
-    .tbtn { background: var(--primary); color: #fff; border: none; border-radius: 50%; width: 2.1em; height: 2.1em; margin: 1em .45em 0 0; font-size: 1.2em; cursor: pointer; transition: background var(--transition); }
-    .tbtn:hover, .tbtn:focus { background: var(--accent); }
-    .donate__grid { display: flex; flex-wrap: wrap; gap: 2.5em; align-items: center; }
-    .donate__media img { border-radius: var(--radius); width: 100%; max-width: 380px; }
-    .form input, .form textarea { width: 100%; padding: 0.7em; border: 1.5px solid #c1d1e1; border-radius: var(--radius); font-size: 1em; margin-top: .2em; margin-bottom: 1.1em; }
-    .form input:focus, .form textarea:focus { border-color: var(--accent); outline: none; }
-    .faq { margin: 1.3em 0; }
-    .faq[open] summary { color: var(--primary); }
-    .faq summary { cursor: pointer; font-weight: 600; outline: none; }
-    .footer { background: #0f4c81; color: #fff; padding: 1.5em 0; margin-top: 3em; }
-    .footer__inner { text-align: center; }
-    .stickybar { display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; box-shadow: 0 -2px 8px #0f4c8120; padding: 0.7em 0; justify-content: center; gap: 1.5em; z-index: 999; }
-    .stickybar a { color: var(--primary); font-weight: 600; text-decoration: none; }
-    @media (max-width: 800px) {
-      .donate__grid { flex-direction: column; }
-      .stickybar { display: flex; }
-    }
-    /* Bot Styles */
-    .botfab { position: fixed; bottom: 2.6em; right: 2.2em; background: var(--accent); color: #fff; border: none; border-radius: 50%; width: 2.8em; height: 2.8em; font-size: 1.3em; box-shadow: 0 2px 14px #00c9a72c; cursor: pointer; z-index: 1100; transition: background var(--transition); }
-    .botfab:hover, .botfab:focus { background: var(--primary); }
-    .bot { position: fixed; bottom: 5.5em; right: 2.2em; width: 300px; max-width: 92vw; background: #fff; border-radius: var(--radius); box-shadow: 0 2px 24px #0f4c8130; display: none; flex-direction: column; z-index: 1200; }
-    .bot.open { display: flex; }
-    .bot__head { padding: 1em; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: space-between; border-radius: var(--radius) var(--radius) 0 0; }
-    .bot__body { padding: 1em; max-height: 220px; overflow-y: auto; font-size: 1em; }
-    .msg { margin: .6em 0; padding: .7em 1em; border-radius: var(--radius); }
-    .botmsg { background: #f1f7fb; color: var(--primary); }
-    .usermsg { background: #e8f1fa; color: var(--text-dark); text-align: right; }
-    .bot__input { display: flex; gap: .35em; padding: 1em; border-top: 1px solid #f0f0f0; }
-    .bot__input input { flex: 1; border-radius: var(--radius); border: 1.5px solid #c1d1e1; padding: .6em; }
-    .bot__input button { background: var(--primary); color: #fff; border: none; border-radius: var(--radius); padding: .6em 1.1em; }
-    .bot__input button:hover, .bot__input button:focus { background: var(--accent); }
-    @media (max-width: 600px) {
-      .bot { right: 1em; width: 97vw; }
-      .botfab { right: 1em; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css?v=2" />
 </head>
 <body>
-  <!-- NAV, HERO, and all sections remain as in your HTML above (see your original for content) -->
-  <!-- ... copy your content here ... -->
+  <!-- ===== NAV ===== -->
+  <header class="nav" role="banner">
+    <div class="container nav__inner">
+      <a href="#top" class="brand" aria-label="Cobalt Shield Initiative home">
+        Cobalt<span>Shield</span>
+      </a>
+      <nav class="nav__links" id="navLinks" role="navigation" aria-label="Main menu">
+        <a href="#mission">Mission</a>
+        <a href="#impact">Impact</a>
+        <a href="#services">Services</a>
+        <a href="#donate" class="pill">Donate</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="nav__burger" id="burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </header>
 
-  <!-- ===== SCRIPTS ===== -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin></script>
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="top">
+    <div class="container hero__content">
+      <h1>Cobalt Shield Initiative</h1>
+      <p>Protecting youth & small organizations with <b>digital safety</b>, <b>clean technology</b>, and <b>ethical energy</b> tools.</p>
+      <div class="hero__cta">
+        <a href="#mission" class="btn">Learn More</a>
+        <a href="#donate" class="btn btn--ghost">Support</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MISSION ===== -->
+  <section class="section" id="mission">
+    <div class="container">
+      <h2>Mission</h2>
+      <p class="muted">From the classroom to the charging station — practical protection, calm guidance, zero data resale.</p>
+    </div>
+  </section>
+
+  <!-- ===== IMPACT ===== -->
+  <section class="section section--alt" id="impact">
+    <div class="container">
+      <h2>Impact</h2>
+      <div class="impact">
+        <div class="impact__kpi"><div class="impact__num">64</div><div class="impact__label">Actions closed</div></div>
+        <div class="impact__kpi"><div class="impact__num">92%</div><div class="impact__label">On-time delivery</div></div>
+        <div class="impact__kpi"><div class="impact__num">18</div><div class="impact__label">Meetings this month</div></div>
+        <div class="impact__kpi"><div class="impact__num">78/100</div><div class="impact__label">Growth index</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="section" id="services">
+    <div class="container">
+      <h2>Services</h2>
+      <div class="grid">
+        <article class="card"><h3>School Shield Kit</h3><p>Ready lessons, parent handouts, and micro-certs.</p></article>
+        <article class="card"><h3>Incident Desk</h3><p>Lightweight playbooks and clear steps for common risks.</p></article>
+        <article class="card"><h3>EV Ethics Pack</h3><p>Transparent pricing signage, sourcing awareness, charging guides.</p></article>
+        <article class="card"><h3>Mini Audits</h3><p>2–3 day review, traffic-light report + action plan.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DONATE ===== -->
+  <section class="section section--alt" id="donate">
+    <div class="container">
+      <h2>Support Education, Empower the Future</h2>
+      <p>Every contribution powers digital-safety education and clean-energy literacy.</p>
+      <div id="paypal-button-container" style="max-width:400px;margin:20px auto;"></div>
+      <p id="paypal-status" class="muted small"></p>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="section" id="contact">
+    <div class="container">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:delphin@cobalt-shield.com">delphin@cobalt-shield.com</a></p>
+      <p>WhatsApp: <a href="https://wa.me/306986761215" target="_blank" rel="noopener">+30 698 676 1215</a></p>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> Cobalt Shield Initiative — Africa Forward. Loyalty Over Everything.</p>
+    </div>
+  </footer>
+
+  <!-- PayPal SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_LIVE_CLIENT_ID&currency=EUR"></script>
   <script>
-    // (Scripts as in your original, plus...)
+    // Dynamic year
     document.getElementById('year').textContent = new Date().getFullYear();
-    // Smooth scrolling for anchor links (pro polish)
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', function(e) {
-        const tgt = document.querySelector(this.getAttribute('href'));
-        if(tgt) { e.preventDefault(); tgt.scrollIntoView({behavior:"smooth"}); }
-      });
+    // PayPal status
+    const statusEl = document.getElementById('paypal-status');
+    if (window.paypal) {
+      paypal.Buttons({
+        style: { shape: 'pill', height: 40 },
+        createOrder: (data, actions) => actions.order.create({
+          purchase_units: [{
+            description: 'Cobalt Shield Support',
+            amount: { value: '25.00', currency_code: 'EUR' }
+          }]
+        }),
+        onApprove: (data, actions) => actions.order.capture().then(order => {
+          statusEl.textContent = "✅ Thanks! Transaction ID: " + order.id;
+        }),
+        onError: err => { statusEl.textContent = "⚠️ Payment failed."; }
+      }).render('#paypal-button-container');
+    }
+
+    // Responsive burger nav
+    const burger = document.getElementById('burger');
+    const navLinks = document.getElementById('navLinks');
+    burger.addEventListener('click', () => {
+      navLinks.classList.toggle('nav__links--open');
+      burger.setAttribute('aria-expanded', navLinks.classList.contains('nav__links--open'));
     });
-    // All your other JS for nav, map, bot, testimonials... (unchanged)
   </script>
 </body>
 </html>
