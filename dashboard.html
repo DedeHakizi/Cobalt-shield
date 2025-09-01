@@ -5,13 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cobalt Shield — Ops Dashboard</title>
   <meta name="description" content="Cobalt Shield dashboard: mission, growth candles, cadence, projects, team, partners, and support." />
-  <!-- Canonical -->
   <link rel="canonical" href="https://cobalt-shield.com/dashboard.html">
-  <!-- Use your existing site CSS -->
   <link rel="stylesheet" href="style.css?v=14">
-
   <style>
-    /* Dashboard-only helpers that reuse the global tokens */
     .kpis{display:grid;grid-template-columns:repeat(5,minmax(140px,1fr));gap:12px;align-items:stretch}
     @media(max-width:1100px){.kpis{grid-template-columns:repeat(2,1fr)}}
     .kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;box-shadow:var(--shadow);display:grid;gap:6px}
@@ -27,22 +23,29 @@
     .progress{height:10px;background:#eef2f7;border-radius:999px;overflow:hidden;border:1px solid var(--line)}
     .bar{height:100%;background:var(--brand)}
 
-    .toolbar{display:flex;gap:10px;align-items:center;justify-content:flex-end;margin:10px 0}
+    .toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:10px 0}
     .toggle{display:inline-flex;align-items:center;gap:8px;font-weight:700}
     .toggle input{accent-color:var(--brand)}
-
     .grid-2{display:grid;grid-template-columns:2fr 1fr;gap:16px}
     @media(max-width:980px){.grid-2{grid-template-columns:1fr}}
 
-    /* Ensure canvases have visible area */
     .card canvas{width:100% !important;min-height:240px}
     @media(max-width:700px){.card canvas{min-height:180px}}
 
-    /* tiny status chip */
     .chip{display:inline-flex;align-items:center;border-radius:999px;padding:4px 10px;font-size:12px;border:1px solid var(--line);background:#fff}
     .chip.ok{background:#ecfdf5;border-color:#bbf7d0}
     .chip.warn{background:#fffbeb;border-color:#fde68a}
     .chip.bad{background:#fef2f2;border-color:#fecaca}
+
+    /* Print (Export PDF) */
+    @media print{
+      .nav, .stickybar, .nav__burger { display:none !important; }
+      .btn { display:none !important; }
+      body { background:#fff; }
+      .card { box-shadow:none; }
+      .hero { padding:0 0 8px; }
+      .section { padding:14px 0; }
+    }
   </style>
 </head>
 
@@ -77,7 +80,7 @@
   <main class="section">
     <div class="container">
 
-      <!-- Mission (inline) -->
+      <!-- Mission -->
       <section class="card" style="margin-bottom:16px">
         <h2 style="margin:0 0 6px">Mission</h2>
         <p class="muted" style="margin:0 0 10px">From the classroom to the charging station — practical protection, calm guidance, zero data resale.</p>
@@ -86,8 +89,9 @@
         </ul>
       </section>
 
-      <!-- Privacy -->
+      <!-- Toolbar -->
       <div class="toolbar">
+        <button class="btn" id="exportBtn">Export PDF</button>
         <label class="toggle">
           <input type="checkbox" id="nameToggle">
           Show names
@@ -97,7 +101,7 @@
       <!-- KPIs -->
       <div class="kpis" id="kpiWrap"></div>
 
-      <!-- Growth Candles + Cadence + Support -->
+      <!-- Charts + Support -->
       <div class="grid-2" style="margin-top:16px">
         <article class="card">
           <h3>Growth Candles (Monthly)</h3>
@@ -107,10 +111,9 @@
           <canvas id="cadenceChart" aria-label="Cadence bar chart"></canvas>
         </article>
 
-        <aside class="card">
+        <aside class="card" id="support">
           <h3>Support the Work</h3>
           <p class="muted">Your contribution powers digital-safety education and clean-energy literacy.</p>
-          <!-- Hosted PayPal button (LIVE) -->
           <form action="https://www.paypal.com/donate" method="post" target="_blank" rel="noopener" style="margin-top:6px">
             <input type="hidden" name="hosted_button_id" value="KM9T7T9C9SSX6">
             <button type="submit" class="btn btn--ghost" style="width:100%">Donate with PayPal</button>
@@ -119,7 +122,7 @@
         </aside>
       </div>
 
-      <!-- Projects Ongoing + Team -->
+      <!-- Projects + Team -->
       <div class="grid" style="margin-top:16px">
         <article class="card" style="grid-column:span 2 / span 2">
           <h3>Projects · Ongoing</h3>
@@ -148,21 +151,19 @@
     </div>
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
       <p>© <span id="year"></span> Cobalt Shield Initiative — Africa Forward. Loyalty Over Everything.</p>
     </div>
   </footer>
 
-  <!-- Sticky bar -->
   <div class="stickybar">
     <a href="tel:+306986761215">📞 Call</a>
     <a href="https://wa.me/306986761215" target="_blank" rel="noopener">🟢 WhatsApp</a>
     <a href="mailto:delphin@cobalt-shield.com">✉️ Email</a>
   </div>
 
-  <!-- Charts: Chart.js + Financial plugin (for candlesticks) -->
+  <!-- Charts -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial@3.3.0/dist/chartjs-chart-financial.min.js"></script>
 
@@ -171,6 +172,7 @@
     document.getElementById('year').textContent = new Date().getFullYear();
     document.getElementById('burger').onclick = () =>
       document.getElementById('navLinks').classList.toggle('open');
+    document.getElementById('exportBtn').onclick = () => window.print();
 
     // Privacy toggle
     let SHOW_NAMES = false;
@@ -180,11 +182,9 @@
 
     const safeName = (full, i) => SHOW_NAMES ? full : ["Member A","Member B","Member C","Member D","Member E"][i%5];
 
-    /* ===== DATA (edit as you like) ===== */
+    /* ===== DATA ===== */
     const DATA = {
       meta: { lastUpdated: "2025-08-31 21:00 EEST" },
-
-      // For KPIs (simple numbers)
       kpis: [
         { label: "Total Meetings (MTD)", value: 18, delta: +20 },
         { label: "Open Actions", value: 32, delta: -10 },
@@ -192,34 +192,28 @@
         { label: "On-time Delivery", value: "92%", delta: +3 },
         { label: "Growth Index", value: "78/100", delta: +6 },
       ],
-
-      // Growth candles: one per month (OHLC). Values are example demo numbers.
-      // Open/High/Low/Close — think of this as pipeline activity across the month.
+      /* Candles: use category labels so no date adapter is needed */
       growthCandles: [
-        { t:"2025-03-01", o:26, h:30, l:22, c:28 },
-        { t:"2025-04-01", o:28, h:36, l:27, c:34 },
-        { t:"2025-05-01", o:34, h:40, l:31, c:38 },
-        { t:"2025-06-01", o:38, h:47, l:36, c:45 },
-        { t:"2025-07-01", o:45, h:52, l:44, c:49 },
-        { t:"2025-08-01", o:49, h:60, l:48, c:58 }
+        { x:"Mar", o:26, h:30, l:22, c:28 },
+        { x:"Apr", o:28, h:36, l:27, c:34 },
+        { x:"May", o:34, h:40, l:31, c:38 },
+        { x:"Jun", o:38, h:47, l:36, c:45 },
+        { x:"Jul", o:45, h:52, l:44, c:49 },
+        { x:"Aug", o:49, h:60, l:48, c:58 }
       ],
-
       cadenceWeekly: { labels: ["Wk22","Wk23","Wk24","Wk25","Wk26","Wk27","Wk28","Wk29","Wk30","Wk31","Wk32","Wk33","Wk34"], values: [6,5,7,8,5,9,7,6,8,10,11,9,12] },
-
       projects: [
         { name: "Website v1 polish", pct: 72, status: "on-track" },
         { name: "Email & MX hardening", pct: 60, status: "on-track" },
         { name: "Rwanda school outreach (pilot)", pct: 35, status: "at-risk" },
         { name: "Funding deck (v2)", pct: 40, status: "slipping" }
       ],
-
       team: [
         { name: "Delphin Hakizimana", role: "CEO / Ops", velocity: 32, open: 14, ontime: 95, focus: "High" },
         { name: "Mixalis", role: "Local EU Outreach", velocity: 18, open: 5, ontime: 88, focus: "Med" },
         { name: "Panagiotis", role: "Advisor", velocity: 9, open: 2, ontime: 92, focus: "Low" },
         { name: "Shalom", role: "Research Trainer", velocity: 14, open: 6, ontime: 86, focus: "Med" }
       ],
-
       partnerTeams: [
         { partner: "Ionity (MSP context)", poc: "TBD", scope: "Charging support / MSP alignment", open: 3, status: "active" },
         { partner: "Electra", poc: "TBD", scope: "EV support operations", open: 2, status: "active" },
@@ -239,7 +233,7 @@
             <div class="label">${k.label}</div>
             <div class="value">${k.value}</div>
             <div class="delta ${d>=0?'up':'down'}">${d>=0?'+':''}${d}% vs prev</div>
-           </div>`);
+          </div>`);
       });
       $("#lastUpdated").textContent = "· Updated " + DATA.meta.lastUpdated;
     })();
@@ -250,22 +244,14 @@
       const elCad     = document.getElementById("cadenceChart");
       if(!elCandles || !elCad || !window.Chart) return;
 
-      // Convert our candle data to plugin format
-      const candleData = DATA.growthCandles.map(m => ({
-        x: new Date(m.t),
-        o: m.o, h: m.h, l: m.l, c: m.c
-      }));
-
-      // Candlestick chart (growth)
+      // Candlestick chart with category scale (no date adapter required)
       new Chart(elCandles.getContext("2d"), {
         type: 'candlestick',
-        data: { datasets: [{ label: 'Growth index (OHLC)', data: candleData }] },
+        data: { datasets: [{ label: 'Growth (OHLC)', data: DATA.growthCandles }] },
         options: {
-          plugins: { legend: { display: false }},
-          scales: {
-            x: { adapters: { date: { }}, ticks: { maxRotation: 0 } },
-            y: { beginAtZero: false, suggestedMin: 0 }
-          }
+          plugins: { legend: { display: false } },
+          parsing: { xAxisKey: 'x', oAxisKey:'o', hAxisKey:'h', lAxisKey:'l', cAxisKey:'c' },
+          scales: { x: { type:'category' }, y: { beginAtZero:false, suggestedMin:0 } }
         }
       });
 
@@ -310,13 +296,10 @@
       DATA.partnerTeams.forEach(p=>{
         const chip = p.status==="active"?"ok":(p.status==="pending"?"warn":"bad");
         tbody.insertAdjacentHTML("beforeend",
-          `<tr>
-            <td>${p.partner}</td>
-            <td>${SHOW_NAMES ? (p.poc||"") : (p.poc ? "POC" : "")}</td>
-            <td>${p.scope}</td>
-            <td>${p.open}</td>
-            <td><span class="chip ${chip}">${p.status}</span></td>
-          </tr>`);
+          `<tr><td>${p.partner}</td>
+               <td>${SHOW_NAMES ? (p.poc||"") : (p.poc ? "POC" : "")}</td>
+               <td>${p.scope}</td><td>${p.open}</td>
+               <td><span class="chip ${chip}">${p.status}</span></td></tr>`);
       });
     }
     renderPartners();
