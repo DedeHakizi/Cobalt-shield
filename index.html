@@ -6,7 +6,9 @@
   <title>Cobalt Shield Initiative</title>
   <meta name="description" content="Protecting youth & small orgs with digital safety, ethical energy, and practical tools."/>
   <meta name="theme-color" content="#0f4c81">
-  <link rel="stylesheet" href="style.css?v=12">
+  <!-- ✅ Canonical -->
+  <link rel="canonical" href="https://cobalt-shield.com/">
+  <link rel="stylesheet" href="style.css?v=13">
 </head>
 
 <body>
@@ -36,7 +38,7 @@
         <a href="/dashboard.html" class="btn">Open Dashboard</a>
         <a href="#mission" class="btn btn--ghost">Learn More</a>
         <a href="#donate" class="btn btn--ghost">Support</a>
-        <a href="https://wa.me/306986761215" target="_blank" class="btn btn--whatsapp" rel="noopener">WhatsApp</a>
+        <a href="https://wa.me/306986761215" target="_blank" class="btn btn--whatsapp">WhatsApp</a>
         <a href="tel:+306986761215" class="btn btn--call">Call +30 698 676 1215</a>
       </div>
     </div>
@@ -86,20 +88,15 @@
     </div>
   </section>
 
-  <!-- ===== DONATE (Hosted PayPal Button) ===== -->
+  <!-- ===== DONATE ===== -->
   <section class="section section--alt" id="donate">
     <div class="container">
       <h2>Support Education, Empower the Future</h2>
       <p class="muted">Every contribution powers digital-safety education and clean-energy literacy.</p>
-
-      <div class="donate__box">
-        <!-- Your existing hosted PayPal button (LIVE) -->
-        <form action="https://www.paypal.com/donate" method="post" target="_blank" rel="noopener">
-          <input type="hidden" name="hosted_button_id" value="KM9T7T9C9SSX6">
-          <button type="submit" class="btn btn--ghost" style="width:100%;justify-content:center">Donate with PayPal</button>
-        </form>
-        <p class="muted small" style="margin-top:10px">Need a receipt or prefer bank transfer? Email <a href="mailto:delphin@cobalt-shield.com">delphin@cobalt-shield.com</a>.</p>
-      </div>
+      <form action="https://www.paypal.com/donate" method="post" target="_blank">
+        <input type="hidden" name="hosted_button_id" value="KM9T7T9C9SSX6">
+        <button type="submit" class="btn btn--ghost">Donate with PayPal</button>
+      </form>
     </div>
   </section>
 
@@ -107,30 +104,17 @@
   <section class="section" id="faq">
     <div class="container">
       <h2>FAQ</h2>
-
       <details class="faq" open>
         <summary>How do pilots work?</summary>
-        <p>We start with a short intake, align scope and risks, then deliver a low-cost pilot (2–4 weeks) with clear outcomes, training, and a mini action plan.</p>
+        <p>We start with a short intake, align scope and risks, then deliver a low-cost pilot with clear outcomes.</p>
       </details>
-
       <details class="faq">
         <summary>Do you store personal data?</summary>
-        <p>We minimise collection and keep only what’s necessary to operate and support requests. No resale. Reports are anonymised by default.</p>
+        <p>Minimal collection, no resale. Reports are anonymised by default.</p>
       </details>
-
-      <details class="faq">
-        <summary>How do sponsors engage?</summary>
-        <p>We agree a practical deliverable (e.g., school kit, signage pack), define metrics, and publish a short impact note — no PR fluff, high clarity.</p>
-      </details>
-
       <details class="faq">
         <summary>Where are you active?</summary>
-        <p>Pilots in Greece & Rwanda. We expand with partners across Africa ↔ Europe as capacity grows.</p>
-      </details>
-
-      <details class="faq">
-        <summary>Invoices and receipts?</summary>
-        <p>PayPal emails a receipt immediately. If you need an invoice/receipt in your org’s name, email <a href="mailto:delphin@cobalt-shield.com">delphin@cobalt-shield.com</a>.</p>
+        <p>Pilots in Greece & Rwanda, expanding with partners across Africa ↔ Europe.</p>
       </details>
     </div>
   </section>
@@ -143,23 +127,15 @@
         <div class="contact__info">
           <p><strong>Email</strong><br>
             <a href="mailto:delphin@cobalt-shield.com">delphin@cobalt-shield.com</a></p>
-
           <p><strong>Phone / WhatsApp</strong><br>
             <a href="tel:+306986761215" class="btn btn--call">📞 Call</a>
-            <a href="https://wa.me/306986761215" target="_blank" class="btn btn--whatsapp" rel="noopener">WhatsApp</a>
+            <a href="https://wa.me/306986761215" target="_blank" class="btn btn--whatsapp">WhatsApp</a>
           </p>
         </div>
-
         <form id="contactForm" class="form" novalidate>
-          <label>Organization
-            <input required type="text" name="org" placeholder="School / NGO / Partner">
-          </label>
-          <label>Email
-            <input required type="email" name="email" placeholder="you@example.org">
-          </label>
-          <label>Message
-            <textarea required name="message" rows="4" placeholder="How can we help?"></textarea>
-          </label>
+          <label>Organization<input type="text" name="org" required></label>
+          <label>Email<input type="email" name="email" required></label>
+          <label>Message<textarea name="message" required></textarea></label>
           <button class="btn" type="submit">Send</button>
           <p id="formStatus" class="muted small"></p>
         </form>
@@ -174,23 +150,11 @@
     </div>
   </footer>
 
-  <!-- Sticky contact bar (mobile) -->
-  <div class="stickybar">
-    <a href="tel:+306986761215">📞 Call</a>
-    <a href="https://wa.me/306986761215" target="_blank" rel="noopener">🟢 WhatsApp</a>
-    <a href="mailto:delphin@cobalt-shield.com">✉️ Email</a>
-  </div>
-
   <script>
-    // year
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // burger
     document.getElementById('burger').onclick = () =>
       document.getElementById('navLinks').classList.toggle('open');
-
-    // contact form (static)
-    document.getElementById('contactForm').addEventListener('submit', (e)=>{
+    document.getElementById('contactForm').addEventListener('submit', e=>{
       e.preventDefault();
       document.getElementById('formStatus').textContent = "Thanks — we’ll reply shortly.";
       e.target.reset();
