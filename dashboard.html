@@ -5,26 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cobalt Shield — Ops Dashboard</title>
   <meta name="description" content="Cadence, meetings, projects, team velocity, and growth index." />
-  <link rel="stylesheet" href="style.css?v=12">
-  <style>
-    /* dashboard small extras that reuse the main design */
-    .kpis{display:grid;grid-template-columns:repeat(5,minmax(140px,1fr));gap:12px}
-    @media(max-width:1100px){.kpis{grid-template-columns:repeat(2,1fr)}}
-    .kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;box-shadow:var(--shadow)}
-    .kpi .label{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.8px}
-    .kpi .value{font-size:24px;font-weight:900}
-    .kpi .delta{font-size:12px;font-weight:700}
-    .delta.up{color:#10b981}.delta.down{color:#ef4444}
-    .table{width:100%;border-collapse:collapse}
-    .table th,.table td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left}
-    .table th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
-    .progress{height:10px;background:#eef2f7;border-radius:999px;overflow:hidden;border:1px solid var(--line)}
-    .bar{height:100%;background:var(--brand)}
-  </style>
+  <!-- ✅ Canonical -->
+  <link rel="canonical" href="https://cobalt-shield.com/dashboard.html">
+  <link rel="stylesheet" href="style.css?v=13">
 </head>
 
 <body>
-  <!-- NAV (same) -->
+  <!-- NAV -->
   <header class="nav">
     <div class="container nav__inner">
       <a href="/" class="brand">Cobalt<span>Shield</span></a>
@@ -37,7 +24,7 @@
         <a href="/#faq">FAQ</a>
         <a href="/#contact">Contact</a>
       </nav>
-      <button class="nav__burger" id="burger" aria-label="Toggle menu">☰</button>
+      <button class="nav__burger" id="burger">☰</button>
     </div>
   </header>
 
@@ -51,153 +38,60 @@
 
   <main class="section">
     <div class="container">
-      <!-- KPIs -->
       <div class="kpis" id="kpiWrap"></div>
 
       <div class="grid" style="margin-top:18px">
-        <article class="card" style="grid-column:span 2 / span 2">
-          <h3>Growth (Monthly)</h3>
-          <canvas id="growthChart" height="140"></canvas>
-        </article>
-        <article class="card" style="grid-column:span 2 / span 2">
-          <h3>Cadence (Meetings / Week)</h3>
-          <canvas id="cadenceChart" height="140"></canvas>
-        </article>
-      </div>
-
-      <div class="grid" style="margin-top:18px">
-        <article class="card" style="grid-column:span 2 / span 2">
-          <h3>Projects · Completion</h3>
-          <div id="projectsList"></div>
-        </article>
-        <article class="card" style="grid-column:span 2 / span 2">
-          <h3>Team · Velocity & Load</h3>
-          <table class="table" id="teamTable">
-            <thead><tr><th>Member</th><th>Role</th><th>Velocity</th><th>Open</th><th>On-time %</th><th>Focus</th></tr></thead>
-            <tbody></tbody>
-          </table>
-        </article>
+        <article class="card"><h3>Growth</h3><canvas id="growthChart"></canvas></article>
+        <article class="card"><h3>Cadence</h3><canvas id="cadenceChart"></canvas></article>
       </div>
 
       <article class="card" style="margin-top:18px">
-        <h3>Partner Teams</h3>
-        <table class="table" id="partnerTable">
-          <thead><tr><th>Partner</th><th>POC</th><th>Scope</th><th>Open Items</th><th>Status</th></tr></thead>
+        <h3>Projects</h3>
+        <div id="projectsList"></div>
+      </article>
+
+      <article class="card" style="margin-top:18px">
+        <h3>Team</h3>
+        <table class="table" id="teamTable">
+          <thead><tr><th>Member</th><th>Role</th><th>Velocity</th><th>Open</th><th>On-time %</th></tr></thead>
           <tbody></tbody>
         </table>
       </article>
     </div>
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container"><p>© <span id="year"></span> Cobalt Shield Initiative — Africa Forward. Loyalty Over Everything.</p></div>
   </footer>
 
-  <!-- Sticky bar -->
-  <div class="stickybar">
-    <a href="tel:+306986761215">📞 Call</a>
-    <a href="https://wa.me/306986761215" target="_blank" rel="noopener">🟢 WhatsApp</a>
-    <a href="mailto:delphin@cobalt-shield.com">✉️ Email</a>
-  </div>
-
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
-    // year + burger
     document.getElementById('year').textContent = new Date().getFullYear();
     document.getElementById('burger').onclick = () =>
       document.getElementById('navLinks').classList.toggle('open');
 
-    /* ========= DATA ========= */
     const DATA = {
       meta: { lastUpdated: "2025-08-31 21:00 EEST" },
       kpis: [
-        { label: "Total Meetings (MTD)", value: 18, delta: +20 },
+        { label: "Meetings", value: 18, delta: +20 },
         { label: "Open Actions", value: 32, delta: -10 },
-        { label: "Closed Actions (MTD)", value: 64, delta: +12 },
-        { label: "On-time Delivery", value: "92%", delta: +3 },
-        { label: "Growth Index", value: "78/100", delta: +6 },
+        { label: "Closed Actions", value: 64, delta: +12 }
       ],
-      growthMonthly: { labels: ["Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"], values: [28,34,38,45,49,58,0,0,0,0] },
-      cadenceWeekly: { labels: ["Wk22","Wk23","Wk24","Wk25","Wk26","Wk27","Wk28","Wk29","Wk30","Wk31","Wk32","Wk33","Wk34"], values: [6,5,7,8,5,9,7,6,8,10,11,9,12] },
-      projects: [
-        { name: "Website v1 polish", pct: 72, status: "on-track" },
-        { name: "Email & MX hardening", pct: 60, status: "on-track" },
-        { name: "Pilot: Rwanda school outreach", pct: 35, status: "at-risk" },
-        { name: "Funding deck (v2)", pct: 40, status: "slipping" }
-      ],
-      team: [
-        { name: "Delphin Hakizimana", role: "CEO / Ops", velocity: 32, open: 14, ontime: 95, focus: "High" },
-        { name: "Mixalis", role: "Local EU Outreach", velocity: 18, open: 5, ontime: 88, focus: "Med" },
-        { name: "Panagiotis", role: "Advisor", velocity: 9, open: 2, ontime: 92, focus: "Low" },
-        { name: "Shalom", role: "Research Trainer", velocity: 14, open: 6, ontime: 86, focus: "Med" }
-      ],
-      partnerTeams: [
-        { partner: "Ionity (MSP context)", poc: "TBD", scope: "Charging support / MSP alignment", open: 3, status: "active" },
-        { partner: "Electra", poc: "TBD", scope: "EV support operations", open: 2, status: "active" },
-        { partner: "Spark Alliance", poc: "TBD", scope: "Fast-charging pricing & guidance", open: 4, status: "pending" }
-      ]
+      growthMonthly: { labels: ["Mar","Apr","May"], values: [28,34,38] },
+      cadenceWeekly: { labels: ["Wk22","Wk23","Wk24"], values: [6,5,7] },
+      projects: [{ name:"Website polish", pct:72 },{ name:"Rwanda pilot", pct:35 }],
+      team: [{ name:"Delphin", role:"CEO", vel:32, open:14, on:95 }]
     };
 
-    /* ========= RENDER ========= */
-    const $ = (s,r=document)=>r.querySelector(s);
+    // render KPIs
+    const wrap=document.getElementById("kpiWrap");
+    DATA.kpis.forEach(k=>{
+      wrap.insertAdjacentHTML("beforeend",`<div class="kpi"><div>${k.label}</div><strong>${k.value}</strong></div>`);
+    });
 
-    (function setKPIs(){
-      const wrap = $("#kpiWrap");
-      DATA.kpis.forEach(k=>{
-        const d = typeof k.delta==="number" ? k.delta : 0;
-        wrap.insertAdjacentHTML("beforeend",
-          `<div class="kpi"><div class="label">${k.label}</div><div class="value">${k.value}</div><div class="delta ${d>=0?'up':'down'}">${d>=0?'+':''}${d}% vs prev</div></div>`);
-      });
-      $("#lastUpdated").textContent = "· Updated " + DATA.meta.lastUpdated;
-    })();
-
-    (function charts(){
-      const c1 = new Chart(document.getElementById("growthChart").getContext("2d"), {
-        type: "line",
-        data: { labels: DATA.growthMonthly.labels, datasets: [{ data: DATA.growthMonthly.values, label: "Growth", fill: false, tension: .35 }] },
-        options: { plugins:{legend:{display:false}}, scales:{ y:{ beginAtZero:true } } }
-      });
-      const c2 = new Chart(document.getElementById("cadenceChart").getContext("2d"), {
-        type: "bar",
-        data: { labels: DATA.cadenceWeekly.labels, datasets: [{ data: DATA.cadenceWeekly.values, label: "Meetings" }] },
-        options: { plugins:{legend:{display:false}}, scales:{ y:{ beginAtZero:true } } }
-      });
-    })();
-
-    (function projects(){
-      const list = $("#projectsList");
-      DATA.projects.forEach(p=>{
-        const color = p.status==="on-track"?"#10b981":(p.status==="at-risk"?"#f59e0b":"#ef4444");
-        list.insertAdjacentHTML("beforeend",
-          `<div class="card" style="padding:12px;margin-bottom:10px">
-             <div style="display:flex;gap:10px;align-items:center;justify-content:space-between">
-               <strong>${p.name}</strong>
-               <span class="small" style="color:${color}">${p.status}</span>
-               <span class="small muted">${p.pct}%</span>
-             </div>
-             <div class="progress" style="margin-top:8px"><div class="bar" style="width:${p.pct}%"></div></div>
-           </div>`);
-      });
-    })();
-
-    (function team(){
-      const tbody = $("#teamTable tbody");
-      DATA.team.forEach(m=>{
-        tbody.insertAdjacentHTML("beforeend",
-          `<tr><td>${m.name}</td><td>${m.role}</td><td>${m.velocity}</td><td>${m.open}</td><td>${m.ontime}%</td><td>${m.focus}</td></tr>`);
-      });
-    })();
-
-    (function partners(){
-      const tbody = $("#partnerTable tbody");
-      DATA.partnerTeams.forEach(p=>{
-        const chip = p.status==="active"?"#10b981":(p.status==="pending"?"#f59e0b":"#ef4444");
-        tbody.insertAdjacentHTML("beforeend",
-          `<tr><td>${p.partner}</td><td>${p.poc}</td><td>${p.scope}</td><td>${p.open}</td>
-           <td><span class="small" style="color:${chip}">${p.status}</span></td></tr>`);
-      });
-    })();
+    // charts
+    new Chart(document.getElementById("growthChart"),{type:"line",data:{labels:DATA.growthMonthly.labels,datasets:[{data:DATA.growthMonthly.values}]}});
+    new Chart(document.getElementById("cadenceChart"),{type:"bar",data:{labels:DATA.cadenceWeekly.labels,datasets:[{data:DATA.cadenceWeekly.values}]}});
   </script>
 </body>
 </html>
