@@ -3,42 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cobalt Shield Initiative</title>
-    <!-- Existing head content goes here -->
+    <title>Cobalt Shield</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Fallback for missing images */
+        .fallback-img {
+            background-image: url('fallback-image.jpg'); /* Fallback image */
+            display: block;
+            background-size: cover;
+            width: 100%;
+            height: 300px; /* Adjust height as necessary */
+        }
+        
+        /* Prevent layout breakage */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <section class="hero">
-            <h1>Welcome to Cobalt Shield</h1>
-            <p>Your trusted partner in the fight for safe environments.</p>
-            <a href="#get-involved" class="cta-button">Get Involved</a>
-        </section>
-    </header>
-
-    <main>
-        <section class="mission">
-            <h2>Our Mission</h2>
-            <p>To empower communities and foster sustainability through innovative solutions and education.</p>
-        </section>
-        <section class="focus-areas">
-            <h2>Focus Areas</h2>
-            <ul>
-                <li>Environmental Protection</li>
-                <li>Community Outreach</li>
-                <li>Education and Awareness</li>
-                <li>Research and Innovation</li>
-            </ul>
-        </section>
-        <section class="call-to-action" id="get-involved">
-            <h2>Join Us in Making a Difference</h2>
-            <p>Become a part of our journey to create a better tomorrow.</p>
-            <a href="volunteer.html" class="cta-button">Volunteer Now</a>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Cobalt Shield Initiative. All rights reserved.</p>
-        <p>Contact: <a href="mailto:info@cobaltshield.org">info@cobaltshield.org</a></p>
-    </footer>
+    <div class="fallback-img">
+        <img src="missing-image.jpg" alt="Image that may not exist" onerror="this.style.display='none';" />
+    </div>
+    <h1>Welcome to Cobalt Shield</h1>
+    <!-- Your content here -->
 </body>
 </html>
