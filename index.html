@@ -1,164 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Cobalt Shield Initiative</title>
-  <meta name="description" content="Protecting youth & small orgs with digital safety, ethical energy, and practical tools."/>
-  <meta name="theme-color" content="#0f4c81">
-  <!-- ✅ Canonical -->
-  <link rel="canonical" href="https://cobalt-shield.com/">
-  <link rel="stylesheet" href="style.css?v=13">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your website description goes here.">
+    <link rel="canonical" href="https://www.yoursite.com/index.html">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Your Website Title">
+    <meta property="og:description" content="Your website description that appears on social media.">
+    <meta property="og:image" content="https://www.yoursite.com/image.jpg">
+    <meta property="og:url" content="https://www.yoursite.com/index.html">
+    
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Your Website Title">
+    <meta name="twitter:description" content="Your website description that appears on Twitter.">
+    <meta name="twitter:image" content="https://www.yoursite.com/image.jpg">
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Your Organization Name",
+        "url": "https://www.yoursite.com",
+        "logo": "https://www.yoursite.com/logo.png"
+    }
+    </script>
+
+    <title>Your Website Title</title>
 </head>
-
 <body>
-  <!-- ===== NAV ===== -->
-  <header class="nav">
-    <div class="container nav__inner">
-      <a href="#top" class="brand">Cobalt<span>Shield</span></a>
-      <nav class="nav__links" id="navLinks">
-        <a href="#mission">Mission</a>
-        <a href="#impact">Impact</a>
-        <a href="#services">Services</a>
-        <a href="/dashboard.html" class="pill">Dashboard</a>
-        <a href="#donate" class="pill">Donate</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <button class="nav__burger" id="burger" aria-label="Toggle menu">☰</button>
-    </div>
-  </header>
-
-  <!-- ===== HERO ===== -->
-  <section class="hero" id="top">
-    <div class="container hero__content">
-      <h1>Cobalt Shield Initiative</h1>
-      <p>Protecting youth & small organizations with <b>digital safety</b>, <b>clean technology</b>, and <b>ethical energy</b> tools.</p>
-      <div class="hero__cta">
-        <a href="/dashboard.html" class="btn">Open Dashboard</a>
-        <a href="#mission" class="btn btn--ghost">Learn More</a>
-        <a href="#donate" class="btn btn--ghost">Support</a>
-        <a href="https://wa.me/306986761215" target="_blank" class="btn btn--whatsapp">WhatsApp</a>
-        <a href="tel:+306986761215" class="btn btn--call">Call +30 698 676 1215</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== MISSION ===== -->
-  <section class="section" id="mission">
-    <div class="container">
-      <h2>Mission</h2>
-      <p class="muted">From the classroom to the charging station — practical protection, calm guidance, zero data resale.</p>
-      <ul class="chips">
-        <li>Open playbooks</li>
-        <li>Human support</li>
-        <li>Privacy by default</li>
-        <li>Africa ↔ Europe bridge</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ===== IMPACT ===== -->
-  <section class="section section--alt" id="impact">
-    <div class="container">
-      <h2>Impact, not noise</h2>
-      <div class="impact">
-        <div class="impact__kpi"><div class="impact__num">64</div><div class="impact__label">Actions closed (MTD)</div></div>
-        <div class="impact__kpi"><div class="impact__num">92%</div><div class="impact__label">On-time delivery</div></div>
-        <div class="impact__kpi"><div class="impact__num">18</div><div class="impact__label">Meetings this month</div></div>
-        <div class="impact__kpi"><div class="impact__num">78/100</div><div class="impact__label">Growth index</div></div>
-      </div>
-      <div class="impact__cta">
-        <a href="/dashboard.html" class="btn">View Ops Dashboard</a>
-        <a href="#contact" class="btn btn--ghost">Talk to us</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SERVICES ===== -->
-  <section class="section" id="services">
-    <div class="container">
-      <h2>Services</h2>
-      <div class="grid">
-        <article class="card"><h3>School Shield Kit</h3><p>Ready lessons, parent handouts, and micro-certs. Privacy-first.</p></article>
-        <article class="card"><h3>Incident Desk</h3><p>Lightweight intake & triage playbooks. Clear steps for common risks.</p></article>
-        <article class="card"><h3>EV Ethics Pack</h3><p>Transparent pricing signage, battery-sourcing awareness, charging guides.</p></article>
-        <article class="card"><h3>Mini Audits</h3><p>2–3 day review. Traffic-light report + action plan you can implement quickly.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== DONATE ===== -->
-  <section class="section section--alt" id="donate">
-    <div class="container">
-      <h2>Support Education, Empower the Future</h2>
-      <p class="muted">Every contribution powers digital-safety education and clean-energy literacy.</p>
-      <form action="https://www.paypal.com/donate" method="post" target="_blank">
-        <input type="hidden" name="hosted_button_id" value="KM9T7T9C9SSX6">
-        <button type="submit" class="btn btn--ghost">Donate with PayPal</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- ===== FAQ ===== -->
-  <section class="section" id="faq">
-    <div class="container">
-      <h2>FAQ</h2>
-      <details class="faq" open>
-        <summary>How do pilots work?</summary>
-        <p>We start with a short intake, align scope and risks, then deliver a low-cost pilot with clear outcomes.</p>
-      </details>
-      <details class="faq">
-        <summary>Do you store personal data?</summary>
-        <p>Minimal collection, no resale. Reports are anonymised by default.</p>
-      </details>
-      <details class="faq">
-        <summary>Where are you active?</summary>
-        <p>Pilots in Greece & Rwanda, expanding with partners across Africa ↔ Europe.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- ===== CONTACT ===== -->
-  <section class="section" id="contact">
-    <div class="container">
-      <h2>Contact</h2>
-      <div class="contact__grid">
-        <div class="contact__info">
-          <p><strong>Email</strong><br>
-            <a href="mailto:delphin@cobalt-shield.com">delphin@cobalt-shield.com</a></p>
-          <p><strong>Phone / WhatsApp</strong><br>
-            <a href="tel:+306986761215" class="btn btn--call">📞 Call</a>
-            <a href="https://wa.me/306986761215" target="_blank" class="btn btn--whatsapp">WhatsApp</a>
-          </p>
-        </div>
-        <form id="contactForm" class="form" novalidate>
-          <label>Organization<input type="text" name="org" required></label>
-          <label>Email<input type="email" name="email" required></label>
-          <label>Message<textarea name="message" required></textarea></label>
-          <button class="btn" type="submit">Send</button>
-          <p id="formStatus" class="muted small"></p>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="container">
-      <p>© <span id="year"></span> Cobalt Shield Initiative — Africa Forward. Loyalty Over Everything.</p>
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    document.getElementById('burger').onclick = () =>
-      document.getElementById('navLinks').classList.toggle('open');
-    document.getElementById('contactForm').addEventListener('submit', e=>{
-      e.preventDefault();
-      document.getElementById('formStatus').textContent = "Thanks — we’ll reply shortly.";
-      e.target.reset();
-    });
-  </script>
+    <header>
+        <h1>Your Website Title</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Welcome to Our Website</h2>
+            <p>This is a brief introduction to your website.</p>
+            <img src="image.jpg" alt="Description of the image" />
+        </section>
+    </main>
 </body>
 </html>
