@@ -352,7 +352,6 @@ a {
   color: var(--muted);
   text-align: center;
 }
-
 /* Sticky contact bar (mobile) */
 .stickybar {
   position: fixed;
@@ -372,4 +371,20 @@ a {
   color: #fff;
   font-weight: 700;
   text-decoration: none;
+}
+.btn--primary {
+  background: #0f4c81;
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn--support {
+  border: 1px solid #0f4c81;
+  color: #0f4c81;
+}
+
+.hero__note {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  opacity: 0.8;
 }
