@@ -416,3 +416,14 @@ a {
   font-size: 14px;
   color: #ccc;
 }
+.cert-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.cert-logo {
+  width: 30px;
+  height: 30px;
+  margin-top: 5px;
+}
