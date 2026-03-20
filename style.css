@@ -648,3 +648,50 @@ footer {
     padding: 56px 16px;
   }
 }
+.about {
+  padding: 72px 20px;
+  background: #ffffff;
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 0.9fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.about__text h2 {
+  margin-top: 0;
+}
+
+.about__text p {
+  color: #475569;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.about__card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+
+.about__card h3 {
+  margin-top: 0;
+  margin-bottom: 14px;
+}
+
+.about__card ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #475569;
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+}
