@@ -425,3 +425,69 @@ a {
   font-size: 14px;
   color: #ccc;
 }
+.certifications {
+  padding: 60px 20px;
+  background: linear-gradient(180deg, #0f172a, #020617);
+  color: white;
+  text-align: center;
+}
+
+.cert-sub {
+  color: #94a3b8;
+  margin-bottom: 40px;
+}
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.cert-card {
+  background: #0b1220;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: left;
+  transition: 0.3s;
+  border: 1px solid #1e293b;
+}
+
+.cert-card:hover {
+  transform: translateY(-5px);
+  border-color: #00ffcc;
+}
+
+.cert-card h3 {
+  margin-bottom: 10px;
+}
+
+.cert-meta {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin: 10px 0;
+}
+
+.cert-card a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #00ffcc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.cert-card a:hover {
+  text-decoration: underline;
+}
+
+.pending {
+  display: inline-block;
+  margin-top: 10px;
+  color: #facc15;
+  font-size: 0.85rem;
+}
+
+/* ⭐ Featured highlight */
+.featured {
+  border: 1px solid #00ffcc;
+  box-shadow: 0 0 15px #00ffcc33;
+}
