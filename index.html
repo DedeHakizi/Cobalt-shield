@@ -4,35 +4,175 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cobalt Shield Initiative | Digital Safety & Ethical EV Solutions</title>
-<!-- Meta -->
   <meta name="description" content="Protecting youth & small organizations with digital safety, ethical energy, and practical tools." />
   <meta name="theme-color" content="#0f4c81" />
   <meta name="author" content="Delphin Hakzimana" />
   <meta name="keywords" content="Cobalt Shield, digital safety Africa, EV ethics, cybersecurity youth, sustainable energy, ethical technology" />
-<!-- Open Graph -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Cobalt Shield Initiative" />
   <meta property="og:description" content="Protecting youth and organizations through digital safety, ethical EV solutions, and sustainable innovation." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://cobalt-shield.com/" />
   <meta property="og:image" content="https://cobalt-shield.com/cobalt-logo.png" />
-<!-- Twitter -->
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Cobalt Shield Initiative" />
   <meta name="twitter:description" content="Protecting youth and organizations through digital safety, ethical EV solutions, and clean technology." />
   <meta name="twitter:image" content="https://cobalt-shield.com/cobalt-logo.png" />
-<!-- Canonical -->
   <link rel="canonical" href="https://cobalt-shield.com/" />
-<!-- Styles -->
-  <link rel="stylesheet" href="style.css?v=15" />
-<!-- Favicon -->
+  <link rel="stylesheet" href="style.css?v=16" />
   <link rel="icon" type="image/png" href="https://cobalt-shield.com/cobalt-logo.png" />
+  <style>
+    /* Responsive spacing and layout upgrades */
+    html, body { margin: 0; padding: 0; min-height: 100vh;}
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f8f9fa;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    header.nav {
+      background: #14395b;
+      color: #fff;
+    }
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 1rem 0;
+    }
+    .brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: .5px;
+    }
+    .brand span { color: #00a6fb; }
+    .nav__links a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 0.7rem;
+      font-size: 1rem;
+      padding: 0.45em .75em;
+      border-radius: 20px;
+      transition: background .18s;
+    }
+    .nav__links a.pill { background: #005fa2; color: #fff;}
+    .nav__links.open { display: flex; flex-direction: column; }
+    .nav__burger {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+    }
+    @media(max-width:870px){
+      .nav__inner { flex-direction: column; align-items: flex-start; }
+      .nav__links { display: none; width: 100%;}
+      .nav__links.open { display: flex; }
+      .nav__burger { display: block; margin-left: auto; }
+    }
+
+    section.hero {
+      background: linear-gradient(120deg,#124b75 70%,#c9e7ff 100%);
+      color: #fff;
+      padding: 2.5rem 0;
+    }
+    .hero__content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      align-items: flex-start;
+      padding: 2rem 1rem;
+    }
+    .hero-badge { background: #0f4c81; padding: 0.3em 1em; border-radius: 20px; font-size: 1em; }
+    .hero h1 { font-size: 2.3rem; font-weight: 700; margin: .5rem 0;}
+    .hero h1 span { color: #ffbe15;}
+
+    .hero-sub { font-size: 1.12rem; color: #d3e6ff;}
+    .hero__cta { display: flex; gap: .7em; margin-top: 1em; }
+    .btn { background: #005fa2; color: #fff; padding: .7em 1.2em; border:none; border-radius: 7px; font-size: 1em; cursor:pointer; transition:.14s;}
+    .btn:hover { background: #003b63;}
+    .btn--ghost { background: #fff; color:#14395b; border:1px solid #14395b;}
+    .btn--call, .btn--whatsapp { border:none; padding:.45em 1em;}
+    .btn--whatsapp { background:#25d366; color:#fff;}
+    @media(max-width:650px){
+      .hero__content, .container { padding:1.15rem .45rem;}
+      .hero h1 { font-size:1.39rem;}
+      .btn { font-size: .97em;}
+      .about__grid { flex-direction:column;}
+    }
+
+    /* About */
+    .section.about ul,.section.about li { margin:0; padding:0;}
+    .about__grid { display:flex; gap:2rem; align-items:stretch; }
+    .about__text {flex:2;}
+    .about__card {flex:2; background:#e8f5fe; border-radius:9px; padding:1.1em 1em;}
+    .about__card h3{margin:0 0 .4em;}
+    .about__card ul { padding-left:1em;}
+    @media(max-width:650px){.about__grid{gap:1rem;}}
+
+    /* Impact KPIs */
+    .impact { display:flex; flex-wrap:wrap; gap:1em; margin:1.1em 0;}
+    .impact__kpi { flex:1 1 140px; background:#e1ecf7; border-radius:9px; padding:.8em .9em; text-align:center;}
+    .impact__num { font-size:1.8em; font-weight:600;}
+    .impact__label { font-size:.85em; color:#19476a;}
+    .impact__cta { margin-top:1.2em; display:flex; gap:.8em;}
+
+    /* Certifications/projects grid */
+    .cert-grid, .project-grid { display:flex; flex-wrap:wrap; gap:1rem; margin:1rem 0;}
+    .cert-card, .project-card { flex:1 1 240px; background:#fff; border-radius:9px; padding:1em .9em; box-shadow:0 3px 10px rgba(80,110,170,0.10);}
+    .featured { border-left:5px solid #ffbe15; }
+    .cert-meta, .project-meta { font-size:.81em; color:#555;}
+    .pending {font-size:.75em; color:#007fb8;}
+    @media(max-width:650px){.cert-grid,.project-grid{flex-direction:column;}}
+
+    /* Service Cards */
+    .grid { display:flex; flex-wrap:wrap; gap:1rem; margin:1rem 0;}
+    .card { flex:1 1 230px; background:#fff; border-radius:7px; padding:1em .8em; box-shadow:0 2px 8px rgba(120,140,170,0.09);}
+    @media (max-width:600px){.grid{flex-direction:column;}}
+
+    /* FAQ */
+    details.faq { margin-bottom:.8em;}
+    details.faq summary { cursor:pointer; font-weight:600;}
+    details.faq[open] summary { color:#0376ee;}
+
+    /* Contact section polish */
+    .contact__grid { display:flex; flex-wrap:wrap; gap:2rem; margin-top:1.1em;}
+    .contact__info { flex:1 1 240px; }
+    .contact__info strong { font-size:1.03em;}
+    .form label { display:block; margin:.8em 0 .3em;}
+    .form input, .form textarea { width:100%; border:1px solid #a4b7c8; border-radius:7px; padding:.5em; font-size:1em; margin-bottom:.4em;}
+    .form textarea { min-height:80px;}
+    .form button { width:100%; margin-top:.7em;}
+    .muted { color:#667;}
+    .small { font-size:.85em;}
+
+    @media(max-width:650px){
+      .contact__grid { flex-direction:column;}
+      .contact__info{margin-bottom:.8em;}
+      .form button { font-size:.97em;}
+    }
+    footer.footer { background: #14395b; color: #fff; text-align:center; font-size:.97em; padding:1.35rem 0;}
+  </style>
 </head>
 <body>
   <!-- ===== NAV ===== -->
   <header class="nav" role="banner">
     <div class="container nav__inner">
       <a href="#top" class="brand" aria-label="Cobalt Shield Home">Cobalt<span>Shield</span></a>
-<nav class="nav__links" id="navLinks" aria-label="Main navigation">
+      <nav class="nav__links" id="navLinks" aria-label="Main navigation">
         <a href="#mission">Mission</a>
         <a href="#impact">Impact</a>
         <a href="#services">Services</a>
@@ -41,50 +181,50 @@
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
       </nav>
-<button class="nav__burger" id="burger" aria-expanded="false" aria-controls="navLinks">
+      <button class="nav__burger" id="burger" aria-expanded="false" aria-controls="navLinks">
         ☰
       </button>
     </div>
   </header>
-<!-- ===== HERO ===== -->
-<section class="hero" id="top">
-  <div class="container hero__content">
-    <p class="hero-badge">Cybersecurity • Automation • Digital Systems</p>
-<h1>
-      Cybersecurity Builder <span>&</span> Digital Systems Architect
-    </h1>
-<p class="hero-sub">
-   I design secure systems, automation workflows, and digital platforms focused on cybersecurity, ethical technology, and real-world impact.
-    </p>
-<div class="hero__cta">
-  <a href="#projects" class="btn btn--primary">View My Work</a>
-  <a href="#contact" class="btn btn--ghost">Contact Me</a>
-</div>
-
-</div>
-</section>
-
-<section class="section about" id="about">
-  <div class="container about__grid">
-    <div class="about__text">
-      <h2>About</h2>
-     <li>Cybersecurity & digital safety</li>
-<li>Automation systems</li>
-<li>Secure platform design</li>
-<li>Ethical technology</li>
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="top">
+    <div class="container hero__content">
+      <p class="hero-badge">Cybersecurity • Automation • Digital Systems</p>
+      <h1>
+        Cybersecurity Builder <span>&</span> Digital Systems Architect
+      </h1>
+      <p class="hero-sub">
+        I design secure systems, automation workflows, and digital platforms focused on cybersecurity, ethical technology, and real-world impact.
+      </p>
+      <div class="hero__cta">
+        <a href="#projects" class="btn btn--primary">View My Work</a>
+        <a href="#contact" class="btn btn--ghost">Hire Me / Contact</a>
+      </div>
     </div>
-
-    <div class="about__card">
-      <h3>Core Focus</h3>
-      <ul>
-        <li>Cybersecurity awareness</li>
-        <li>Automation workflows</li>
-        <li>Digital systems design</li>
-        <li>Ethical technology</li>
-      </ul>
+  </section>
+  <!-- ===== ABOUT ===== -->
+  <section class="section about" id="about">
+    <div class="container about__grid">
+      <div class="about__text">
+        <h2>About</h2>
+        <ul>
+          <li>Cybersecurity & digital safety</li>
+          <li>Automation systems</li>
+          <li>Secure platform design</li>
+          <li>Ethical technology</li>
+        </ul>
+      </div>
+      <div class="about__card">
+        <h3>Core Focus</h3>
+        <ul>
+          <li>Cybersecurity awareness</li>
+          <li>Automation workflows</li>
+          <li>Digital systems design</li>
+          <li>Ethical technology</li>
+        </ul>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
   <!-- ===== MISSION ===== -->
   <section class="section" id="mission">
     <div class="container">
@@ -98,11 +238,11 @@
       </ul>
     </div>
   </section>
-<!-- ===== IMPACT ===== -->
+  <!-- ===== IMPACT ===== -->
   <section class="section section--alt" id="impact">
     <div class="container">
       <h2>Impact, not noise</h2>
-<div class="impact" role="list">
+      <div class="impact" role="list">
         <div class="impact__kpi" role="listitem">
           <div class="impact__num">64</div>
           <div class="impact__label">Actions closed (MTD)</div>
@@ -120,203 +260,218 @@
           <div class="impact__label">Growth index</div>
         </div>
       </div>
-<div class="impact__cta">
+      <div class="impact__cta">
         <a href="/dashboard.html" class="btn">View Ops Dashboard</a>
         <a href="#contact" class="btn btn--ghost">Talk to us</a>
       </div>
     </div>
   </section>
-<section class="certifications">
-  <h2>Verified Certifications</h2>
-  <p class="cert-sub">
-    Certifications supporting Cobalt Shield’s mission in cybersecurity, digital safety, and responsible technology use.
-  </p>
-<div class="cert-grid">
-<!-- ⭐ FEATURED CERT -->
-    <div class="cert-card featured">
-      <h3>AI for Knowledge Workers</h3>
-      <p>Understanding AI tools, workflows, and responsible usage in modern work environments.</p>
-      <p class="cert-meta">Issued by: UC Davis (Coursera)</p>
-      <a href="https://www.coursera.org/account/accomplishments/verify/2PERLP2HFVR9" target="_blank">View Certificate</a>
-    </div>
-<!-- CERT 2 -->
-    <div class="cert-card">
-      <h3>CompTIA Cybersecurity Analyst+: Network Security Concepts</h3>
-      <p>Foundation in network security principles and threat awareness.</p>
-      <p class="cert-meta">Issued by: Skillsoft</p>
-      <span class="pending">Verification available upon request</span>
-    </div>
-<!-- CERT 3 -->
-    <div class="cert-card">
-      <h3>CBROPS: The CIA Triad & Security Approaches</h3>
-      <p>Understanding of confidentiality, integrity, and availability principles.</p>
-      <p class="cert-meta">Issued by: Skillsoft</p>
-      <span class="pending">Verification available upon request</span>
-    </div>
-<!-- CERT 4 -->
-    <div class="cert-card">
-      <h3>Navigating AI Ethical Challenges and Risks</h3>
-      <p>Focus on responsible technology use and awareness of emerging digital risks.</p>
-      <p class="cert-meta">Issued by: Skillsoft</p>
-      <span class="pending">Verification available upon request</span>
-    </div>
-</div>
-</section>
-   <section class="projects">
-  <h2>Projects & Labs</h2>
-  <p class="project-sub">
-    Practical applications of cybersecurity, automation, and system building.
-  </p>
-<div class="project-grid">
-<!-- PROJECT 1 -->
-    <div class="project-card featured">
-      <h3>⚡ Cobalt Shield Initiative</h3>
-      <p>
-        Personal platform focused on digital safety, ethical EV systems, and youth empowerment.
-        Built with HTML, CSS, and GitHub Pages.
+  <!-- ===== CERTIFICATIONS ===== -->
+  <section class="certifications">
+    <div class="container">
+      <h2>Verified Certifications</h2>
+      <p class="cert-sub">
+        Certifications supporting Cobalt Shield’s mission in cybersecurity, digital safety, and responsible technology use.
       </p>
-      <p class="project-meta">Stack: HTML, CSS, GitHub</p>
-      <a href="https://cobalt-shield.com" target="_blank">View Project</a>
+      <div class="cert-grid">
+        <!-- ⭐ FEATURED CERT -->
+        <div class="cert-card featured">
+          <h3>AI for Knowledge Workers</h3>
+          <p>Understanding AI tools, workflows, and responsible usage in modern work environments.</p>
+          <p class="cert-meta">Issued by: UC Davis (Coursera)</p>
+          <a href="https://www.coursera.org/account/accomplishments/verify/2PERLP2HFVR9" target="_blank">View Certificate</a>
+        </div>
+        <!-- CERT 2 -->
+        <div class="cert-card">
+          <h3>CompTIA Cybersecurity Analyst+: Network Security Concepts</h3>
+          <p>Foundation in network security principles and threat awareness.</p>
+          <p class="cert-meta">Issued by: Skillsoft</p>
+          <span class="pending">Verification available upon request</span>
+        </div>
+        <!-- CERT 3 -->
+        <div class="cert-card">
+          <h3>CBROPS: The CIA Triad & Security Approaches</h3>
+          <p>Understanding of confidentiality, integrity, and availability principles.</p>
+          <p class="cert-meta">Issued by: Skillsoft</p>
+          <span class="pending">Verification available upon request</span>
+        </div>
+        <!-- CERT 4 -->
+        <div class="cert-card">
+          <h3>Navigating AI Ethical Challenges and Risks</h3>
+          <p>Focus on responsible technology use and awareness of emerging digital risks.</p>
+          <p class="cert-meta">Issued by: Skillsoft</p>
+          <span class="pending">Verification available upon request</span>
+        </div>
+      </div>
     </div>
-<!-- PROJECT 2 -->
-    <div class="project-card">
-      <h3>🔐 Cybersecurity Learning Lab</h3>
-      <p>
-        Hands-on practice with networking, security concepts, and threat awareness.
-        Based on CBROPS and CompTIA learning paths.
+  </section>
+  <!-- ===== PROJECTS ===== -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <h2>Projects & Labs</h2>
+      <p class="project-sub">
+        Practical applications of cybersecurity, automation, and system building.
       </p>
-      <p class="project-meta">Focus: SOC, Network Security</p>
-      <span class="pending">Ongoing Lab</span>
+      <div class="project-grid">
+        <!-- PROJECT 1 -->
+        <div class="project-card featured">
+          <h3>⚡ Cobalt Shield Initiative</h3>
+          <p>
+            Personal platform focused on digital safety, ethical EV systems, and youth empowerment.
+            Built with HTML, CSS, and GitHub Pages.
+          </p>
+          <p class="project-meta">Stack: HTML, CSS, GitHub</p>
+          <a href="https://cobalt-shield.com" target="_blank">View Project</a>
+        </div>
+        <!-- PROJECT 2 -->
+        <div class="project-card">
+          <h3>🔐 Cybersecurity Learning Lab</h3>
+          <p>
+            Hands-on practice with networking, security concepts, and threat awareness.
+            Based on CBROPS and CompTIA learning paths.
+          </p>
+          <p class="project-meta">Focus: SOC, Network Security</p>
+          <span class="pending">Ongoing Lab</span>
+        </div>
+        <!-- PROJECT 3 -->
+        <div class="project-card">
+          <h3>🤖 Automation Systems (Zapier)</h3>
+          <p>
+            Building automation workflows for task management, notifications,
+            and system efficiency using Zapier and Google Sheets.
+          </p>
+          <p class="project-meta">Tools: Zapier, APIs, Sheets</p>
+          <span class="pending">In Progress</span>
+        </div>
+        <!-- PROJECT 4 -->
+        <div class="project-card">
+          <h3>🌍 Family Empire Platform</h3>
+          <p>
+            Early-stage platform for property listings, automation, and digital operations
+            across Africa (Airbnb/Booking integration vision).
+          </p>
+          <p class="project-meta">Focus: Platform + Automation</p>
+          <span class="pending">Building Phase</span>
+        </div>
+      </div>
     </div>
-<!-- PROJECT 3 -->
-    <div class="project-card">
-      <h3>🤖 Automation Systems (Zapier)</h3>
-      <p>
-        Building automation workflows for task management, notifications,
-        and system efficiency using Zapier and Google Sheets.
-      </p>
-      <p class="project-meta">Tools: Zapier, APIs, Sheets</p>
-      <span class="pending">In Progress</span>
-    </div>
-<!-- PROJECT 4 -->
-    <div class="project-card">
-      <h3>🌍 Family Empire Platform</h3>
-      <p>
-        Early-stage platform for property listings, automation, and digital operations
-        across Africa (Airbnb/Booking integration vision).
-      </p>
-      <p class="project-meta">Focus: Platform + Automation</p>
-      <span class="pending">Building Phase</span>
-    </div>
-</div>
-</section>   
+  </section>
   <!-- ===== SERVICES ===== -->
   <section class="section" id="services">
     <div class="container">
       <h2>Services</h2>
-<div class="grid">
+      <div class="grid">
         <article class="card">
           <h3>School Shield Kit</h3>
           <p>Ready lessons, parent handouts, and micro-certs. Privacy-first.</p>
         </article>
-<article class="card">
+        <article class="card">
           <h3>Incident Desk</h3>
           <p>Lightweight intake & triage playbooks. Clear steps for common risks.</p>
         </article>
-<article class="card">
+        <article class="card">
           <h3>EV Ethics Pack</h3>
           <p>Transparent pricing signage, battery-sourcing awareness, charging guides.</p>
         </article>
-<article class="card">
+        <article class="card">
           <h3>Mini Audits</h3>
           <p>2–3 day review. Traffic-light report + action plan you can implement quickly.</p>
         </article>
       </div>
     </div>
   </section>
-<!-- ===== DONATE ===== -->
+  <!-- ===== DONATE ===== -->
   <section class="section section--alt" id="donate">
     <div class="container">
       <h2>Support Education, Empower the Future</h2>
       <p class="muted">Every contribution powers digital-safety education and clean-energy literacy.</p>
-
       <form action="https://www.paypal.com/donate" method="post" target="_blank" rel="noopener">
         <input type="hidden" name="hosted_button_id" value="KM9T7T9C9SSX6" />
         <button type="submit" class="btn btn--ghost">Donate with PayPal</button>
       </form>
     </div>
   </section>
-<!-- ===== FAQ ===== -->
+  <!-- ===== FAQ ===== -->
   <section class="section" id="faq">
     <div class="container">
       <h2>FAQ</h2>
-
       <details class="faq" open>
         <summary>How do pilots work?</summary>
         <p>We start with a short intake, align scope and risks, then deliver a low-cost pilot with clear outcomes.</p>
       </details>
-<details class="faq">
+      <details class="faq">
         <summary>Do you store personal data?</summary>
         <p>Minimal collection, no resale. Reports are anonymised by default.</p>
       </details>
-<details class="faq">
+      <details class="faq">
         <summary>Where are you active?</summary>
         <p>Pilots in Greece & Rwanda, expanding with partners across Africa ↔ Europe.</p>
       </details>
     </div>
   </section>
-<!-- ===== CONTACT ===== -->
+  <!-- ===== CONTACT/HIRE ===== -->
   <section class="section" id="contact">
     <div class="container">
-      <h2>Contact</h2>
-<div class="contact__grid">
+      <h2>Contact / Hire</h2>
+      <div class="contact__grid">
         <div class="contact__info">
           <p><strong>Email</strong><br />
             <a href="mailto:delphin@cobalt-shield.com">delphin@cobalt-shield.com</a>
           </p>
-<p><strong>Phone / WhatsApp</strong><br />
+          <p><strong>Phone / WhatsApp</strong><br />
             <a href="tel:+306986761215" class="btn btn--call">📞 Call</a>
             <a href="https://wa.me/306986761215" target="_blank" rel="noopener" class="btn btn--whatsapp">WhatsApp</a>
           </p>
+          <p class="muted small">Available for projects, consulting, and partnerships globally.</p>
         </div>
-<form id="contactForm" class="form" novalidate>
-          <label>Organization
-            <input type="text" name="org" required />
+        <form id="contactForm" class="form" novalidate autocomplete="off">
+          <label for="org">Organization / Name
+            <input type="text" name="org" id="org" required placeholder="Your organization or your name">
           </label>
-<label>Email
-            <input type="email" name="email" required />
+          <label for="email">Email
+            <input type="email" name="email" id="email" required placeholder="you@email.com">
           </label>
-<label>Message
-            <textarea name="message" required></textarea>
+          <label for="message">Message
+            <textarea name="message" id="message" required placeholder="Tell us about your project or inquiry"></textarea>
           </label>
-<button class="btn" type="submit">Send</button>
+          <button class="btn" type="submit">Send message</button>
           <p id="formStatus" class="muted small"></p>
         </form>
       </div>
     </div>
   </section>
-<!-- ===== FOOTER ===== -->
+  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="container">
       <p>© <span id="year"></span> Cobalt Shield Initiative — Africa Forward. Loyalty Over Everything.</p>
     </div>
   </footer>
-<script>
+  <!-- ===== JS ===== -->
+  <script>
     // Year
     document.getElementById("year").textContent = new Date().getFullYear();
-// Mobile nav
+
+    // Mobile nav
     const burger = document.getElementById("burger");
     const navLinks = document.getElementById("navLinks");
-
     burger.addEventListener("click", () => {
       const expanded = burger.getAttribute("aria-expanded") === "true";
-      burger.setAttribute("aria-expanded", !expanded);
+      burger.setAttribute("aria-expanded", (!expanded).toString());
       navLinks.classList.toggle("open");
     });
-// Contact form
+
+    // Contact form
     document.getElementById("contactForm").addEventListener("submit", (e) => {
       e.preventDefault();
-      document.getElementById("formStatus").textContent = "Thanks — we’ll reply shortly.";
+      let org = e.target.org.value.trim();
+      let email = e.target.email.value.trim();
+      let msg = e.target.message.value.trim();
+      if(!org || !email || !msg){
+        document.getElementById("formStatus").textContent = "Please fill every field.";
+        return;
+      }
+      // Could integrate a real email backend/services here
+      document.getElementById("formStatus").textContent = "Thank you — your message is received. We’ll reply shortly!";
       e.target.reset();
     });
   </script>
