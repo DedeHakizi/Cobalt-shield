@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Mission, growth, cadence, projects, team, and partner progress for the Cobalt Shield Initiative." />
+  <meta name="description" content="Cobalt Shield Dashboard - Real-time mission tracking, team coordination, and impact metrics." />
   <meta name="theme-color" content="#0f4c81" />
   <meta name="author" content="Delphin Hakizimana" />
   <meta name="robots" content="index, follow" />
@@ -154,7 +154,6 @@
       transition: background-color var(--transition-normal), color var(--transition-normal);
     }
 
-    /* Prevent horizontal scroll */
     body,
     html {
       overflow-x: hidden;
@@ -179,7 +178,6 @@
       top: 0;
     }
 
-    /* Reduce motion for users who prefer it */
     @media (prefers-reduced-motion: reduce) {
       *,
       *::before,
@@ -222,14 +220,6 @@
     small {
       font-size: 0.875rem;
       color: var(--text-secondary);
-    }
-
-    code,
-    pre {
-      font-family: var(--font-mono);
-      background: var(--bg-secondary);
-      padding: 2px 6px;
-      border-radius: var(--radius-xs);
     }
 
     /* ========== CONTAINER ========== */
@@ -294,11 +284,6 @@
     .brand span {
       color: var(--text);
       font-weight: 700;
-    }
-
-    .brand svg {
-      width: 32px;
-      height: 32px;
     }
 
     .nav__links {
@@ -480,6 +465,80 @@
       }
     }
 
+    /* ========== DEMO BADGE ========== */
+    .demo-badge {
+      display: inline-block;
+      background: var(--info-bg);
+      border: 1px solid var(--info);
+      color: var(--info);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-md);
+    }
+
+    /* ========== FOUNDER SECTION ========== */
+    .founder-section {
+      background: linear-gradient(135deg, var(--info-bg) 0%, var(--bg-secondary) 100%);
+      border: 1px solid var(--info);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      margin: var(--space-2xl) 0;
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+
+    .founder-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--brand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .founder-content h4 {
+      margin: 0 0 var(--space-xs);
+      color: var(--text);
+    }
+
+    .founder-content p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .founder-badge {
+      display: inline-block;
+      background: var(--brand);
+      color: white;
+      padding: 2px 8px;
+      border-radius: var(--radius-xs);
+      font-size: 0.7rem;
+      font-weight: 700;
+      margin-left: var(--space-sm);
+    }
+
+    @media (max-width: 768px) {
+      .founder-section {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .founder-content p {
+        font-size: 0.9rem;
+      }
+    }
+
     /* ========== BUTTONS ========== */
     .btn {
       display: inline-flex;
@@ -551,39 +610,6 @@
       color: white;
     }
 
-    .btn--success {
-      background: var(--ok);
-      color: white;
-      border-color: var(--ok);
-    }
-
-    .btn--success:hover {
-      background: #059669;
-      border-color: #059669;
-    }
-
-    .btn--warning {
-      background: var(--warn);
-      color: white;
-      border-color: var(--warn);
-    }
-
-    .btn--warning:hover {
-      background: #d97706;
-      border-color: #d97706;
-    }
-
-    .btn--danger {
-      background: var(--bad);
-      color: white;
-      border-color: var(--bad);
-    }
-
-    .btn--danger:hover {
-      background: #dc2626;
-      border-color: #dc2626;
-    }
-
     .btn--whatsapp {
       background: #25D366;
       color: white;
@@ -625,23 +651,6 @@
       opacity: 0.5;
       cursor: not-allowed;
       pointer-events: none;
-    }
-
-    .btn-group {
-      display: inline-flex;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .btn-group .btn {
-      border-radius: 0;
-      margin: 0;
-      border-right: 1px solid var(--border);
-    }
-
-    .btn-group .btn:last-child {
-      border-right: none;
     }
 
     /* ========== CARDS ========== */
@@ -803,59 +812,11 @@
       gap: var(--space-lg);
     }
 
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--space-lg);
-    }
-
-    @media (max-width: 1200px) {
-      .grid-4 {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
     @media (max-width: 980px) {
       .grid-2,
       .grid-3 {
         grid-template-columns: 1fr;
       }
-    }
-
-    @media (max-width: 640px) {
-      .grid-4 {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* ========== CHARTS ========== */
-    .candles-wrap,
-    .bar-wrap,
-    .line-wrap,
-    .pie-wrap {
-      height: 320px;
-      position: relative;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: var(--space-md);
-    }
-
-    .candles-wrap canvas,
-    .bar-wrap canvas,
-    .line-wrap canvas,
-    .pie-wrap canvas {
-      position: absolute;
-      inset: var(--space-md);
-      width: calc(100% - var(--space-lg)) !important;
-      height: calc(100% - var(--space-lg)) !important;
-    }
-
-    .chart__title {
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: var(--space-md);
-      font-size: 1rem;
     }
 
     /* ========== TABLES ========== */
@@ -899,10 +860,6 @@
       background: var(--bg-secondary);
     }
 
-    .table tbody tr:active {
-      background: var(--bg-tertiary);
-    }
-
     .table td {
       font-size: 0.95rem;
     }
@@ -928,7 +885,6 @@
       white-space: nowrap;
       gap: var(--space-xs);
       transition: all var(--transition-fast);
-      cursor: default;
     }
 
     .chip:hover {
@@ -957,17 +913,6 @@
       background: var(--info-bg);
       border-color: var(--info);
       color: #1e40af;
-    }
-
-    .chip.neutral {
-      background: var(--bg-secondary);
-      border-color: var(--border);
-      color: var(--text-secondary);
-    }
-
-    .chip.lg {
-      padding: 8px 16px;
-      font-size: 0.875rem;
     }
 
     /* ========== PROGRESS BAR ========== */
@@ -1021,33 +966,12 @@
       background: linear-gradient(90deg, var(--ok), var(--ok-light));
     }
 
-    .progress.warning .bar {
-      background: linear-gradient(90deg, var(--warn), var(--warn-light));
-    }
-
-    .progress.danger .bar {
-      background: linear-gradient(90deg, var(--bad), var(--bad-light));
-    }
-
     /* ========== TOOLBAR & TOGGLES ========== */
     .toolbar {
       display: flex;
       gap: var(--space-md);
       align-items: center;
       justify-content: space-between;
-      margin: var(--space-lg) 0;
-      flex-wrap: wrap;
-      padding: var(--space-md);
-      background: var(--bg-secondary);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-    }
-
-    .toolbar__left,
-    .toolbar__right {
-      display: flex;
-      gap: var(--space-md);
-      align-items: center;
       flex-wrap: wrap;
     }
 
@@ -1067,77 +991,6 @@
       height: 18px;
       cursor: pointer;
       transition: all var(--transition-fast);
-    }
-
-    .toggle input:hover {
-      transform: scale(1.1);
-    }
-
-    .toggle input:checked {
-      transform: scale(1.15);
-    }
-
-    /* ========== LOADING STATES ========== */
-    .loading {
-      opacity: 0.6;
-      pointer-events: none;
-      position: relative;
-    }
-
-    .loading::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 20px;
-      height: 20px;
-      margin: -10px 0 0 -10px;
-      border: 2px solid var(--border);
-      border-radius: 50%;
-      border-top-color: var(--brand);
-      animation: spin 0.8s linear infinite;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    /* Skeleton Loading */
-    .skeleton {
-      background: linear-gradient(90deg, var(--bg-secondary) 0%, var(--border) 50%, var(--bg-secondary) 100%);
-      background-size: 200% 100%;
-      animation: loading 1.5s infinite;
-      border-radius: var(--radius-sm);
-    }
-
-    @keyframes loading {
-      0% {
-        background-position: 200% 0;
-      }
-      100% {
-        background-position: -200% 0;
-      }
-    }
-
-    /* ========== BADGES ========== */
-    .badge {
-      display: inline-block;
-      padding: 4px 8px;
-      background: var(--brand);
-      color: white;
-      border-radius: var(--radius-xs);
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .badge.secondary {
-      background: var(--bg-secondary);
-      color: var(--text);
-      border: 1px solid var(--border);
     }
 
     /* ========== ALERTS ========== */
@@ -1184,78 +1037,15 @@
       color: #92400e;
     }
 
-    .alert.error {
-      background: var(--bad-bg);
-      border-color: var(--bad);
-      color: #991b1b;
-    }
-
     .alert.info {
       background: var(--info-bg);
       border-color: var(--info);
       color: #1e40af;
     }
 
-    /* ========== FORMS ========== */
-    .form-group {
-      margin-bottom: var(--space-lg);
-    }
-
-    label {
-      display: block;
-      margin-bottom: var(--space-sm);
-      font-weight: 600;
-      color: var(--text);
-      font-size: 0.95rem;
-    }
-
-    input,
-    textarea,
-    select {
-      width: 100%;
-      padding: var(--space-sm) var(--space-md);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      font-family: var(--font-sans);
-      font-size: 1rem;
-      color: var(--text);
-      background: var(--card);
-      transition: all var(--transition-fast);
-    }
-
-    input:focus,
-    textarea:focus,
-    select:focus {
-      outline: none;
-      border-color: var(--brand);
-      box-shadow: 0 0 0 3px rgba(15, 76, 129, 0.1);
-      background: var(--card);
-    }
-
-    input:disabled,
-    textarea:disabled,
-    select:disabled {
-      background: var(--bg-secondary);
-      color: var(--muted);
-      cursor: not-allowed;
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
-
     /* ========== UTILITY CLASSES ========== */
     .text-center {
       text-align: center;
-    }
-
-    .text-right {
-      text-align: right;
-    }
-
-    .text-left {
-      text-align: left;
     }
 
     .text-muted {
@@ -1265,56 +1055,6 @@
     .text-secondary {
       color: var(--text-secondary);
     }
-
-    .text-success {
-      color: var(--ok);
-    }
-
-    .text-warning {
-      color: var(--warn);
-    }
-
-    .text-danger {
-      color: var(--bad);
-    }
-
-    .text-info {
-      color: var(--info);
-    }
-
-    .font-bold {
-      font-weight: 700;
-    }
-
-    .font-semibold {
-      font-weight: 600;
-    }
-
-    .font-mono {
-      font-family: var(--font-mono);
-    }
-
-    .mt-0 { margin-top: 0; }
-    .mt-xs { margin-top: var(--space-xs); }
-    .mt-sm { margin-top: var(--space-sm); }
-    .mt-md { margin-top: var(--space-md); }
-    .mt-lg { margin-top: var(--space-lg); }
-    .mt-xl { margin-top: var(--space-xl); }
-
-    .mb-0 { margin-bottom: 0; }
-    .mb-xs { margin-bottom: var(--space-xs); }
-    .mb-sm { margin-bottom: var(--space-sm); }
-    .mb-md { margin-bottom: var(--space-md); }
-    .mb-lg { margin-bottom: var(--space-lg); }
-    .mb-xl { margin-bottom: var(--space-xl); }
-
-    .px-md { padding-left: var(--space-md); padding-right: var(--space-md); }
-    .py-md { padding-top: var(--space-md); padding-bottom: var(--space-md); }
-
-    .gap-xs { gap: var(--space-xs); }
-    .gap-sm { gap: var(--space-sm); }
-    .gap-md { gap: var(--space-md); }
-    .gap-lg { gap: var(--space-lg); }
 
     .flex {
       display: flex;
@@ -1330,95 +1070,24 @@
       justify-content: center;
     }
 
-    .flex-between {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .items-center {
-      align-items: center;
-    }
-
-    .justify-center {
-      justify-content: center;
-    }
-
-    .justify-between {
-      justify-content: space-between;
+    .gap-md {
+      gap: var(--space-md);
     }
 
     .hidden {
       display: none !important;
     }
 
-    .visible {
-      display: block !important;
-    }
-
-    .opacity-50 {
-      opacity: 0.5;
-    }
-
-    .opacity-75 {
-      opacity: 0.75;
-    }
-
-    .rounded {
-      border-radius: var(--radius);
-    }
-
-    .rounded-sm {
-      border-radius: var(--radius-sm);
+    .mt-lg {
+      margin-top: var(--space-lg);
     }
 
     .rounded-lg {
       border-radius: var(--radius-lg);
     }
 
-    .rounded-full {
-      border-radius: var(--radius-full);
-    }
-
-    .shadow-sm {
-      box-shadow: var(--shadow-sm);
-    }
-
-    .shadow {
-      box-shadow: var(--shadow);
-    }
-
     .shadow-lg {
       box-shadow: var(--shadow-lg);
-    }
-
-    .cursor-pointer {
-      cursor: pointer;
-    }
-
-    .cursor-not-allowed {
-      cursor: not-allowed;
-    }
-
-    /* ========== RESPONSIVE UTILITIES ========== */
-    @media (max-width: 768px) {
-      .hide-mobile {
-        display: none !important;
-      }
-
-      .show-mobile {
-        display: block !important;
-      }
-    }
-
-    @media (min-width: 769px) {
-      .hide-desktop {
-        display: none !important;
-      }
-
-      .show-desktop {
-        display: block !important;
-      }
     }
 
     /* ========== FOOTER ========== */
@@ -1491,13 +1160,17 @@
     }
 
     /* ========== ANIMATIONS ========== */
+    .animate-fade-in {
+      animation: fadeIn 0.5s ease;
+    }
+
+    .animate-slide-in-left {
+      animation: slideInLeft 0.5s ease;
+    }
+
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     @keyframes slideInLeft {
@@ -1511,60 +1184,7 @@
       }
     }
 
-    @keyframes slideInRight {
-      from {
-        opacity: 0;
-        transform: translateX(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes scaleIn {
-      from {
-        opacity: 0;
-        transform: scale(0.95);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    .animate-fade-in {
-      animation: fadeIn 0.5s ease;
-    }
-
-    .animate-slide-in-left {
-      animation: slideInLeft 0.5s ease;
-    }
-
-    .animate-slide-in-right {
-      animation: slideInRight 0.5s ease;
-    }
-
-    .animate-scale-in {
-      animation: scaleIn 0.5s ease;
-    }
-
-    /* ========== RESPONSIVE DESIGN ========== */
-    @media (max-width: 1024px) {
-      :root {
-        --space-xl: 24px;
-        --space-2xl: 32px;
-      }
-
-      h1 {
-        font-size: clamp(1.5rem, 4vw, 2.5rem);
-      }
-
-      h2 {
-        font-size: clamp(1.25rem, 3vw, 2rem);
-      }
-    }
-
+    /* ========== RESPONSIVE ========== */
     @media (max-width: 768px) {
       :root {
         --space-lg: 16px;
@@ -1576,10 +1196,6 @@
         font-size: 15px;
       }
 
-      .nav {
-        padding: var(--space-sm) 0;
-      }
-
       .hero {
         padding: var(--space-2xl) var(--space-md);
       }
@@ -1588,30 +1204,9 @@
         grid-template-columns: 1fr;
       }
 
-      .grid-2,
-      .grid-3,
-      .grid-4 {
-        grid-template-columns: 1fr;
-      }
-
-      .table {
-        font-size: 0.85rem;
-      }
-
       .table th,
       .table td {
         padding: var(--space-sm);
-      }
-
-      .toolbar {
-        flex-direction: column;
-        gap: var(--space-sm);
-      }
-
-      .toolbar__left,
-      .toolbar__right {
-        width: 100%;
-        justify-content: space-between;
       }
 
       section {
@@ -1646,30 +1241,6 @@
         width: 100%;
       }
 
-      .btn-group {
-        flex-direction: column;
-      }
-
-      .btn-group .btn {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-      }
-
-      .btn-group .btn:last-child {
-        border-bottom: none;
-      }
-
-      .card__header,
-      .card__body,
-      .card__footer {
-        padding: var(--space-md);
-      }
-
-      .table-wrapper {
-        font-size: 0.75rem;
-      }
-
       .footer__bottom {
         flex-direction: column;
         align-items: flex-start;
@@ -1678,27 +1249,6 @@
       .footer__links {
         flex-direction: column;
         gap: var(--space-sm);
-      }
-    }
-
-    /* ========== PRINT STYLES ========== */
-    @media print {
-      .nav,
-      .footer,
-      .btn--ghost,
-      .toolbar {
-        display: none !important;
-      }
-
-      body {
-        background: white;
-        color: black;
-      }
-
-      .card {
-        box-shadow: none;
-        border: 1px solid #ccc;
-        page-break-inside: avoid;
       }
     }
   </style>
@@ -1718,9 +1268,7 @@
           <li><a href="#dashboard" aria-current="page">Dashboard</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#team">Team</a></li>
-          <li><a href="#partners">Partners</a></li>
-          <li><a href="#resources">Resources</a></li>
-          <li><button class="pill">Login</button></li>
+          <li><a href="login.html" class="pill">Login</a></li>
         </ul>
         <button class="nav__burger" id="nav-burger" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
       </div>
@@ -1731,44 +1279,64 @@
   <header class="hero" role="banner">
     <div class="container">
       <div class="hero__content">
+        <span class="demo-badge">📊 Demo Dashboard</span>
         <h1>Cobalt Shield Initiative</h1>
-        <p>Real-time mission progress, team coordination, and strategic growth tracking for the next generation of cybersecurity defense.</p>
+        <p>Real-time mission progress, team coordination, and strategic growth tracking for digital safety & ethical innovation.</p>
         <div class="hero__cta">
-          <button class="btn btn--primary btn--lg">Get Started</button>
-          <button class="btn btn--ghost btn--lg">Learn More</button>
-          <button class="btn btn--whatsapp btn--lg">💬 WhatsApp</button>
-          <button class="btn btn--call btn--lg">📞 Call Us</button>
+          <a href="#kpis" class="btn btn--primary btn--lg">View Metrics</a>
+          <a href="/" class="btn btn--ghost btn--lg">← Back to Home</a>
+          <a href="https://wa.me/306986761215" target="_blank" rel="noopener" class="btn btn--whatsapp btn--lg">💬 WhatsApp</a>
+          <a href="tel:+306986761215" class="btn btn--call btn--lg">📞 Call</a>
         </div>
       </div>
     </div>
   </header>
 
+  <!-- Founder Story Section -->
+  <section>
+    <div class="container">
+      <div class="founder-section">
+        <div class="founder-avatar">👤</div>
+        <div class="founder-content">
+          <h4>
+            Built by Delphin Hakizimana
+            <span class="founder-badge">Founder & Mission Lead</span>
+          </h4>
+          <p>
+            Greece-based cybersecurity specialist on a mission to bridge Africa and Europe through digital safety, ethical EV systems, and practical tools for youth empowerment. Every metric here reflects real impact toward secure, sustainable digital infrastructure.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Main Content -->
   <main id="main" class="container">
     <!-- Key Performance Indicators -->
-    <section id="dashboard">
-      <h2>Key Performance Indicators</h2>
+    <section id="kpis">
+      <h2>Sample Metrics (Live Dashboard)</h2>
+      <p class="text-muted">These metrics update in real-time as projects progress. Real values will replace samples once live data is connected.</p>
       <div class="kpis">
         <div class="kpi animate-fade-in">
           <div class="kpi__icon">📊</div>
-          <span class="label">Total Revenue</span>
-          <div class="value">$2.4M</div>
-          <span class="subtitle">Q1 2025</span>
-          <span class="delta up">12.5% from last month</span>
+          <span class="label">Teams Engaged</span>
+          <div class="value">12</div>
+          <span class="subtitle">Active partnerships</span>
+          <span class="delta up">3 new this month</span>
         </div>
         <div class="kpi animate-fade-in">
           <div class="kpi__icon">👥</div>
-          <span class="label">Active Users</span>
-          <div class="value">8,234</div>
-          <span class="subtitle">Live accounts</span>
-          <span class="delta up">8.2% growth</span>
+          <span class="label">Students Reached</span>
+          <div class="value">847</div>
+          <span class="subtitle">Digital safety training</span>
+          <span class="delta up">14% growth</span>
         </div>
         <div class="kpi animate-fade-in">
           <div class="kpi__icon">🎯</div>
           <span class="label">Completion Rate</span>
-          <div class="value">94%</div>
-          <span class="subtitle">Projects on track</span>
-          <span class="delta up">2.1% improvement</span>
+          <div class="value">89%</div>
+          <span class="subtitle">Projects on schedule</span>
+          <span class="delta up">5% improvement</span>
         </div>
         <div class="kpi animate-fade-in">
           <div class="kpi__icon">⚡</div>
@@ -1780,49 +1348,67 @@
       </div>
     </section>
 
-    <!-- Charts Section -->
-    <section id="charts" class="mt-lg">
-      <h2>Performance Analytics</h2>
-      <div class="grid-2">
-        <div class="card">
+    <!-- Projects -->
+    <section id="projects" class="mt-lg">
+      <h2>Active Projects</h2>
+      <div class="grid-3">
+        <div class="card animate-slide-in-left">
           <div class="card__header">
-            <h3>Revenue Trend</h3>
-            <span class="chip ok">Updated</span>
+            <h4>Digital Safety Kit</h4>
+            <span class="chip ok">Active</span>
           </div>
           <div class="card__body">
-            <div class="candles-wrap">
-              <canvas id="candleChart"></canvas>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card__header">
-            <h3>Progress Metrics</h3>
-          </div>
-          <div class="card__body">
+            <p>Open playbooks, school curricula, and parent handouts for cybersecurity awareness.</p>
             <div class="progress__label">
-              <span>Project Alpha</span>
-              <span>75%</span>
+              <span>Progress</span>
+              <span>78%</span>
             </div>
             <div class="progress">
-              <div class="bar" style="width: 75%"></div>
+              <div class="bar" style="width: 78%"></div>
             </div>
+          </div>
+          <div class="card__footer">
+            <button class="btn btn--sm btn--primary">View Details</button>
+          </div>
+        </div>
 
-            <div class="progress__label mt-lg">
-              <span>Project Beta</span>
+        <div class="card animate-slide-in-left" style="animation-delay: 0.1s">
+          <div class="card__header">
+            <h4>Incident Response Playbooks</h4>
+            <span class="chip ok">Active</span>
+          </div>
+          <div class="card__body">
+            <p>Lightweight intake & triage procedures for quick decision-making under pressure.</p>
+            <div class="progress__label">
+              <span>Progress</span>
+              <span>62%</span>
+            </div>
+            <div class="progress">
+              <div class="bar" style="width: 62%"></div>
+            </div>
+          </div>
+          <div class="card__footer">
+            <button class="btn btn--sm btn--primary">View Details</button>
+          </div>
+        </div>
+
+        <div class="card animate-slide-in-left" style="animation-delay: 0.2s">
+          <div class="card__header">
+            <h4>EV Ethics Framework</h4>
+            <span class="chip warn">In Progress</span>
+          </div>
+          <div class="card__body">
+            <p>Transparent cobalt sourcing info and battery sustainability guides for EVs.</p>
+            <div class="progress__label">
+              <span>Progress</span>
               <span>45%</span>
             </div>
             <div class="progress">
               <div class="bar" style="width: 45%"></div>
             </div>
-
-            <div class="progress__label mt-lg">
-              <span>Project Gamma</span>
-              <span>92%</span>
-            </div>
-            <div class="progress success">
-              <div class="bar" style="width: 92%"></div>
-            </div>
+          </div>
+          <div class="card__footer">
+            <button class="btn btn--sm btn--primary">View Details</button>
           </div>
         </div>
       </div>
@@ -1833,14 +1419,12 @@
       <h2>Team Overview</h2>
       <div class="card">
         <div class="card__header">
-          <h3>Active Team Members</h3>
+          <h3>Active Contributors</h3>
           <div class="toolbar">
-            <div class="toolbar__left">
-              <label class="toggle">
-                <input type="checkbox" checked>
-                <span>Show all</span>
-              </label>
-            </div>
+            <label class="toggle">
+              <input type="checkbox" checked>
+              <span>Show all</span>
+            </label>
           </div>
         </div>
         <div class="card__body">
@@ -1850,46 +1434,34 @@
                 <tr>
                   <th>Name</th>
                   <th>Role</th>
+                  <th>Focus Area</th>
                   <th>Status</th>
-                  <th>Last Active</th>
-                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><strong>Delphin Hakizimana</strong></td>
-                  <td>Project Lead</td>
+                  <td>Founder & Lead</td>
+                  <td>Mission Strategy</td>
                   <td><span class="chip ok">Active</span></td>
-                  <td>2 mins ago</td>
-                  <td><button class="btn btn--sm btn--secondary">View</button></td>
                 </tr>
                 <tr>
-                  <td><strong>Sarah Johnson</strong></td>
-                  <td>Tech Lead</td>
+                  <td><strong>Digital Rights Network</strong></td>
+                  <td>Strategic Partner</td>
+                  <td>Africa Expansion</td>
                   <td><span class="chip ok">Active</span></td>
-                  <td>5 mins ago</td>
-                  <td><button class="btn btn--sm btn--secondary">View</button></td>
                 </tr>
                 <tr>
-                  <td><strong>Marcus Chen</strong></td>
-                  <td>DevOps Engineer</td>
-                  <td><span class="chip warn">Away</span></td>
-                  <td>1 hour ago</td>
-                  <td><button class="btn btn--sm btn--secondary">View</button></td>
-                </tr>
-                <tr>
-                  <td><strong>Elena Rodriguez</strong></td>
-                  <td>Security Analyst</td>
+                  <td><strong>Tech Educators</strong></td>
+                  <td>Curriculum Lead</td>
+                  <td>School Programs</td>
                   <td><span class="chip ok">Active</span></td>
-                  <td>1 min ago</td>
-                  <td><button class="btn btn--sm btn--secondary">View</button></td>
                 </tr>
                 <tr>
-                  <td><strong>James Wilson</strong></td>
-                  <td>Data Analyst</td>
-                  <td><span class="chip bad">Offline</span></td>
-                  <td>3 hours ago</td>
-                  <td><button class="btn btn--sm btn--secondary">View</button></td>
+                  <td><strong>EV Ethics Lab</strong></td>
+                  <td>Research Partner</td>
+                  <td>Battery Research</td>
+                  <td><span class="chip warn">Planning</span></td>
                 </tr>
               </tbody>
             </table>
@@ -1898,109 +1470,44 @@
       </div>
     </section>
 
-    <!-- Alerts & Status -->
+    <!-- Alerts -->
     <section id="alerts" class="mt-lg">
-      <h2>System Alerts</h2>
+      <h2>Recent Updates</h2>
       <div class="alert success">
         <div class="alert__icon">✅</div>
         <div class="alert__content">
-          <div class="alert__title">Deployment Successful</div>
-          <p class="alert__message">Version 2.1.0 deployed to production successfully</p>
-        </div>
-      </div>
-
-      <div class="alert warning">
-        <div class="alert__icon">⚠️</div>
-        <div class="alert__content">
-          <div class="alert__title">High CPU Usage</div>
-          <p class="alert__message">Server CPU usage is at 82%. Consider scaling resources.</p>
+          <div class="alert__title">Schools Onboarded</div>
+          <p class="alert__message">Digital Safety Kit deployed to 3 new schools in Athens and Rwanda</p>
         </div>
       </div>
 
       <div class="alert info">
         <div class="alert__icon">ℹ️</div>
         <div class="alert__content">
-          <div class="alert__title">Scheduled Maintenance</div>
-          <p class="alert__message">Maintenance window scheduled for Sunday 2:00 AM UTC</p>
+          <div class="alert__title">New Partnership</div>
+          <p class="alert__message">Collaboration with EV Ethics Lab for cobalt-sourcing transparency research</p>
+        </div>
+      </div>
+
+      <div class="alert warning">
+        <div class="alert__icon">⚠️</div>
+        <div class="alert__content">
+          <div class="alert__title">Seeking Volunteers</div>
+          <p class="alert__message">Help us expand digital safety training to 5 more regions. Apply now!</p>
         </div>
       </div>
     </section>
 
-    <!-- Projects Grid -->
-    <section id="projects" class="mt-lg">
-      <h2>Featured Projects</h2>
-      <div class="grid-3">
-        <div class="card animate-slide-in-left">
-          <div class="card__header">
-            <h4>Project Alpha</h4>
-            <span class="badge">Active</span>
-          </div>
-          <div class="card__body">
-            <p>Core infrastructure modernization and security audit for enterprise clients.</p>
-            <div class="progress__label">
-              <span>Progress</span>
-              <span>75%</span>
-            </div>
-            <div class="progress">
-              <div class="bar" style="width: 75%"></div>
-            </div>
-          </div>
-          <div class="card__footer">
-            <button class="btn btn--sm btn--primary">Learn More</button>
-          </div>
-        </div>
-
-        <div class="card animate-slide-in-left" style="animation-delay: 0.1s">
-          <div class="card__header">
-            <h4>Project Beta</h4>
-            <span class="badge secondary">Planning</span>
-          </div>
-          <div class="card__body">
-            <p>AI-powered threat detection system with real-time response capabilities.</p>
-            <div class="progress__label">
-              <span>Progress</span>
-              <span>45%</span>
-            </div>
-            <div class="progress">
-              <div class="bar" style="width: 45%"></div>
-            </div>
-          </div>
-          <div class="card__footer">
-            <button class="btn btn--sm btn--primary">Learn More</button>
-          </div>
-        </div>
-
-        <div class="card animate-slide-in-left" style="animation-delay: 0.2s">
-          <div class="card__header">
-            <h4>Project Gamma</h4>
-            <span class="badge">Active</span>
-          </div>
-          <div class="card__body">
-            <p>Cloud security compliance framework and automated policy enforcement.</p>
-            <div class="progress__label">
-              <span>Progress</span>
-              <span>92%</span>
-            </div>
-            <div class="progress success">
-              <div class="bar" style="width: 92%"></div>
-            </div>
-          </div>
-          <div class="card__footer">
-            <button class="btn btn--sm btn--primary">Learn More</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Call to Action -->
+    <!-- CTA -->
     <section class="mt-lg">
       <div class="card" style="background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%); border: none; color: white;">
         <div class="card__body text-center">
-          <h2 style="color: white; margin-bottom: var(--space-lg);">Ready to Transform Your Security?</h2>
-          <p style="color: rgba(255,255,255,0.9); margin-bottom: var(--space-lg); font-size: 1.1rem;">Join hundreds of organizations securing their digital infrastructure with Cobalt Shield.</p>
+          <h2 style="color: white; margin-bottom: var(--space-lg);">Ready to Join the Movement?</h2>
+          <p style="color: rgba(255,255,255,0.9); margin-bottom: var(--space-lg);">Support digital safety and ethical technology across Africa & Europe.</p>
           <div class="flex flex-center gap-md">
-            <button class="btn btn--primary btn--lg">Start Free Trial</button>
-            <button class="btn btn--ghost btn--lg">Schedule Demo</button>
+            <a href="/#donate" class="btn btn--primary btn--lg">Donate Now</a>
+            <a href="#team" class="btn btn--ghost btn--lg">Join the Team</a>
+            <a href="https://wa.me/306986761215" target="_blank" rel="noopener" class="btn btn--whatsapp btn--lg">💬 Get Involved</a>
           </div>
         </div>
       </div>
@@ -2012,38 +1519,38 @@
     <div class="container">
       <div class="footer__content">
         <div class="footer__section">
-          <h4>About</h4>
-          <p>Cobalt Shield Initiative provides comprehensive cybersecurity solutions for modern enterprises.</p>
+          <h4>About Cobalt Shield</h4>
+          <p>Protecting youth, educators, and organizations through digital safety, ethical technology, and practical tools for secure digital infrastructure.</p>
         </div>
         <div class="footer__section">
-          <h4>Product</h4>
-          <a href="#features">Features</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#security">Security</a>
-          <a href="#enterprise">Enterprise</a>
+          <h4>Our Mission</h4>
+          <a href="/">Home</a>
+          <a href="/#about">About</a>
+          <a href="/#mission">Mission</a>
+          <a href="/#services">Services</a>
         </div>
         <div class="footer__section">
-          <h4>Resources</h4>
-          <a href="#docs">Documentation</a>
-          <a href="#blog">Blog</a>
-          <a href="#support">Support</a>
-          <a href="#contact">Contact</a>
+          <h4>Get In Touch</h4>
+          <a href="mailto:delphin@cobalt-shield.com">Email</a>
+          <a href="https://wa.me/306986761215">WhatsApp</a>
+          <a href="tel:+306986761215">Phone</a>
+          <a href="/#contact">Contact</a>
         </div>
         <div class="footer__section">
           <h4>Legal</h4>
-          <a href="#privacy">Privacy Policy</a>
-          <a href="#terms">Terms of Service</a>
-          <a href="#compliance">Compliance</a>
-          <a href="#cookies">Cookie Policy</a>
+          <a href="/#privacy">Privacy Policy</a>
+          <a href="/#terms">Terms of Service</a>
+          <a href="/#compliance">Compliance</a>
+          <a href="/#cookies">Cookie Policy</a>
         </div>
       </div>
 
       <div class="footer__bottom">
-        <p>&copy; 2025 Cobalt Shield Initiative. All rights reserved.</p>
+        <p>&copy; <span id="year"></span> Cobalt Shield Initiative — Africa Forward. Loyalty Over Everything.</p>
         <ul class="footer__links">
           <li><a href="https://twitter.com" aria-label="Twitter">Twitter</a></li>
           <li><a href="https://linkedin.com" aria-label="LinkedIn">LinkedIn</a></li>
-          <li><a href="https://github.com" aria-label="GitHub">GitHub</a></li>
+          <li><a href="https://github.com/DedeHakizi" aria-label="GitHub">GitHub</a></li>
         </ul>
       </div>
     </div>
@@ -2051,7 +1558,8 @@
 
   <!-- Scripts -->
   <script>
-    // Mobile Navigation Toggle
+    document.getElementById('year').textContent = new Date().getFullYear();
+
     const navBurger = document.getElementById('nav-burger');
     const navMenu = document.getElementById('nav-menu');
 
@@ -2062,7 +1570,6 @@
         navBurger.setAttribute('aria-expanded', !isOpen);
       });
 
-      // Close menu on link click
       navMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
           navMenu.classList.remove('open');
@@ -2071,11 +1578,9 @@
       });
     }
 
-    // Remove no-js class
     document.documentElement.classList.remove('no-js');
     document.documentElement.classList.add('js');
 
-    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
@@ -2089,52 +1594,7 @@
       });
     });
 
-    // Dark mode toggle (optional)
-    function initDarkMode() {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (prefersDark) {
-        document.documentElement.style.colorScheme = 'dark';
-      }
-    }
-
-    initDarkMode();
-
-    // Log dashboard loaded
     console.log('🛡️ Cobalt Shield Dashboard loaded successfully');
-  </script>
-
-  <!-- Chart Libraries (if using Chart.js) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-  <script>
-    // Chart.js initialization (optional)
-    if (typeof Chart !== 'undefined') {
-      const candleCtx = document.getElementById('candleChart');
-      if (candleCtx) {
-        new Chart(candleCtx, {
-          type: 'line',
-          data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            datasets: [{
-              label: 'Revenue',
-              data: [65, 59, 80, 81, 56, 55],
-              borderColor: '#0f4c81',
-              backgroundColor: 'rgba(15, 76, 129, 0.1)',
-              tension: 0.4,
-              fill: true
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: {
-                display: false
-              }
-            }
-          }
-        });
-      }
-    }
   </script>
 </body>
 </html>
