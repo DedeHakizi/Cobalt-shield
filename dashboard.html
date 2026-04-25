@@ -1,771 +1,506 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Cobalt Shield — Ops Dashboard</title>
   <meta name="description" content="Mission, growth, cadence, projects, team, and partner progress for the Cobalt Shield Initiative." />
   <meta name="theme-color" content="#0f4c81" />
   <meta name="author" content="Delphin Hakizimana" />
+  
+  <!-- Security Headers via Meta -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  
   <link rel="canonical" href="https://cobalt-shield.com/dashboard.html" />
-  <link rel="stylesheet" href="style.css?v=19" />
+  <link rel="stylesheet" href="style.css?v=20" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
   <style>
-    :root{
-      --brand:#0f4c81;
-      --brand-dark:#0b3960;
-      --bg:#f8fafc;
-      --card:#ffffff;
-      --text:#0f172a;
-      --muted:#64748b;
-      --border:#e5e7eb;
-      --ok:#10b981;
-      --warn:#f59e0b;
-      --bad:#ef4444;
-      --shadow:0 10px 24px rgba(15, 23, 42, 0.08);
-      --radius:16px;
+    :root {
+      /* Brand Colors */
+      --brand: #0f4c81;
+      --brand-dark: #0b3960;
+      --brand-light: #1e6ba8;
+      
+      /* Semantic Colors */
+      --bg: #f8fafc;
+      --bg-secondary: #f1f5f9;
+      --card: #ffffff;
+      --text: #0f172a;
+      --text-secondary: #334155;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      
+      /* Status Colors */
+      --ok: #10b981;
+      --ok-bg: #ecfdf5;
+      --warn: #f59e0b;
+      --warn-bg: #fffbeb;
+      --bad: #ef4444;
+      --bad-bg: #fef2f2;
+      
+      /* UI Properties */
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08);
+      --shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 20px 40px rgba(15, 23, 42, 0.12);
+      --radius: 16px;
+      --radius-sm: 8px;
+      --radius-lg: 24px;
+      
+      /* Transitions */
+      --transition-fast: 150ms ease;
+      --transition-normal: 250ms ease;
+      
+      /* Spacing */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      
+      /* Typography */
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
     }
 
-    body{
-      background:var(--bg);
-      color:var(--text);
+    /* Base Reset & Modern Defaults */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    .hero{
-      padding-top:48px;
-      padding-bottom:28px;
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
     }
 
-    .hero__content h1{
-      margin-bottom:8px;
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    .hero__content p{
-      max-width:760px;
-      margin-left:auto;
-      margin-right:auto;
+    /* Skip Link for Accessibility */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--brand);
+      color: white;
+      padding: var(--space-sm) var(--space-md);
+      z-index: 1000;
+      transition: top var(--transition-fast);
     }
 
-    .hero__cta{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      justify-content:center;
-      margin-top:18px;
+    .skip-link:focus {
+      top: 0;
     }
 
-    .btn--primary{
-      background:var(--brand);
-      color:#fff;
-      border:1px solid var(--brand);
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
     }
 
-    .btn--primary:hover{
-      background:var(--brand-dark);
-      border-color:var(--brand-dark);
+    /* Navigation */
+    .nav {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: var(--space-md) 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
     }
 
-    .dashboard-note{
-      margin-top:12px;
-      text-align:center;
-      color:var(--muted);
-      font-size:.95rem;
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .toolbar{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      justify-content:space-between;
-      margin:14px 0 16px;
-      flex-wrap:wrap;
+    .brand {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--brand);
+      text-decoration: none;
     }
 
-    .toggle{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      font-weight:700;
-      color:var(--text);
+    .brand span {
+      color: var(--text);
     }
 
-    .toggle input{
-      accent-color:var(--brand);
+    .nav__links {
+      display: flex;
+      gap: var(--space-lg);
+      align-items: center;
     }
 
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
+    .nav__links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color var(--transition-fast);
     }
 
-    .kpis{
-      display:grid;
-      grid-template-columns:repeat(5, minmax(150px, 1fr));
-      gap:14px;
+    .nav__links a:hover,
+    .nav__links a[aria-current="page"] {
+      color: var(--brand);
     }
 
-    @media (max-width:1100px){
-      .kpis{
-        grid-template-columns:repeat(2, 1fr);
+    .nav__links .pill {
+      background: var(--brand);
+      color: white !important;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--radius-lg);
+    }
+
+    .nav__burger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: var(--space-sm);
+    }
+
+    @media (max-width: 768px) {
+      .nav__links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--card);
+        flex-direction: column;
+        padding: var(--space-md);
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow);
+      }
+
+      .nav__links.open {
+        display: flex;
+      }
+
+      .nav__burger {
+        display: block;
       }
     }
 
-    @media (max-width:640px){
-      .kpis{
-        grid-template-columns:1fr;
+    /* Hero Section */
+    .hero {
+      padding: var(--space-xl) 0 var(--space-lg);
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+      color: white;
+    }
+
+    .hero__content {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 900;
+      margin-bottom: var(--space-sm);
+      line-height: 1.2;
+    }
+
+    .hero p.muted {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.1rem;
+      max-width: 760px;
+      margin: var(--space-sm) auto;
+    }
+
+    .hero__cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      justify-content: center;
+      margin-top: var(--space-lg);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all var(--transition-fast);
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+
+    .btn--primary {
+      background: white;
+      color: var(--brand);
+      border-color: white;
+    }
+
+    .btn--primary:hover {
+      background: var(--bg);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: white;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .btn--ghost:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .btn--call,
+    .btn--whatsapp {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .btn--whatsapp:hover {
+      background: #25D366;
+      border-color: #25D366;
+    }
+
+    .btn--call:hover {
+      background: #0078FF;
+      border-color: #0078FF;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: box-shadow var(--transition-normal);
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* KPI Grid */
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .kpi {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: var(--space-md);
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition-fast);
+    }
+
+    .kpi:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .kpi .label {
+      color: var(--muted);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-xs);
+      font-weight: 600;
+    }
+
+    .kpi .value {
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--text);
+    }
+
+    .kpi .delta {
+      margin-top: var(--space-sm);
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .delta.up {
+      color: var(--ok);
+    }
+
+    .delta.down {
+      color: var(--bad);
+    }
+
+    .delta.up::before {
+      content: "↑";
+    }
+
+    .delta.down::before {
+      content: "↓";
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: var(--space-md);
+    }
+
+    @media (max-width: 980px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
       }
     }
 
-    .kpi{
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:16px;
-      box-shadow:var(--shadow);
+    /* Charts */
+    .candles-wrap,
+    .bar-wrap {
+      height: 320px;
+      position: relative;
     }
 
-    .kpi .label{
-      color:var(--muted);
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.8px;
-      margin-bottom:8px;
+    .candles-wrap canvas,
+    .bar-wrap canvas {
+      position: absolute;
+      inset: 0;
+      width: 100% !important;
+      height: 100% !important;
     }
 
-    .kpi .value{
-      font-size:28px;
-      font-weight:900;
-      line-height:1.1;
-    }
-
-    .kpi .delta{
-      margin-top:8px;
-      font-size:12px;
-      font-weight:800;
-    }
-
-    .delta.up{ color:var(--ok); }
-    .delta.down{ color:var(--bad); }
-
-    .grid-2{
-      display:grid;
-      grid-template-columns:2fr 1fr;
-      gap:16px;
-    }
-
-    @media (max-width:980px){
-      .grid-2{
-        grid-template-columns:1fr;
-      }
-    }
-
-    .table{
-      width:100%;
-      border-collapse:collapse;
+    /* Tables */
+    .table {
+      width: 100%;
+      border-collapse: collapse;
     }
 
     .table th,
-    .table td{
-      padding:12px 8px;
-      border-bottom:1px solid var(--border);
-      text-align:left;
-      vertical-align:middle;
+    .table td {
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: middle;
     }
 
-    .table th{
-      font-size:12px;
-      color:var(--muted);
-      text-transform:uppercase;
-      letter-spacing:.8px;
+    .table th {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      background: var(--bg-secondary);
     }
 
-    .table tr:last-child td{
-      border-bottom:none;
+    .table tbody tr:hover {
+      background: var(--bg-secondary);
     }
 
-    .progress{
-      height:10px;
-      background:#eef2f7;
-      border-radius:999px;
-      overflow:hidden;
-      border:1px solid var(--border);
+    /* Chips/Badges */
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      white-space: nowrap;
     }
 
-    .bar{
-      height:100%;
-      background:linear-gradient(90deg, var(--brand), #2563eb);
-      border-radius:999px;
+    .chip.ok {
+      background: var(--ok-bg);
+      border-color: var(--ok);
+      color: #065f46;
     }
 
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:999px;
-      padding:5px 10px;
-      font-size:12px;
-      font-weight:700;
-      border:1px solid var(--border);
-      background:#fff;
-      white-space:nowrap;
+    .chip.warn {
+      background: var(--warn-bg);
+      border-color: var(--warn);
+      color: #92400e;
     }
 
-    .chip.ok{
-      background:#ecfdf5;
-      border-color:#bbf7d0;
-      color:#166534;
+    .chip.bad {
+      background: var(--bad-bg);
+      border-color: var(--bad);
+      color: #991b1b;
     }
 
-    .chip.warn{
-      background:#fffbeb;
-      border-color:#fde68a;
-      color:#92400e;
+    /* Progress Bar */
+    .progress {
+      height: 12px;
+      background: var(--bg-secondary);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid var(--border);
     }
 
-    .chip.bad{
-      background:#fef2f2;
-      border-color:#fecaca;
-      color:#991b1b;
+    .bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--brand), var(--brand-light));
+      border-radius: 999px;
+      transition: width 0.6s ease;
     }
 
-    .section-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-bottom:10px;
+    /* Toolbar & Toggles */
+    .toolbar {
+      display: flex;
+      gap: var(--space-md);
+      align-items: center;
+      justify-content: space-between;
+      margin: var(--space-md) 0 var(--space-lg);
+      flex-wrap: wrap;
     }
 
-    .candles-wrap{
-      height:320px;
-      position:relative;
+    .toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-weight: 700;
+      color: var(--text);
+      cursor: pointer;
     }
 
-    .candles-wrap canvas{
-      position:absolute;
-      inset:0;
-      width:100% !important;
-      height:100% !important;
+    .toggle input {
+      accent-color: var(--brand);
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
     }
 
-    .bar-wrap{
-      height:260px;
-      position:relative;
+    /* Loading States */
+    .loading {
+      opacity: 0.6;
+      pointer-events: none;
+      position: relative;
     }
 
-    .bar-wrap canvas{
-      position:absolute;
-      inset:0;
-      width:100% !important;
-      height:100% !important;
-    }
-
-    .support-box p:last-child{
-      margin-bottom:0;
-    }
-
-    .empty-state{
-      padding:14px;
-      border:1px dashed var(--border);
-      border-radius:12px;
-      color:var(--muted);
-      background:#fff;
-    }
-
-    .stickybar{
-      position:sticky;
-      bottom:0;
-      z-index:50;
-      display:flex;
-      justify-content:center;
-      gap:8px;
-      padding:10px;
-      background:rgba(255,255,255,.92);
-      backdrop-filter:blur(8px);
-      border-top:1px solid var(--border);
-    }
-
-    .stickybar a{
-      text-decoration:none;
-      padding:10px 14px;
-      border-radius:999px;
-      background:#fff;
-      border:1px solid var(--border);
-      color:var(--text);
-      font-weight:700;
-    }
-
-    @media (max-width:700px){
-      .stickybar{
-        flex-wrap:wrap;
-      }
-    }
-
-    @media print{
-      .nav, .stickybar, .nav__burger, .btn, #exportBtn, .toolbar{
-        display:none !important;
-      }
-
-      body{
-        background:#fff;
-      }
-
-      .card, .kpi{
-        box-shadow:none !important;
-      }
-
-      .hero{
-        padding:0 0 8px;
-      }
-
-      .section{
-        padding:14px 0;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <header class="nav" role="banner">
-    <div class="container nav__inner">
-      <a href="/" class="brand" aria-label="Cobalt Shield Home">Cobalt<span>Shield</span></a>
-
-      <nav class="nav__links" id="navLinks" aria-label="Dashboard navigation">
-        <a href="/#mission">Home</a>
-        <a href="/#impact">Impact</a>
-        <a href="/#services">Services</a>
-        <a href="/dashboard.html" class="pill" aria-current="page">Dashboard</a>
-        <a href="/#contact">Contact</a>
-      </nav>
-
-      <button
-        class="nav__burger"
-        id="burger"
-        type="button"
-        aria-label="Toggle menu"
-        aria-expanded="false"
-        aria-controls="navLinks"
-      >
-        ☰
-      </button>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="container hero__content">
-      <h1>Operations Dashboard</h1>
-      <p class="muted">
-        Mission, progress, cadence, and partner visibility in one view.
-        <span id="lastUpdated"></span>
-      </p>
-
-      <div class="hero__cta">
-        <a href="/" class="btn btn--ghost">← Back to Home</a>
-        <a href="#projectsSection" class="btn btn--primary">📊 View Project Status</a>
-        <a href="tel:+306986761215" class="btn btn--call">📞 Call</a>
-        <a href="https://wa.me/306986761215" target="_blank" rel="noopener" class="btn btn--whatsapp">WhatsApp</a>
-        <button class="btn" id="exportBtn" type="button">Export PDF</button>
-      </div>
-
-      <p class="dashboard-note">Built for practical visibility. Clean numbers. Clear movement. No noise.</p>
-    </div>
-  </section>
-
-  <main class="section">
-    <div class="container">
-      <section class="card" style="margin-bottom:16px; padding:20px;">
-        <h2 style="margin:0 0 6px;">Mission</h2>
-        <p class="muted" style="margin:0 0 10px;">
-          From the classroom to the charging station — practical protection, calm guidance, zero data resale.
-        </p>
-        <ul class="chips" style="margin:0;">
-          <li>Open playbooks</li>
-          <li>Human support</li>
-          <li>Privacy by default</li>
-          <li>Africa ↔ Europe bridge</li>
-        </ul>
-      </section>
-
-      <div class="toolbar">
-        <div class="muted small">Privacy mode is on by default.</div>
-        <label class="toggle">
-          <input type="checkbox" id="nameToggle" />
-          Show names
-        </label>
-      </div>
-
-      <section aria-label="Key metrics">
-        <div class="kpis" id="kpiWrap"></div>
-      </section>
-
-      <div class="grid-2" style="margin-top:16px;">
-        <article class="card" style="padding:20px;">
-          <div class="section-head">
-            <div>
-              <h3 style="margin:0;">Growth Candles (Monthly)</h3>
-              <p class="muted small" style="margin:4px 0 0;">Open–High–Low–Close trend view.</p>
-            </div>
-          </div>
-          <div class="candles-wrap">
-            <canvas id="growthCandles" aria-label="Monthly growth candles chart"></canvas>
-          </div>
-
-          <div class="section-head" style="margin-top:20px;">
-            <h3 style="margin:0;">Cadence (Meetings / Week)</h3>
-          </div>
-          <div class="bar-wrap">
-            <canvas id="cadenceChart" aria-label="Meetings per week chart"></canvas>
-          </div>
-        </article>
-
-        <aside class="card support-box" id="support" style="padding:20px;">
-          <h3 style="margin-top:0;">Support the Work</h3>
-          <p class="muted">
-            Your contribution powers digital-safety education and clean-energy literacy.
-          </p>
-
-          <form action="https://www.paypal.com/donate" method="post" target="_blank" style="margin-top:10px;">
-            <input type="hidden" name="hosted_button_id" value="KM9T7T9C9SSX6" />
-            <button type="submit" class="btn btn--ghost" style="width:100%;">Donate with PayPal</button>
-          </form>
-
-          <p class="small muted" style="margin-top:12px;">
-            Need a receipt or prefer bank transfer?
-            <a href="mailto:delphin@cobalt-shield.com">delphin@cobalt-shield.com</a>
-          </p>
-        </aside>
-      </div>
-
-      <div class="grid" style="margin-top:16px;">
-        <article class="card" id="projectsSection" style="grid-column:span 2 / span 2; padding:20px;">
-          <h3 style="margin-top:0;">Projects — Ongoing Progress</h3>
-          <div id="projectsList"></div>
-        </article>
-
-        <article class="card" style="grid-column:span 2 / span 2; padding:20px;">
-          <h3 style="margin-top:0;">Team — Velocity & Load</h3>
-          <div style="overflow-x:auto;">
-            <table class="table" id="teamTable">
-              <thead>
-                <tr>
-                  <th>Member</th>
-                  <th>Role</th>
-                  <th>Velocity</th>
-                  <th>Open</th>
-                  <th>On-time %</th>
-                  <th>Focus</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </article>
-      </div>
-
-      <article class="card" style="margin-top:16px; padding:20px;">
-        <h3 style="margin-top:0;">Partner Teams</h3>
-        <div style="overflow-x:auto;">
-          <table class="table" id="partnerTable">
-            <thead>
-              <tr>
-                <th>Partner</th>
-                <th>POC</th>
-                <th>Scope</th>
-                <th>Open Items</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </article>
-    </div>
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      <p>© <span id="year"></span> Cobalt Shield Initiative — Africa Forward. Loyalty Over Everything.</p>
-    </div>
-  </footer>
-
-  <div class="stickybar">
-    <a href="tel:+306986761215">📞 Call</a>
-    <a href="https://wa.me/306986761215" target="_blank" rel="noopener">🟢 WhatsApp</a>
-    <a href="mailto:delphin@cobalt-shield.com">✉️ Email</a>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const burger = document.getElementById("burger");
-    const navLinks = document.getElementById("navLinks");
-    burger.addEventListener("click", () => {
-      const expanded = burger.getAttribute("aria-expanded") === "true";
-      burger.setAttribute("aria-expanded", String(!expanded));
-      navLinks.classList.toggle("open");
-    });
-
-    document.getElementById("exportBtn").addEventListener("click", () => window.print());
-
-    let SHOW_NAMES = false;
-    const nameToggle = document.getElementById("nameToggle");
-    nameToggle.addEventListener("change", (e) => {
-      SHOW_NAMES = e.target.checked;
-      renderTeam();
-      renderPartners();
-    });
-
-    const aliasPool = ["Member A", "Member B", "Member C", "Member D", "Member E", "Member F"];
-    const safeName = (fullName, index) => SHOW_NAMES ? fullName : aliasPool[index % aliasPool.length];
-    const $ = (selector, root = document) => root.querySelector(selector);
-
-    const DATA = {
-      meta: { lastUpdated: "2026-03-17 18:00 EET" },
-      kpis: [
-        { label: "Total Meetings (MTD)", value: 18, delta: 20 },
-        { label: "Open Actions", value: 32, delta: -10 },
-        { label: "Closed Actions (MTD)", value: 64, delta: 12 },
-        { label: "On-time Delivery", value: "92%", delta: 3 },
-        { label: "Growth Index", value: "78/100", delta: 6 }
-      ],
-      months: ["Mar", "Apr", "May", "Jun", "Jul", "Aug"],
-      ohlc: [
-        { o: 26, h: 30, l: 22, c: 28 },
-        { o: 28, h: 36, l: 27, c: 34 },
-        { o: 34, h: 40, l: 31, c: 38 },
-        { o: 38, h: 47, l: 36, c: 45 },
-        { o: 45, h: 52, l: 44, c: 49 },
-        { o: 49, h: 60, l: 48, c: 58 }
-      ],
-      cadenceWeekly: {
-        labels: ["Wk22", "Wk23", "Wk24", "Wk25", "Wk26", "Wk27", "Wk28", "Wk29", "Wk30", "Wk31", "Wk32", "Wk33", "Wk34"],
-        values: [6, 5, 7, 8, 5, 9, 7, 6, 8, 10, 11, 9, 12]
-      },
-      projects: [
-        { name: "Website v1 polish", pct: 72, status: "on-track" },
-        { name: "Email & MX hardening", pct: 60, status: "on-track" },
-        { name: "Rwanda school outreach (pilot)", pct: 35, status: "at-risk" },
-        { name: "Funding deck (v2)", pct: 40, status: "slipping" }
-      ],
-      team: [
-        { name: "Delphin Hakizimana", role: "CEO / Ops", velocity: 32, open: 14, ontime: 95, focus: "High" },
-        { name: "Mixalis", role: "Local EU Outreach", velocity: 18, open: 5, ontime: 88, focus: "Med" },
-        { name: "Panagiotis", role: "Advisor", velocity: 9, open: 2, ontime: 92, focus: "Low" },
-        { name: "Shalom", role: "Research Trainer", velocity: 14, open: 6, ontime: 86, focus: "Med" }
-      ],
-      partnerTeams: [
-        { partner: "Ionity (MSP context)", poc: "TBD", scope: "Charging support / MSP alignment", open: 3, status: "active" },
-        { partner: "Electra", poc: "TBD", scope: "EV support operations", open: 2, status: "active" },
-        { partner: "Spark Alliance", poc: "TBD", scope: "Fast-charging pricing & guidance", open: 4, status: "pending" }
-      ]
-    };
-
-    function formatUpdated(text) {
-      return "· Updated " + text;
-    }
-
-    function setKPIs() {
-      const wrap = $("#kpiWrap");
-      wrap.innerHTML = "";
-
-      DATA.kpis.forEach((kpi) => {
-        const delta = typeof kpi.delta === "number" ? kpi.delta : 0;
-        wrap.insertAdjacentHTML(
-          "beforeend",
-          `
-          <div class="kpi">
-            <div class="label">${kpi.label}</div>
-            <div class="value">${kpi.value}</div>
-            <div class="delta ${delta >= 0 ? "up" : "down"}">
-              ${delta >= 0 ? "+" : ""}${delta}% vs prev
-            </div>
-          </div>
-          `
-        );
-      });
-
-      $("#lastUpdated").textContent = formatUpdated(DATA.meta.lastUpdated);
-    }
-
-    function drawCandles(canvas, labels, ohlc) {
-      const wicks = ohlc.map((v, i) => ({ x: labels[i], y: [v.l, v.h] }));
-      const bodies = ohlc.map((v, i) => ({
-        x: labels[i],
-        y: [Math.min(v.o, v.c), Math.max(v.o, v.c)],
-        up: v.c >= v.o
-      }));
-
-      new Chart(canvas.getContext("2d"), {
-        type: "bar",
-        data: {
-          labels,
-          datasets: [
-            {
-              type: "bar",
-              data: wicks,
-              label: "Wick",
-              backgroundColor: "rgba(0,0,0,0)",
-              borderColor: "#6b7280",
-              borderWidth: 2,
-              borderSkipped: false,
-              barThickness: 2,
-              order: 1
-            },
-            {
-              type: "bar",
-              data: bodies,
-              label: "Body",
-              backgroundColor: (ctx) => ctx.raw.up ? "#10b981" : "#ef4444",
-              borderColor: (ctx) => ctx.raw.up ? "#10b981" : "#ef4444",
-              borderWidth: 1,
-              borderSkipped: false,
-              barThickness: 18,
-              order: 2
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false }
-          },
-          scales: {
-            x: { type: "category", grid: { display: false } },
-            y: { beginAtZero: false, suggestedMin: 0 }
-          }
-        }
-      });
-    }
-
-    function renderCadence() {
-      new Chart(document.getElementById("cadenceChart").getContext("2d"), {
-        type: "bar",
-        data: {
-          labels: DATA.cadenceWeekly.labels,
-          datasets: [
-            {
-              label: "Meetings",
-              data: DATA.cadenceWeekly.values,
-              borderWidth: 1
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false }
-          },
-          scales: {
-            y: { beginAtZero: true },
-            x: { grid: { display: false } }
-          }
-        }
-      });
-    }
-
-    function projectStatusClass(status) {
-      if (status === "on-track") return "ok";
-      if (status === "at-risk") return "warn";
-      return "bad";
-    }
-
-    function renderProjects() {
-      const list = $("#projectsList");
-      list.innerHTML = "";
-
-      if (!DATA.projects.length) {
-        list.innerHTML = `<div class="empty-state">No active projects yet.</div>`;
-        return;
-      }
-
-      DATA.projects.forEach((project) => {
-        list.insertAdjacentHTML(
-          "beforeend",
-          `
-          <div class="card" style="padding:14px; margin-bottom:12px; box-shadow:none;">
-            <div style="display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;">
-              <strong>${project.name}</strong>
-              <span class="chip ${projectStatusClass(project.status)}">${project.status}</span>
-              <span class="small muted">${project.pct}%</span>
-            </div>
-            <div class="progress" style="margin-top:10px;">
-              <div class="bar" style="width:${project.pct}%"></div>
-            </div>
-          </div>
-          `
-        );
-      });
-    }
-
-    function renderTeam() {
-      const tbody = $("#teamTable tbody");
-      tbody.innerHTML = "";
-
-      if (!DATA.team.length) {
-        tbody.innerHTML = `<tr><td colspan="6" class="muted">No team data yet.</td></tr>`;
-        return;
-      }
-
-      DATA.team.forEach((member, index) => {
-        tbody.insertAdjacentHTML(
-          "beforeend",
-          `
-          <tr>
-            <td>${safeName(member.name, index)}</td>
-            <td>${member.role}</td>
-            <td>${member.velocity}</td>
-            <td>${member.open}</td>
-            <td>${member.ontime}%</td>
-            <td>${member.focus}</td>
-          </tr>
-          `
-        );
-      });
-    }
-
-    function partnerStatusClass(status) {
-      if (status === "active") return "ok";
-      if (status === "pending") return "warn";
-      return "bad";
-    }
-
-    function renderPartners() {
-      const tbody = $("#partnerTable tbody");
-      tbody.innerHTML = "";
-
-      if (!DATA.partnerTeams.length) {
-        tbody.innerHTML = `<tr><td colspan="5" class="muted">No partner data yet.</td></tr>`;
-        return;
-      }
-
-      DATA.partnerTeams.forEach((partner) => {
-        tbody.insertAdjacentHTML(
-          "beforeend",
-          `
-          <tr>
-            <td>${partner.partner}</td>
-            <td>${SHOW_NAMES ? (partner.poc || "") : (partner.poc ? "POC" : "")}</td>
-            <td>${partner.scope}</td>
-            <td>${partner.open}</td>
-            <td><span class="chip ${partnerStatusClass(partner.status)}">${partner.status}</span></td>
-          </tr>
-          `
-        );
-      });
-    }
-
-    setKPIs();
-    drawCandles(document.getElementById("growthCandles"), DATA.months, DATA.ohlc);
-    renderCadence();
-    renderProjects();
-    renderTeam();
-    renderPartners();
-  </script>
-</body>
-</html>
+    .loading::after {
+      content: "";
+      position: absolute;
+      top
