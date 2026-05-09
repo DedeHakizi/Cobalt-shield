@@ -1,1600 +1,949 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Cobalt Shield Dashboard - Real-time mission tracking, team coordination, and impact metrics." />
-  <meta name="theme-color" content="#0f4c81" />
+  <title>Dashboard — Cobalt Shield Initiative</title>
+  <meta name="description" content="Real-time mission tracking, project progress, and impact metrics for Cobalt Shield Initiative." />
+  <meta name="theme-color" content="#0a0f1e" />
   <meta name="author" content="Delphin Hakizimana" />
-  <meta name="robots" content="index, follow" />
-  <meta name="language" content="English" />
-  
-  <!-- Open Graph & Social Meta -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Cobalt Shield Initiative - Dashboard" />
-  <meta property="og:description" content="Real-time mission, growth, and project tracking dashboard" />
-  <meta property="og:url" content="https://cobalt-shield.com/dashboard.html" />
-  <meta property="og:image" content="https://cobalt-shield.com/og-image.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  
-  <!-- Security Headers via Meta -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https:;">
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
-  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
-  
   <link rel="canonical" href="https://cobalt-shield.com/dashboard.html" />
-  <link rel="stylesheet" href="style.css?v=20" />
-  <link rel="manifest" href="/manifest.json" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="/cobalt-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      /* ========== BRAND COLORS ========== */
-      --brand: #0f4c81;
-      --brand-dark: #0b3960;
-      --brand-light: #1e6ba8;
-      --brand-lighter: #3d82b7;
-      
-      /* ========== SEMANTIC COLORS ========== */
-      --bg: #f8fafc;
-      --bg-secondary: #f1f5f9;
-      --bg-tertiary: #e2e8f0;
-      --card: #ffffff;
-      --card-secondary: #f9fafb;
-      --text: #0f172a;
-      --text-secondary: #334155;
-      --text-tertiary: #475569;
-      --muted: #64748b;
-      --border: #e2e8f0;
-      --border-light: #f1f5f9;
-      
-      /* ========== STATUS COLORS ========== */
-      --ok: #10b981;
-      --ok-bg: #ecfdf5;
-      --ok-light: #a7f3d0;
+      --ink: #0a0f1e;
+      --ink-2: #111827;
+      --ink-3: #1a2236;
+      --ink-4: #1e293b;
+      --cobalt: #1e56c8;
+      --cobalt-light: #3b7cf8;
+      --cobalt-glow: rgba(30, 86, 200, 0.15);
+      --gold: #f5a623;
+      --gold-light: #ffd166;
+      --white: #f0f4ff;
+      --white-dim: rgba(240, 244, 255, 0.6);
+      --white-faint: rgba(240, 244, 255, 0.07);
+      --border: rgba(240, 244, 255, 0.07);
+      --border-bright: rgba(240, 244, 255, 0.14);
+      --ok: #22d3a5;
+      --ok-bg: rgba(34, 211, 165, 0.1);
       --warn: #f59e0b;
-      --warn-bg: #fffbeb;
-      --warn-light: #fcd34d;
-      --bad: #ef4444;
-      --bad-bg: #fef2f2;
-      --bad-light: #fca5a5;
-      --info: #3b82f6;
-      --info-bg: #eff6ff;
-      --info-light: #93c5fd;
-      
-      /* ========== UI PROPERTIES ========== */
-      --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
-      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08);
-      --shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-      --shadow-lg: 0 20px 40px rgba(15, 23, 42, 0.12);
-      --shadow-xl: 0 25px 50px rgba(15, 23, 42, 0.15);
-      
-      --radius-xs: 4px;
+      --warn-bg: rgba(245, 158, 11, 0.1);
+      --bad: #f87171;
+      --bad-bg: rgba(248, 113, 113, 0.1);
+      --info: #60a5fa;
+      --info-bg: rgba(96, 165, 250, 0.1);
+      --radius: 14px;
       --radius-sm: 8px;
-      --radius: 12px;
-      --radius-lg: 16px;
-      --radius-xl: 24px;
-      --radius-full: 999px;
-      
-      /* ========== TRANSITIONS ========== */
-      --transition-xs: 100ms ease;
-      --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
-      
-      /* ========== SPACING ========== */
-      --space-xs: 4px;
-      --space-sm: 8px;
-      --space-md: 16px;
-      --space-lg: 24px;
-      --space-xl: 32px;
-      --space-2xl: 48px;
-      --space-3xl: 64px;
-      
-      /* ========== TYPOGRAPHY ========== */
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-      
-      /* ========== Z-INDEX STACK ========== */
-      --z-dropdown: 50;
-      --z-sticky: 100;
-      --z-fixed: 200;
-      --z-modal-bg: 900;
-      --z-modal: 1000;
-      --z-popover: 1100;
-      --z-tooltip: 1200;
+      --radius-lg: 20px;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+      --transition: 220ms cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* ========== DARK MODE ========== */
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0f172a;
-        --bg-secondary: #1e293b;
-        --bg-tertiary: #334155;
-        --card: #1e293b;
-        --card-secondary: #0f172a;
-        --text: #f8fafc;
-        --text-secondary: #cbd5e1;
-        --text-tertiary: #94a3b8;
-        --muted: #64748b;
-        --border: #334155;
-        --border-light: #475569;
-      }
-    }
-
-    /* ========== BASE RESET & MODERN DEFAULTS ========== */
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      -webkit-text-size-adjust: 100%;
-      scroll-padding-top: 80px;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-sans);
-      font-size: 16px;
-      line-height: 1.6;
+      background: var(--ink);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      transition: background-color var(--transition-normal), color var(--transition-normal);
-    }
-
-    body,
-    html {
       overflow-x: hidden;
     }
 
-    /* ========== ACCESSIBILITY ========== */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: 0.35;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    h1,h2,h3,h4 { font-family: var(--font-display); line-height: 1.15; letter-spacing: -0.02em; }
+
     .skip-link {
-      position: absolute;
-      top: -40px;
-      left: 0;
-      background: var(--brand);
-      color: white;
-      padding: var(--space-sm) var(--space-md);
-      z-index: var(--z-tooltip);
-      transition: top var(--transition-fast);
-      font-weight: 600;
-      text-decoration: none;
-      border-radius: 0 0 var(--radius-lg) 0;
+      position: absolute; top: -40px; left: 0;
+      background: var(--cobalt); color: white;
+      padding: 8px 16px; z-index: 10000;
+      transition: top var(--transition);
     }
+    .skip-link:focus { top: 0; }
 
-    .skip-link:focus {
-      top: 0;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-
-    /* ========== TYPOGRAPHY ========== */
-    h1, h2, h3, h4, h5, h6 {
-      font-weight: 700;
-      line-height: 1.2;
-      color: var(--text);
-    }
-
-    h1 {
-      font-size: clamp(1.875rem, 5vw, 3rem);
-      font-weight: 900;
-    }
-
-    h2 {
-      font-size: clamp(1.5rem, 4vw, 2.25rem);
-    }
-
-    h3 {
-      font-size: clamp(1.25rem, 3vw, 1.875rem);
-    }
-
-    h4 {
-      font-size: 1.125rem;
-    }
-
-    p {
-      margin-bottom: var(--space-md);
-    }
-
-    small {
-      font-size: 0.875rem;
-      color: var(--text-secondary);
-    }
-
-    /* ========== CONTAINER ========== */
-    .container {
-      width: 100%;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 var(--space-md);
-    }
-
-    .container-sm {
-      max-width: 900px;
-    }
-
-    .container-lg {
-      max-width: 1920px;
-    }
-
-    /* ========== NAVIGATION ========== */
+    /* ── NAV ── */
     .nav {
-      background: var(--card);
+      position: sticky; top: 0; z-index: 200;
+      padding: 14px 0;
+      background: rgba(10, 15, 30, 0.9);
+      backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border);
-      padding: var(--space-md) 0;
-      position: sticky;
-      top: 0;
-      z-index: var(--z-sticky);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      background-color: rgba(255, 255, 255, 0.95);
-      box-shadow: var(--shadow-sm);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .nav {
-        background-color: rgba(30, 41, 59, 0.95);
-      }
     }
 
     .nav__inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-lg);
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 20px;
+      max-width: 1400px; margin: 0 auto; padding: 0 24px;
     }
 
     .brand {
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: var(--brand);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-      transition: color var(--transition-fast);
-      white-space: nowrap;
+      font-family: var(--font-display);
+      font-size: 1.3rem; font-weight: 800;
+      letter-spacing: -0.03em;
     }
-
-    .brand:hover {
-      color: var(--brand-light);
-    }
-
-    .brand span {
-      color: var(--text);
-      font-weight: 700;
-    }
+    .brand em { color: var(--gold); font-style: normal; }
 
     .nav__links {
-      display: flex;
-      gap: var(--space-lg);
-      align-items: center;
-      list-style: none;
+      display: flex; gap: 2px;
+      align-items: center; list-style: none;
     }
-
     .nav__links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: color var(--transition-fast);
-      position: relative;
-      padding: var(--space-sm) 0;
+      color: var(--white-dim); font-size: 0.88rem; font-weight: 500;
+      padding: 7px 13px; border-radius: var(--radius-sm);
+      transition: all var(--transition);
     }
-
-    .nav__links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--brand);
-      transition: width var(--transition-fast);
-    }
-
     .nav__links a:hover,
-    .nav__links a[aria-current="page"] {
-      color: var(--brand);
+    .nav__links a[aria-current="page"] { color: var(--white); background: var(--white-faint); }
+    .nav__links a[aria-current="page"] { color: var(--cobalt-light); }
+    .nav__links .cta {
+      background: var(--cobalt); color: white !important;
+      font-weight: 700; margin-left: 8px;
+    }
+    .nav__links .cta:hover { background: var(--cobalt-light); }
+
+    .nav__status {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.78rem; color: var(--ok); font-weight: 600;
+    }
+    .nav__status::before {
+      content: ''; width: 7px; height: 7px;
+      border-radius: 50%; background: var(--ok);
+      box-shadow: 0 0 8px var(--ok);
+      animation: pulse 2s infinite;
     }
 
-    .nav__links a:hover::after,
-    .nav__links a[aria-current="page"]::after {
-      width: 100%;
-    }
-
-    .nav__links .pill {
-      background: var(--brand);
-      color: white !important;
-      padding: var(--space-sm) var(--space-md);
-      border-radius: var(--radius-full);
-      border: none;
-      cursor: pointer;
-      font-weight: 700;
-      transition: all var(--transition-fast);
-      box-shadow: 0 4px 12px rgba(15, 76, 129, 0.3);
-    }
-
-    .nav__links .pill:hover {
-      background: var(--brand-light);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(15, 76, 129, 0.4);
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
     }
 
     .nav__burger {
-      display: none;
-      background: none;
-      border: 2px solid var(--border);
-      font-size: 1.5rem;
-      cursor: pointer;
-      padding: var(--space-sm);
-      border-radius: var(--radius-sm);
-      color: var(--text);
-      transition: all var(--transition-fast);
-      width: 40px;
-      height: 40px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .nav__burger:hover {
-      background: var(--bg-secondary);
-      border-color: var(--brand);
-      color: var(--brand);
+      display: none; background: none; border: none;
+      color: var(--white); font-size: 1.4rem; cursor: pointer; padding: 8px;
     }
 
     @media (max-width: 768px) {
       .nav__links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--card);
-        flex-direction: column;
-        padding: var(--space-lg);
+        display: none; position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--ink-2); flex-direction: column; padding: 16px;
         border-bottom: 1px solid var(--border);
-        box-shadow: var(--shadow-lg);
-        gap: var(--space-md);
-        animation: slideDown var(--transition-normal);
       }
-
-      .nav__links.open {
-        display: flex;
-      }
-
-      .nav__burger {
-        display: flex;
-      }
+      .nav__links.open { display: flex; }
+      .nav__burger { display: block; }
+      .nav__status { display: none; }
     }
 
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 1400px; margin: 0 auto; padding: 0 24px;
     }
 
-    /* ========== HERO SECTION ========== */
+    /* ── HERO ── */
     .hero {
-      padding: var(--space-3xl) var(--space-md) var(--space-2xl);
-      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 50%, #0a2d4a 100%);
-      color: white;
-      position: relative;
-      overflow: hidden;
+      padding: 56px 0 48px;
+      background: linear-gradient(135deg, rgba(30,86,200,0.18) 0%, rgba(10,15,30,0) 60%);
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -50%;
-      width: 1000px;
-      height: 1000px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
+    .hero__grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(240,244,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(240,244,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 100% at 50% 0%, black 0%, transparent 80%);
     }
 
-    .hero__content {
-      text-align: center;
-      max-width: 900px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
+    .hero__inner {
+      position: relative; z-index: 1;
+      display: flex; align-items: flex-end;
+      justify-content: space-between; gap: 32px; flex-wrap: wrap;
+    }
+
+    .hero__left {}
+
+    .hero__label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold);
+      background: rgba(245,166,35,0.1);
+      border: 1px solid rgba(245,166,35,0.2);
+      padding: 5px 12px; border-radius: 999px; margin-bottom: 16px;
     }
 
     .hero h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 900;
-      margin-bottom: var(--space-md);
-      line-height: 1.1;
-      animation: fadeInUp 0.8s ease;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800; margin-bottom: 10px;
     }
 
-    .hero p {
-      color: rgba(255, 255, 255, 0.9);
-      font-size: clamp(1rem, 2vw, 1.125rem);
-      max-width: 760px;
-      margin: var(--space-md) auto;
-      animation: fadeInUp 0.8s ease 0.1s backwards;
+    .hero__sub { color: var(--white-dim); max-width: 500px; font-size: 0.97rem; }
+
+    .hero__actions {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px;
     }
 
-    .hero__cta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-sm);
-      justify-content: center;
-      margin-top: var(--space-2xl);
-      animation: fadeInUp 0.8s ease 0.2s backwards;
+    .hero__right {
+      display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
     }
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .hero__time {
+      font-family: var(--font-mono);
+      font-size: 0.82rem; color: var(--white-dim);
     }
 
-    /* ========== DEMO BADGE ========== */
-    .demo-badge {
-      display: inline-block;
-      background: var(--info-bg);
-      border: 1px solid var(--info);
-      color: var(--info);
-      padding: 4px 12px;
-      border-radius: var(--radius-full);
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: var(--space-md);
-    }
+    .hero__time span { color: var(--cobalt-light); font-weight: 500; }
 
-    /* ========== FOUNDER SECTION ========== */
-    .founder-section {
-      background: linear-gradient(135deg, var(--info-bg) 0%, var(--bg-secondary) 100%);
-      border: 1px solid var(--info);
-      border-radius: var(--radius-lg);
-      padding: var(--space-lg);
-      margin: var(--space-2xl) 0;
-      display: flex;
-      align-items: center;
-      gap: var(--space-lg);
-    }
-
-    .founder-avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: var(--brand);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      flex-shrink: 0;
-      box-shadow: var(--shadow-lg);
-    }
-
-    .founder-content h4 {
-      margin: 0 0 var(--space-xs);
-      color: var(--text);
-    }
-
-    .founder-content p {
-      margin: 0;
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-
-    .founder-badge {
-      display: inline-block;
-      background: var(--brand);
-      color: white;
-      padding: 2px 8px;
-      border-radius: var(--radius-xs);
-      font-size: 0.7rem;
-      font-weight: 700;
-      margin-left: var(--space-sm);
-    }
-
-    @media (max-width: 768px) {
-      .founder-section {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .founder-content p {
-        font-size: 0.9rem;
-      }
-    }
-
-    /* ========== BUTTONS ========== */
+    /* ── BUTTONS ── */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-xs);
-      padding: var(--space-sm) var(--space-md);
-      border-radius: var(--radius-sm);
-      font-weight: 700;
-      text-decoration: none;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: all var(--transition-fast);
-      font-size: 0.95rem;
-      white-space: nowrap;
-      position: relative;
-      overflow: hidden;
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 10px 20px; border-radius: var(--radius-sm);
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 0.88rem; cursor: pointer;
+      border: 1.5px solid transparent;
+      transition: all var(--transition); white-space: nowrap;
+      letter-spacing: -0.01em;
+    }
+    .btn--primary { background: var(--cobalt); color: white; }
+    .btn--primary:hover { background: var(--cobalt-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(30,86,200,0.35); }
+    .btn--outline { background: transparent; color: var(--white); border-color: var(--border-bright); }
+    .btn--outline:hover { border-color: var(--white-dim); background: var(--white-faint); }
+    .btn--whatsapp { background: #25d366; color: white; }
+    .btn--whatsapp:hover { background: #1fa856; }
+    .btn--sm { padding: 6px 14px; font-size: 0.82rem; }
+
+    /* ── MAIN GRID ── */
+    .dashboard {
+      padding: 40px 0 80px;
+      display: flex; flex-direction: column; gap: 32px;
     }
 
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.1);
-      transition: left var(--transition-fast);
-      border-radius: var(--radius-sm);
+    .section-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--white-dim);
+      margin-bottom: 16px; display: block;
     }
 
-    .btn:hover::before {
-      left: 100%;
-    }
-
-    .btn--primary {
-      background: white;
-      color: var(--brand);
-      border-color: white;
-      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
-    }
-
-    .btn--primary:hover {
-      background: var(--bg);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .btn--secondary {
-      background: var(--bg-secondary);
-      color: var(--text);
-      border-color: var(--border);
-    }
-
-    .btn--secondary:hover {
-      background: var(--bg-tertiary);
-      border-color: var(--text-secondary);
-    }
-
-    .btn--ghost {
-      background: transparent;
-      color: white;
-      border-color: rgba(255, 255, 255, 0.3);
-    }
-
-    .btn--ghost:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.5);
-      color: white;
-    }
-
-    .btn--whatsapp {
-      background: #25D366;
-      color: white;
-      border-color: #25D366;
-      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-    }
-
-    .btn--whatsapp:hover {
-      background: #20BA5A;
-      border-color: #20BA5A;
-      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-    }
-
-    .btn--call {
-      background: #0078FF;
-      color: white;
-      border-color: #0078FF;
-      box-shadow: 0 4px 12px rgba(0, 120, 255, 0.3);
-    }
-
-    .btn--call:hover {
-      background: #0063CC;
-      border-color: #0063CC;
-      box-shadow: 0 6px 20px rgba(0, 120, 255, 0.4);
-    }
-
-    .btn--lg {
-      padding: var(--space-md) var(--space-lg);
-      font-size: 1rem;
-    }
-
-    .btn--sm {
-      padding: var(--space-xs) var(--space-sm);
-      font-size: 0.875rem;
-      border-radius: var(--radius-xs);
-    }
-
-    .btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
-
-    /* ========== CARDS ========== */
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm);
-      transition: all var(--transition-normal);
-      overflow: hidden;
-    }
-
-    .card:hover {
-      box-shadow: var(--shadow-lg);
-      border-color: var(--brand);
-    }
-
-    .card__header {
-      padding: var(--space-lg);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .card__header h3 {
-      margin: 0;
-    }
-
-    .card__body {
-      padding: var(--space-lg);
-    }
-
-    .card__footer {
-      padding: var(--space-lg);
-      border-top: 1px solid var(--border);
-      background: var(--bg-secondary);
-      display: flex;
-      gap: var(--space-md);
-      justify-content: flex-end;
-    }
-
-    /* ========== KPI GRID ========== */
+    /* ── KPIs ── */
     .kpis {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--space-md);
-      margin: var(--space-lg) 0;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
     }
+
+    @media (max-width: 900px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .kpis { grid-template-columns: 1fr; } }
 
     .kpi {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: var(--space-lg);
-      box-shadow: var(--shadow-sm);
-      transition: all var(--transition-fast);
+      background: var(--ink-2);
+      padding: 28px 24px;
+      transition: background var(--transition);
       position: relative;
     }
-
-    .kpi::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--brand), var(--brand-light));
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-    }
-
-    .kpi:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-    }
+    .kpi:hover { background: var(--ink-3); }
 
     .kpi__icon {
-      width: 48px;
-      height: 48px;
-      background: var(--brand);
-      border-radius: var(--radius-lg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: var(--space-md);
-      font-size: 1.5rem;
+      width: 40px; height: 40px;
+      background: var(--cobalt-glow);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; margin-bottom: 16px;
+      border: 1px solid rgba(30,86,200,0.2);
     }
 
-    .kpi .label {
-      color: var(--muted);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: var(--space-sm);
-      font-weight: 700;
-      display: block;
+    .kpi__label {
+      font-size: 0.72rem; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--white-dim);
+      font-weight: 700; margin-bottom: 8px; display: block;
     }
 
-    .kpi .value {
-      font-size: clamp(1.5rem, 3vw, 2.5rem);
-      font-weight: 900;
-      line-height: 1;
-      color: var(--text);
-      margin-bottom: var(--space-sm);
+    .kpi__value {
+      font-family: var(--font-display);
+      font-size: 2.4rem; font-weight: 800;
+      color: var(--white); letter-spacing: -0.04em;
+      line-height: 1; margin-bottom: 4px;
     }
 
-    .kpi .subtitle {
-      font-size: 0.875rem;
-      color: var(--text-secondary);
-    }
+    .kpi__sub { font-size: 0.8rem; color: var(--white-dim); margin-bottom: 12px; }
 
-    .kpi .delta {
-      margin-top: var(--space-sm);
-      font-size: 0.85rem;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px 8px;
-      background: var(--bg-secondary);
-      border-radius: var(--radius-xs);
+    .kpi__delta {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 0.78rem; font-weight: 700;
+      padding: 3px 8px; border-radius: 999px;
     }
+    .kpi__delta.up { background: var(--ok-bg); color: var(--ok); }
+    .kpi__delta.down { background: var(--bad-bg); color: var(--bad); }
+    .kpi__delta.neutral { background: var(--white-faint); color: var(--white-dim); }
 
-    .delta.up {
-      color: var(--ok);
-      background: var(--ok-bg);
-    }
-
-    .delta.down {
-      color: var(--bad);
-      background: var(--bad-bg);
-    }
-
-    .delta.neutral {
-      color: var(--muted);
-      background: var(--bg-secondary);
-    }
-
-    .delta.up::before {
-      content: "↑";
-      font-weight: 900;
-    }
-
-    .delta.down::before {
-      content: "↓";
-      font-weight: 900;
-    }
-
-    /* ========== GRID LAYOUTS ========== */
-    .grid-2 {
+    /* ── CONTENT GRID ── */
+    .content-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: var(--space-lg);
+      grid-template-columns: 1fr 340px;
+      gap: 20px;
     }
 
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--space-lg);
-    }
+    @media (max-width: 1024px) { .content-grid { grid-template-columns: 1fr; } }
 
-    @media (max-width: 980px) {
-      .grid-2,
-      .grid-3 {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* ========== TABLES ========== */
-    .table-wrapper {
-      overflow-x: auto;
-      border-radius: var(--radius-lg);
+    /* ── PROJECTS ── */
+    .panel {
+      background: var(--ink-2);
       border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
     }
 
-    .table {
-      width: 100%;
-      border-collapse: collapse;
-      background: var(--card);
-    }
-
-    .table th,
-    .table td {
-      padding: var(--space-md);
+    .panel__header {
+      padding: 20px 24px;
       border-bottom: 1px solid var(--border);
-      text-align: left;
-      vertical-align: middle;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 16px;
     }
 
-    .table th {
-      font-size: 0.75rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 700;
-      background: var(--bg-secondary);
-      position: sticky;
-      top: 0;
-      z-index: 10;
+    .panel__title {
+      font-family: var(--font-display);
+      font-size: 1rem; font-weight: 700;
     }
 
-    .table tbody tr {
-      transition: background-color var(--transition-fast);
+    .panel__body { padding: 24px; }
+    .panel__body--flush { padding: 0; }
+
+    .project-item {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition);
+    }
+    .project-item:last-child { border-bottom: none; }
+    .project-item:hover { background: var(--ink-3); }
+
+    .project-item__header {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 12px;
+      margin-bottom: 14px;
     }
 
-    .table tbody tr:hover {
-      background: var(--bg-secondary);
+    .project-item__name {
+      font-family: var(--font-display);
+      font-size: 0.95rem; font-weight: 700;
     }
 
-    .table td {
-      font-size: 0.95rem;
+    .progress-track {
+      height: 6px; background: var(--border-bright);
+      border-radius: 999px; overflow: hidden; margin-bottom: 8px;
     }
 
-    .table--striped tbody tr:nth-child(even) {
-      background: var(--bg-secondary);
+    .progress-fill {
+      height: 100%; border-radius: 999px;
+      background: linear-gradient(90deg, var(--cobalt), var(--cobalt-light));
+      position: relative; overflow: hidden;
+      transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    .table--striped tbody tr:nth-child(even):hover {
-      background: var(--bg-tertiary);
-    }
-
-    /* ========== CHIPS/BADGES ========== */
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: var(--radius-full);
-      padding: 6px 14px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      border: 1px solid var(--border);
-      white-space: nowrap;
-      gap: var(--space-xs);
-      transition: all var(--transition-fast);
-    }
-
-    .chip:hover {
-      transform: scale(1.05);
-    }
-
-    .chip.ok {
-      background: var(--ok-bg);
-      border-color: var(--ok);
-      color: #065f46;
-    }
-
-    .chip.warn {
-      background: var(--warn-bg);
-      border-color: var(--warn);
-      color: #92400e;
-    }
-
-    .chip.bad {
-      background: var(--bad-bg);
-      border-color: var(--bad);
-      color: #991b1b;
-    }
-
-    .chip.info {
-      background: var(--info-bg);
-      border-color: var(--info);
-      color: #1e40af;
-    }
-
-    /* ========== PROGRESS BAR ========== */
-    .progress {
-      height: 12px;
-      background: var(--bg-secondary);
-      border-radius: var(--radius-full);
-      overflow: hidden;
-      border: 1px solid var(--border);
-      position: relative;
-    }
-
-    .progress__label {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: var(--space-sm);
-      font-size: 0.875rem;
-      font-weight: 600;
-    }
-
-    .bar {
-      height: 100%;
-      background: linear-gradient(90deg, var(--brand), var(--brand-light));
-      border-radius: var(--radius-full);
-      transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .bar::after {
+    .progress-fill::after {
       content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      animation: shimmer 2s infinite;
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+      animation: shimmer 2.5s infinite;
     }
 
     @keyframes shimmer {
-      0% {
-        transform: translateX(-100%);
-      }
-      100% {
-        transform: translateX(100%);
-      }
+      from { transform: translateX(-100%); }
+      to { transform: translateX(200%); }
     }
 
-    .progress.success .bar {
-      background: linear-gradient(90deg, var(--ok), var(--ok-light));
+    .progress-fill.ok { background: linear-gradient(90deg, var(--ok), #34d399); }
+    .progress-fill.warn { background: linear-gradient(90deg, var(--warn), #fcd34d); }
+
+    .progress-meta {
+      display: flex; justify-content: space-between;
+      font-size: 0.75rem; color: var(--white-dim);
     }
 
-    /* ========== TOOLBAR & TOGGLES ========== */
-    .toolbar {
-      display: flex;
-      gap: var(--space-md);
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
+    /* ── STATUS CHIP ── */
+    .chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.72rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 999px;
+      white-space: nowrap;
+    }
+    .chip::before { content: ''; width: 5px; height: 5px; border-radius: 50%; }
+    .chip.ok { background: var(--ok-bg); color: var(--ok); border: 1px solid rgba(34,211,165,0.2); }
+    .chip.ok::before { background: var(--ok); }
+    .chip.warn { background: var(--warn-bg); color: var(--warn); border: 1px solid rgba(245,158,11,0.2); }
+    .chip.warn::before { background: var(--warn); }
+    .chip.bad { background: var(--bad-bg); color: var(--bad); border: 1px solid rgba(248,113,113,0.2); }
+    .chip.bad::before { background: var(--bad); }
+    .chip.info { background: var(--info-bg); color: var(--info); border: 1px solid rgba(96,165,250,0.2); }
+    .chip.info::before { background: var(--info); }
+
+    /* ── SIDEBAR ── */
+    .sidebar { display: flex; flex-direction: column; gap: 20px; }
+
+    /* ── TEAM TABLE ── */
+    .team-table { width: 100%; border-collapse: collapse; }
+    .team-table th {
+      font-size: 0.68rem; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--white-dim);
+      font-weight: 700; padding: 12px 20px;
+      background: var(--ink-3);
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+    .team-table td {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem; vertical-align: middle;
+    }
+    .team-table tr:last-child td { border-bottom: none; }
+    .team-table tr:hover td { background: var(--ink-3); }
+    .team-table td strong { font-weight: 600; display: block; }
+    .team-table td span { color: var(--white-dim); font-size: 0.78rem; }
+
+    /* ── ALERTS ── */
+    .alert-item {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition);
+    }
+    .alert-item:last-child { border-bottom: none; }
+    .alert-item:hover { background: var(--ink-3); }
+
+    .alert-item__icon {
+      width: 36px; height: 36px; border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .alert-item__icon.ok { background: var(--ok-bg); }
+    .alert-item__icon.warn { background: var(--warn-bg); }
+    .alert-item__icon.info { background: var(--info-bg); }
+
+    .alert-item__title {
+      font-weight: 700; font-size: 0.88rem; margin-bottom: 3px;
+    }
+    .alert-item__text { color: var(--white-dim); font-size: 0.82rem; line-height: 1.5; }
+
+    /* ── FOUNDER CARD ── */
+    .founder-card {
+      background: linear-gradient(135deg, rgba(30,86,200,0.12), rgba(245,166,35,0.05));
+      border: 1px solid rgba(30,86,200,0.2);
+      border-radius: var(--radius);
+      padding: 24px;
     }
 
-    .toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-sm);
-      font-weight: 600;
-      color: var(--text);
-      cursor: pointer;
-      user-select: none;
+    .founder-card__avatar {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--cobalt-glow);
+      border: 2px solid rgba(30,86,200,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 14px;
     }
 
-    .toggle input {
-      accent-color: var(--brand);
-      width: 18px;
-      height: 18px;
-      cursor: pointer;
-      transition: all var(--transition-fast);
+    .founder-card__name {
+      font-family: var(--font-display);
+      font-size: 1rem; font-weight: 700; margin-bottom: 4px;
     }
 
-    /* ========== ALERTS ========== */
-    .alert {
-      padding: var(--space-md) var(--space-lg);
-      border-radius: var(--radius-lg);
-      border-left: 4px solid;
-      display: flex;
-      gap: var(--space-md);
-      align-items: flex-start;
-      margin-bottom: var(--space-lg);
-      animation: slideDown var(--transition-normal);
+    .founder-card__role {
+      font-size: 0.75rem; color: var(--gold); font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px;
     }
 
-    .alert__icon {
-      font-size: 1.25rem;
-      flex-shrink: 0;
+    .founder-card__bio {
+      color: var(--white-dim); font-size: 0.85rem; line-height: 1.6;
     }
 
-    .alert__content {
-      flex: 1;
-    }
-
-    .alert__title {
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .alert__message {
-      font-size: 0.875rem;
-      margin: 0;
-      opacity: 0.9;
-    }
-
-    .alert.success {
-      background: var(--ok-bg);
-      border-color: var(--ok);
-      color: #065f46;
-    }
-
-    .alert.warning {
-      background: var(--warn-bg);
-      border-color: var(--warn);
-      color: #92400e;
-    }
-
-    .alert.info {
-      background: var(--info-bg);
-      border-color: var(--info);
-      color: #1e40af;
-    }
-
-    /* ========== UTILITY CLASSES ========== */
-    .text-center {
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(30,86,200,0.2), rgba(245,166,35,0.08));
+      border: 1px solid rgba(30,86,200,0.25);
+      border-radius: var(--radius);
+      padding: 40px;
       text-align: center;
     }
 
-    .text-muted {
-      color: var(--muted);
+    .cta-banner h2 {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      margin-bottom: 12px;
     }
 
-    .text-secondary {
-      color: var(--text-secondary);
-    }
+    .cta-banner p { color: var(--white-dim); max-width: 480px; margin: 0 auto 28px; }
 
-    .flex {
-      display: flex;
-    }
+    .cta-banner__actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
-    .flex-col {
-      flex-direction: column;
-    }
-
-    .flex-center {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .gap-md {
-      gap: var(--space-md);
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    .mt-lg {
-      margin-top: var(--space-lg);
-    }
-
-    .rounded-lg {
-      border-radius: var(--radius-lg);
-    }
-
-    .shadow-lg {
-      box-shadow: var(--shadow-lg);
-    }
-
-    /* ========== FOOTER ========== */
+    /* ── FOOTER ── */
     .footer {
-      background: var(--card);
+      background: var(--ink); padding: 48px 0 24px;
       border-top: 1px solid var(--border);
-      padding: var(--space-3xl) var(--space-md) var(--space-2xl);
-      margin-top: var(--space-3xl);
     }
 
-    .footer__content {
+    .footer__grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: var(--space-2xl);
-      margin-bottom: var(--space-2xl);
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px; margin-bottom: 48px;
     }
+
+    @media (max-width: 768px) { .footer__grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer__grid { grid-template-columns: 1fr; } }
+
+    .footer__brand { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
+    .footer__brand em { color: var(--gold); font-style: normal; }
+    .footer__brand-sub { color: var(--white-dim); font-size: 0.85rem; max-width: 240px; line-height: 1.6; }
 
     .footer__section h4 {
-      margin-bottom: var(--space-md);
-      color: var(--text);
+      font-family: var(--font-display); font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--white-dim); margin-bottom: 16px;
     }
 
-    .footer__section a {
-      display: block;
-      color: var(--text-secondary);
-      text-decoration: none;
-      margin-bottom: var(--space-sm);
-      transition: color var(--transition-fast);
-    }
-
-    .footer__section a:hover {
-      color: var(--brand);
-    }
+    .footer__section ul { list-style: none; }
+    .footer__section li { margin-bottom: 8px; }
+    .footer__section a { color: rgba(240,244,255,0.4); font-size: 0.88rem; transition: color var(--transition); }
+    .footer__section a:hover { color: var(--white); }
 
     .footer__bottom {
       border-top: 1px solid var(--border);
-      padding-top: var(--space-lg);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: var(--space-md);
-      font-size: 0.875rem;
-      color: var(--muted);
+      padding-top: 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+      font-size: 0.82rem; color: rgba(240,244,255,0.3);
     }
 
-    .footer__links {
-      display: flex;
-      gap: var(--space-lg);
-      list-style: none;
-    }
-
-    .footer__links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: color var(--transition-fast);
-    }
-
-    .footer__links a:hover {
-      color: var(--brand);
-    }
-
-    /* ========== SECTION SPACING ========== */
-    section {
-      padding: var(--space-2xl) var(--space-md);
-    }
-
-    section:first-of-type {
-      padding-top: 0;
-    }
-
-    /* ========== ANIMATIONS ========== */
-    .animate-fade-in {
-      animation: fadeIn 0.5s ease;
-    }
-
-    .animate-slide-in-left {
-      animation: slideInLeft 0.5s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes slideInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    /* ========== RESPONSIVE ========== */
+    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      :root {
-        --space-lg: 16px;
-        --space-xl: 20px;
-        --space-2xl: 24px;
-      }
-
-      body {
-        font-size: 15px;
-      }
-
-      .hero {
-        padding: var(--space-2xl) var(--space-md);
-      }
-
-      .kpis {
-        grid-template-columns: 1fr;
-      }
-
-      .table th,
-      .table td {
-        padding: var(--space-sm);
-      }
-
-      section {
-        padding: var(--space-lg) var(--space-md);
-      }
+      .dashboard { padding: 24px 0 60px; gap: 20px; }
+      .hero { padding: 36px 0 32px; }
+      .hero__right { display: none; }
+      .cta-banner { padding: 28px 20px; }
     }
 
     @media (max-width: 480px) {
-      :root {
-        --space-md: 12px;
-        --space-lg: 16px;
-      }
-
-      body {
-        font-size: 14px;
-      }
-
-      h1 {
-        font-size: 1.5rem;
-      }
-
-      h2 {
-        font-size: 1.25rem;
-      }
-
-      .hero__cta {
-        flex-direction: column;
-        gap: var(--space-xs);
-      }
-
-      .hero__cta .btn {
-        width: 100%;
-      }
-
-      .footer__bottom {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .footer__links {
-        flex-direction: column;
-        gap: var(--space-sm);
-      }
+      .container { padding: 0 16px; }
+      .btn { font-size: 0.82rem; padding: 9px 16px; }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
   </style>
 </head>
-<body class="no-js">
+<body>
   <a href="#main" class="skip-link">Skip to main content</a>
 
-  <!-- Navigation -->
+  <!-- NAV -->
   <nav class="nav" role="navigation" aria-label="Primary navigation">
-    <div class="container">
-      <div class="nav__inner">
-        <a href="/" class="brand">
-          <span>🛡️</span>
-          <span>Cobalt<span> Shield</span></span>
-        </a>
-        <ul class="nav__links" id="nav-menu">
-          <li><a href="#dashboard" aria-current="page">Dashboard</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#team">Team</a></li>
-          <li><a href="login.html" class="pill">Login</a></li>
-        </ul>
-        <button class="nav__burger" id="nav-burger" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
-      </div>
+    <div class="nav__inner">
+      <a href="/" class="brand">Cobalt<em>Shield</em></a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="/" >Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#alerts">Updates</a></li>
+        <li><a href="/dashboard.html" aria-current="page" class="cta">Dashboard</a></li>
+      </ul>
+      <div class="nav__status">Live data</div>
+      <button class="nav__burger" id="burger" aria-expanded="false" aria-label="Toggle menu">☰</button>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <header class="hero" role="banner">
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero__grid"></div>
     <div class="container">
-      <div class="hero__content">
-        <span class="demo-badge">📊 Demo Dashboard</span>
-        <h1>Cobalt Shield Initiative</h1>
-        <p>Real-time mission progress, team coordination, and strategic growth tracking for digital safety & ethical innovation.</p>
-        <div class="hero__cta">
-          <a href="#kpis" class="btn btn--primary btn--lg">View Metrics</a>
-          <a href="/" class="btn btn--ghost btn--lg">← Back to Home</a>
-          <a href="https://wa.me/306986761215" target="_blank" rel="noopener" class="btn btn--whatsapp btn--lg">💬 WhatsApp</a>
-          <a href="tel:+306986761215" class="btn btn--call btn--lg">📞 Call</a>
+      <div class="hero__inner">
+        <div class="hero__left">
+          <span class="hero__label">📊 Operations Dashboard</span>
+          <h1>Mission Control</h1>
+          <p class="hero__sub">Real-time tracking across all Cobalt Shield projects, partnerships, and impact metrics.</p>
+          <div class="hero__actions">
+            <a href="#kpis" class="btn btn--primary">View Metrics</a>
+            <a href="/" class="btn btn--outline">← Back to Home</a>
+            <a href="https://wa.me/306986761215" target="_blank" rel="noopener" class="btn btn--whatsapp">💬 WhatsApp</a>
+          </div>
+        </div>
+        <div class="hero__right">
+          <div class="hero__time">Last updated: <span id="lastUpdated">—</span></div>
+          <div class="chip ok">All systems operational</div>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Founder Story Section -->
-  <section>
-    <div class="container">
-      <div class="founder-section">
-        <div class="founder-avatar">👤</div>
-        <div class="founder-content">
-          <h4>
-            Built by Delphin Hakizimana
-            <span class="founder-badge">Founder & Mission Lead</span>
-          </h4>
-          <p>
-            Greece-based cybersecurity specialist on a mission to bridge Africa and Europe through digital safety, ethical EV systems, and practical tools for youth empowerment. Every metric here reflects real impact toward secure, sustainable digital infrastructure.
-          </p>
+  <main id="main">
+    <div class="container dashboard">
+
+      <!-- KPIs -->
+      <section id="kpis" class="reveal">
+        <span class="section-label">Key metrics</span>
+        <div class="kpis">
+          <div class="kpi">
+            <div class="kpi__icon">📊</div>
+            <span class="kpi__label">Actions Closed</span>
+            <div class="kpi__value">64</div>
+            <div class="kpi__sub">Across all projects</div>
+            <span class="kpi__delta up">↑ From 52 last month</span>
+          </div>
+          <div class="kpi">
+            <div class="kpi__icon">⚡</div>
+            <span class="kpi__label">On-Time Delivery</span>
+            <div class="kpi__value">92%</div>
+            <div class="kpi__sub">Projects on schedule</div>
+            <span class="kpi__delta up">↑ +5% improvement</span>
+          </div>
+          <div class="kpi">
+            <div class="kpi__icon">🤝</div>
+            <span class="kpi__label">Active Partners</span>
+            <div class="kpi__value">18</div>
+            <div class="kpi__sub">Organizations engaged</div>
+            <span class="kpi__delta up">↑ Growing monthly</span>
+          </div>
+          <div class="kpi">
+            <div class="kpi__icon">📈</div>
+            <span class="kpi__label">Growth Index</span>
+            <div class="kpi__value">78</div>
+            <div class="kpi__sub">Out of 100</div>
+            <span class="kpi__delta down">↓ -2% seasonal</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS + SIDEBAR -->
+      <div class="content-grid">
+
+        <!-- PROJECTS -->
+        <div>
+          <section id="projects" class="reveal">
+            <span class="section-label">Active projects</span>
+            <div class="panel">
+              <div class="panel__header">
+                <span class="panel__title">Project Tracker</span>
+                <span class="chip ok">3 Active</span>
+              </div>
+              <div class="panel__body--flush">
+
+                <div class="project-item">
+                  <div class="project-item__header">
+                    <div>
+                      <div class="project-item__name">🛡️ Digital Safety Kit</div>
+                      <div style="color:var(--white-dim);font-size:0.78rem;margin-top:2px;">Open playbooks, school curricula, parent handouts</div>
+                    </div>
+                    <span class="chip ok">Active</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill ok" style="width:78%"></div>
+                  </div>
+                  <div class="progress-meta">
+                    <span>Progress</span><span>78%</span>
+                  </div>
+                </div>
+
+                <div class="project-item">
+                  <div class="project-item__header">
+                    <div>
+                      <div class="project-item__name">🚨 Incident Response Playbooks</div>
+                      <div style="color:var(--white-dim);font-size:0.78rem;margin-top:2px;">Lightweight triage procedures for rapid decision-making</div>
+                    </div>
+                    <span class="chip ok">Active</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill" style="width:62%"></div>
+                  </div>
+                  <div class="progress-meta">
+                    <span>Progress</span><span>62%</span>
+                  </div>
+                </div>
+
+                <div class="project-item">
+                  <div class="project-item__header">
+                    <div>
+                      <div class="project-item__name">⚡ EV Ethics Framework</div>
+                      <div style="color:var(--white-dim);font-size:0.78rem;margin-top:2px;">Cobalt sourcing transparency and battery sustainability</div>
+                    </div>
+                    <span class="chip warn">In Progress</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill warn" style="width:45%"></div>
+                  </div>
+                  <div class="progress-meta">
+                    <span>Progress</span><span>45%</span>
+                  </div>
+                </div>
+
+                <div class="project-item">
+                  <div class="project-item__header">
+                    <div>
+                      <div class="project-item__name">🤖 Automation Systems</div>
+                      <div style="color:var(--white-dim);font-size:0.78rem;margin-top:2px;">Zapier workflows and API integrations for operations</div>
+                    </div>
+                    <span class="chip info">Building</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill" style="width:30%"></div>
+                  </div>
+                  <div class="progress-meta">
+                    <span>Progress</span><span>30%</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          <!-- TEAM -->
+          <section id="team" class="reveal" style="margin-top:20px;">
+            <span class="section-label">Team overview</span>
+            <div class="panel">
+              <div class="panel__header">
+                <span class="panel__title">Active Contributors</span>
+                <span class="chip ok">4 Members</span>
+              </div>
+              <div class="panel__body--flush">
+                <table class="team-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Focus Area</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <strong>Delphin Hakizimana</strong>
+                        <span>Founder & Mission Lead</span>
+                      </td>
+                      <td>Mission Strategy</td>
+                      <td><span class="chip ok">Active</span></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Digital Rights Network</strong>
+                        <span>Strategic Partner</span>
+                      </td>
+                      <td>Africa Expansion</td>
+                      <td><span class="chip ok">Active</span></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Tech Educators</strong>
+                        <span>Curriculum Lead</span>
+                      </td>
+                      <td>School Programs</td>
+                      <td><span class="chip ok">Active</span></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>EV Ethics Lab</strong>
+                        <span>Research Partner</span>
+                      </td>
+                      <td>Battery Research</td>
+                      <td><span class="chip warn">Planning</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+
+          <!-- FOUNDER -->
+          <div class="founder-card reveal">
+            <div class="founder-card__avatar">👤</div>
+            <div class="founder-card__name">Delphin Hakizimana</div>
+            <div class="founder-card__role">Founder & Mission Lead</div>
+            <p class="founder-card__bio">Greece-based cybersecurity specialist building digital safety tools for youth and organizations across Africa and Europe. Every metric here reflects real work toward a more secure, equitable digital world.</p>
+            <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+              <a href="https://wa.me/306986761215" target="_blank" rel="noopener" class="btn btn--whatsapp btn--sm">💬 WhatsApp</a>
+              <a href="mailto:delphin@cobalt-shield.com" class="btn btn--outline btn--sm">Email</a>
+            </div>
+          </div>
+
+          <!-- UPDATES -->
+          <section id="alerts" class="reveal">
+            <span class="section-label">Recent updates</span>
+            <div class="panel">
+              <div class="panel__header">
+                <span class="panel__title">Activity Feed</span>
+              </div>
+              <div class="panel__body--flush">
+                <div class="alert-item">
+                  <div class="alert-item__icon ok">✅</div>
+                  <div>
+                    <div class="alert-item__title">Schools Onboarded</div>
+                    <div class="alert-item__text">Digital Safety Kit deployed to 3 new schools in Athens and Rwanda</div>
+                  </div>
+                </div>
+                <div class="alert-item">
+                  <div class="alert-item__icon info">🤝</div>
+                  <div>
+                    <div class="alert-item__title">New Partnership</div>
+                    <div class="alert-item__text">EV Ethics Lab collaboration confirmed for cobalt-sourcing research</div>
+                  </div>
+                </div>
+                <div class="alert-item">
+                  <div class="alert-item__icon warn">⚠️</div>
+                  <div>
+                    <div class="alert-item__title">Seeking Volunteers</div>
+                    <div class="alert-item__text">Help expand digital safety training to 5 more regions</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- QUICK STATS -->
+          <div class="panel reveal">
+            <div class="panel__header">
+              <span class="panel__title">Mission Scope</span>
+            </div>
+            <div class="panel__body" style="display:flex;flex-direction:column;gap:16px;">
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:6px;">
+                  <span style="color:var(--white-dim)">Greece</span>
+                  <span style="font-weight:700;">Active</span>
+                </div>
+                <div class="progress-track"><div class="progress-fill ok" style="width:85%"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:6px;">
+                  <span style="color:var(--white-dim)">Rwanda</span>
+                  <span style="font-weight:700;">Pilot</span>
+                </div>
+                <div class="progress-track"><div class="progress-fill" style="width:55%"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:6px;">
+                  <span style="color:var(--white-dim)">West Africa</span>
+                  <span style="font-weight:700;">Expanding</span>
+                </div>
+                <div class="progress-track"><div class="progress-fill warn" style="width:30%"></div></div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
+
+      <!-- CTA BANNER -->
+      <section class="cta-banner reveal">
+        <h2>Ready to support the mission?</h2>
+        <p>Every contribution powers digital safety education, ethical technology, and the next generation of secure systems for Africa and beyond.</p>
+        <div class="cta-banner__actions">
+          <form action="https://www.paypal.com/donate" method="post" target="_blank" rel="noopener" style="display:inline;">
+            <input type="hidden" name="hosted_button_id" value="KM9T7T9C9SSX6" />
+            <button type="submit" class="btn btn--primary">💜 Donate with PayPal</button>
+          </form>
+          <a href="/#contact" class="btn btn--outline">Partner with us</a>
+          <a href="https://wa.me/306986761215" target="_blank" rel="noopener" class="btn btn--whatsapp">💬 Get Involved</a>
+        </div>
+      </section>
+
     </div>
-  </section>
-
-  <!-- Main Content -->
-  <main id="main" class="container">
-    <!-- Key Performance Indicators -->
-    <section id="kpis">
-      <h2>Sample Metrics (Live Dashboard)</h2>
-      <p class="text-muted">These metrics update in real-time as projects progress. Real values will replace samples once live data is connected.</p>
-      <div class="kpis">
-        <div class="kpi animate-fade-in">
-          <div class="kpi__icon">📊</div>
-          <span class="label">Teams Engaged</span>
-          <div class="value">12</div>
-          <span class="subtitle">Active partnerships</span>
-          <span class="delta up">3 new this month</span>
-        </div>
-        <div class="kpi animate-fade-in">
-          <div class="kpi__icon">👥</div>
-          <span class="label">Students Reached</span>
-          <div class="value">847</div>
-          <span class="subtitle">Digital safety training</span>
-          <span class="delta up">14% growth</span>
-        </div>
-        <div class="kpi animate-fade-in">
-          <div class="kpi__icon">🎯</div>
-          <span class="label">Completion Rate</span>
-          <div class="value">89%</div>
-          <span class="subtitle">Projects on schedule</span>
-          <span class="delta up">5% improvement</span>
-        </div>
-        <div class="kpi animate-fade-in">
-          <div class="kpi__icon">⚡</div>
-          <span class="label">System Uptime</span>
-          <div class="value">99.9%</div>
-          <span class="subtitle">Last 30 days</span>
-          <span class="delta neutral">Stable</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects" class="mt-lg">
-      <h2>Active Projects</h2>
-      <div class="grid-3">
-        <div class="card animate-slide-in-left">
-          <div class="card__header">
-            <h4>Digital Safety Kit</h4>
-            <span class="chip ok">Active</span>
-          </div>
-          <div class="card__body">
-            <p>Open playbooks, school curricula, and parent handouts for cybersecurity awareness.</p>
-            <div class="progress__label">
-              <span>Progress</span>
-              <span>78%</span>
-            </div>
-            <div class="progress">
-              <div class="bar" style="width: 78%"></div>
-            </div>
-          </div>
-          <div class="card__footer">
-            <button class="btn btn--sm btn--primary">View Details</button>
-          </div>
-        </div>
-
-        <div class="card animate-slide-in-left" style="animation-delay: 0.1s">
-          <div class="card__header">
-            <h4>Incident Response Playbooks</h4>
-            <span class="chip ok">Active</span>
-          </div>
-          <div class="card__body">
-            <p>Lightweight intake & triage procedures for quick decision-making under pressure.</p>
-            <div class="progress__label">
-              <span>Progress</span>
-              <span>62%</span>
-            </div>
-            <div class="progress">
-              <div class="bar" style="width: 62%"></div>
-            </div>
-          </div>
-          <div class="card__footer">
-            <button class="btn btn--sm btn--primary">View Details</button>
-          </div>
-        </div>
-
-        <div class="card animate-slide-in-left" style="animation-delay: 0.2s">
-          <div class="card__header">
-            <h4>EV Ethics Framework</h4>
-            <span class="chip warn">In Progress</span>
-          </div>
-          <div class="card__body">
-            <p>Transparent cobalt sourcing info and battery sustainability guides for EVs.</p>
-            <div class="progress__label">
-              <span>Progress</span>
-              <span>45%</span>
-            </div>
-            <div class="progress">
-              <div class="bar" style="width: 45%"></div>
-            </div>
-          </div>
-          <div class="card__footer">
-            <button class="btn btn--sm btn--primary">View Details</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Team Overview -->
-    <section id="team" class="mt-lg">
-      <h2>Team Overview</h2>
-      <div class="card">
-        <div class="card__header">
-          <h3>Active Contributors</h3>
-          <div class="toolbar">
-            <label class="toggle">
-              <input type="checkbox" checked>
-              <span>Show all</span>
-            </label>
-          </div>
-        </div>
-        <div class="card__body">
-          <div class="table-wrapper">
-            <table class="table table--striped">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Role</th>
-                  <th>Focus Area</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Delphin Hakizimana</strong></td>
-                  <td>Founder & Lead</td>
-                  <td>Mission Strategy</td>
-                  <td><span class="chip ok">Active</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Digital Rights Network</strong></td>
-                  <td>Strategic Partner</td>
-                  <td>Africa Expansion</td>
-                  <td><span class="chip ok">Active</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Tech Educators</strong></td>
-                  <td>Curriculum Lead</td>
-                  <td>School Programs</td>
-                  <td><span class="chip ok">Active</span></td>
-                </tr>
-                <tr>
-                  <td><strong>EV Ethics Lab</strong></td>
-                  <td>Research Partner</td>
-                  <td>Battery Research</td>
-                  <td><span class="chip warn">Planning</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Alerts -->
-    <section id="alerts" class="mt-lg">
-      <h2>Recent Updates</h2>
-      <div class="alert success">
-        <div class="alert__icon">✅</div>
-        <div class="alert__content">
-          <div class="alert__title">Schools Onboarded</div>
-          <p class="alert__message">Digital Safety Kit deployed to 3 new schools in Athens and Rwanda</p>
-        </div>
-      </div>
-
-      <div class="alert info">
-        <div class="alert__icon">ℹ️</div>
-        <div class="alert__content">
-          <div class="alert__title">New Partnership</div>
-          <p class="alert__message">Collaboration with EV Ethics Lab for cobalt-sourcing transparency research</p>
-        </div>
-      </div>
-
-      <div class="alert warning">
-        <div class="alert__icon">⚠️</div>
-        <div class="alert__content">
-          <div class="alert__title">Seeking Volunteers</div>
-          <p class="alert__message">Help us expand digital safety training to 5 more regions. Apply now!</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="mt-lg">
-      <div class="card" style="background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%); border: none; color: white;">
-        <div class="card__body text-center">
-          <h2 style="color: white; margin-bottom: var(--space-lg);">Ready to Join the Movement?</h2>
-          <p style="color: rgba(255,255,255,0.9); margin-bottom: var(--space-lg);">Support digital safety and ethical technology across Africa & Europe.</p>
-          <div class="flex flex-center gap-md">
-            <a href="/#donate" class="btn btn--primary btn--lg">Donate Now</a>
-            <a href="#team" class="btn btn--ghost btn--lg">Join the Team</a>
-            <a href="https://wa.me/306986761215" target="_blank" rel="noopener" class="btn btn--whatsapp btn--lg">💬 Get Involved</a>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer" role="contentinfo">
+  <!-- FOOTER -->
+  <footer class="footer">
     <div class="container">
-      <div class="footer__content">
-        <div class="footer__section">
-          <h4>About Cobalt Shield</h4>
-          <p>Protecting youth, educators, and organizations through digital safety, ethical technology, and practical tools for secure digital infrastructure.</p>
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">Cobalt<em>Shield</em></div>
+          <p class="footer__brand-sub">Secure systems and digital infrastructure for Africa and beyond. Privacy by design.</p>
         </div>
         <div class="footer__section">
-          <h4>Our Mission</h4>
-          <a href="/">Home</a>
-          <a href="/#about">About</a>
-          <a href="/#mission">Mission</a>
-          <a href="/#services">Services</a>
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/#mission">Mission</a></li>
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/#projects">Projects</a></li>
+          </ul>
         </div>
         <div class="footer__section">
-          <h4>Get In Touch</h4>
-          <a href="mailto:delphin@cobalt-shield.com">Email</a>
-          <a href="https://wa.me/306986761215">WhatsApp</a>
-          <a href="tel:+306986761215">Phone</a>
-          <a href="/#contact">Contact</a>
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="/#faq">FAQ</a></li>
+            <li><a href="/#certifications">Certifications</a></li>
+            <li><a href="https://github.com/DedeHakizi" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
         </div>
         <div class="footer__section">
-          <h4>Legal</h4>
-          <a href="/#privacy">Privacy Policy</a>
-          <a href="/#terms">Terms of Service</a>
-          <a href="/#compliance">Compliance</a>
-          <a href="/#cookies">Cookie Policy</a>
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="mailto:delphin@cobalt-shield.com">Email</a></li>
+            <li><a href="https://wa.me/306986761215" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="https://linkedin.com/in/delphin" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
         </div>
       </div>
-
       <div class="footer__bottom">
-        <p>&copy; <span id="year"></span> Cobalt Shield Initiative — Africa Forward. Loyalty Over Everything.</p>
-        <ul class="footer__links">
-          <li><a href="https://twitter.com" aria-label="Twitter">Twitter</a></li>
-          <li><a href="https://linkedin.com" aria-label="LinkedIn">LinkedIn</a></li>
-          <li><a href="https://github.com/DedeHakizi" aria-label="GitHub">GitHub</a></li>
-        </ul>
+        <span>© <span id="year"></span> Cobalt Shield Initiative — Africa Forward.</span>
+        <span>Built by Delphin Hakizimana</span>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    const navBurger = document.getElementById('nav-burger');
-    const navMenu = document.getElementById('nav-menu');
-
-    if (navBurger && navMenu) {
-      navBurger.addEventListener('click', () => {
-        const isOpen = navMenu.classList.contains('open');
-        navMenu.classList.toggle('open');
-        navBurger.setAttribute('aria-expanded', !isOpen);
-      });
-
-      navMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          navMenu.classList.remove('open');
-          navBurger.setAttribute('aria-expanded', 'false');
-        });
-      });
+    // Live time
+    function updateTime() {
+      const now = new Date();
+      document.getElementById('lastUpdated').textContent =
+        now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     }
+    updateTime();
+    setInterval(updateTime, 1000);
 
-    document.documentElement.classList.remove('no-js');
-    document.documentElement.classList.add('js');
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (href !== '#' && document.querySelector(href)) {
-          e.preventDefault();
-          document.querySelector(href).scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
+    // Mobile nav
+    const burger = document.getElementById('burger');
+    const navLinks = document.getElementById('navLinks');
+    burger.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open);
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        burger.setAttribute('aria-expanded', false);
       });
     });
 
-    console.log('🛡️ Cobalt Shield Dashboard loaded successfully');
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const ro = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+          ro.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+    reveals.forEach(el => ro.observe(el));
   </script>
 </body>
 </html>
