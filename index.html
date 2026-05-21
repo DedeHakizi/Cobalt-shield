@@ -950,6 +950,231 @@
       margin-top: 0;
     }
 
+    /* ========== CHATBOT WIDGET ========== */
+    .chat-widget {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      font-family: var(--font-sans);
+    }
+
+    .chat-bubble {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-lg);
+      transition: all var(--transition-fast);
+      border: 2px solid var(--accent);
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .chat-bubble:hover {
+      transform: scale(1.1);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .chat-bubble--active {
+      animation: none;
+    }
+
+    .chat-icon {
+      font-size: 1.8rem;
+      color: white;
+    }
+
+    .chat-container {
+      position: absolute;
+      bottom: 100px;
+      right: 0;
+      width: 420px;
+      max-height: 600px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-xl);
+      display: flex;
+      flex-direction: column;
+      animation: slideInUp 0.3s ease;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .chat-container.hidden {
+      display: none;
+    }
+
+    .chat-header {
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
+      color: white;
+      padding: var(--space-lg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-header h3 {
+      margin: 0;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .chat-status {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .chat-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0;
+      transition: transform var(--transition-fast);
+    }
+
+    .chat-close:hover {
+      transform: rotate(90deg);
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      background: var(--bg);
+      min-height: 300px;
+    }
+
+    .message {
+      display: flex;
+      gap: var(--space-md);
+      animation: slideInUp 0.3s ease;
+    }
+
+    .message.bot {
+      justify-content: flex-start;
+    }
+
+    .message.user {
+      justify-content: flex-end;
+    }
+
+    .message-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .message.user .message-avatar {
+      background: linear-gradient(135deg, var(--muted) 0%, var(--text-secondary) 100%);
+    }
+
+    .message-content {
+      max-width: 70%;
+    }
+
+    .message-text {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: var(--space-md) var(--space-lg);
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--text);
+    }
+
+    .message.user .message-text {
+      background: var(--brand);
+      color: white;
+      border: none;
+    }
+
+    .chat-input {
+      padding: var(--space-lg);
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: var(--space-sm);
+      background: var(--card);
+    }
+
+    .chat-input input {
+      flex: 1;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: var(--space-sm) var(--space-md);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      transition: all var(--transition-fast);
+    }
+
+    .chat-input input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+    }
+
+    .chat-send {
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
+      border: none;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-fast);
+      font-size: 1.1rem;
+    }
+
+    .chat-send:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(15, 76, 129, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .chat-widget {
+        bottom: 16px;
+        right: 16px;
+      }
+
+      .chat-container {
+        width: calc(100vw - 32px);
+        max-width: 380px;
+        bottom: 90px;
+      }
+    }
+
     /* ========== ANIMATIONS ========== */
     @keyframes slideInUp {
       from {
@@ -1000,444 +1225,126 @@
       text-align: center;
     }
 
-    .text-brand {
-      color: var(--brand);
+    .mt-lg {
+      margin-top: var(--space-lg);
     }
 
-    .text-muted {
-      color: var(--muted);
-    }
-
-    .font-bold {
-      font-weight: 700;
-    }
-
-    .mt-sm { margin-top: var(--space-sm); }
-    .mt-md { margin-top: var(--space-md); }
-    .mt-lg { margin-top: var(--space-lg); }
-    .mt-xl { margin-top: var(--space-xl); }
-
-    .mb-sm { margin-bottom: var(--space-sm); }
-    .mb-md { margin-bottom: var(--space-md); }
-    .mb-lg { margin-bottom: var(--space-lg); }
-    .mb-xl { margin-bottom: var(--space-xl); }
-
-    .flex {
-      display: flex;
-    }
-
-    .flex-center {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .gap-md { gap: var(--space-md); }
-    .gap-lg { gap: var(--space-lg); }
-
-    .shadow {
-      box-shadow: var(--shadow);
-    }
-
-    .shadow-lg {
-      box-shadow: var(--shadow-lg);
-    }
-
-    /* ========== FOOTER ========== */
-    .footer {
-      background: var(--text);
-      color: white;
-      padding: var(--space-2xl) 0 var(--space-lg);
-      margin-top: var(--space-2xl);
-    }
-
-    .footer__grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: var(--space-xl);
-      margin-bottom: var(--space-xl);
-    }
-
-    .footer__section h3 {
-      color: white;
-      margin-bottom: var(--space-md);
-      transition: color var(--transition-fast);
-    }
-
-    .footer__section ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .footer__section li {
-      margin-bottom: var(--space-sm);
-    }
-
-    .footer__section a {
-      color: rgba(255, 255, 255, 0.8);
-      position: relative;
-      transition: color var(--transition-fast);
-    }
-
-    .footer__section a::before {
-      content: '';
-      position: absolute;
-      left: -8px;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      transition: width var(--transition-fast);
-    }
-
-    .footer__section a:hover {
-      color: white;
-    }
-
-    .footer__section a:hover::before {
-      width: 6px;
-    }
-
-    .footer__bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: var(--space-lg);
-      text-align: center;
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 0.9rem;
-    }
-
-    /* ========== RESPONSIVE ========== */
-    @media (max-width: 480px) {
-      .container {
-        padding: 0 var(--space-sm);
-      }
-
-      h1 {
-        font-size: 1.5rem;
-      }
-
-      h2 {
-        font-size: 1.25rem;
-      }
-
-      .hero__cta {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .contact-item {
-        padding-left: var(--space-md);
-      }
-    }
-
-    /* ========== ACCESSIBILITY ========== */
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
+    .mb-lg {
+      margin-bottom: var(--space-lg);
     }
   </style>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
 
-  <!-- ===== NAVIGATION ===== -->
-  <nav class="nav">
-    <div class="container">
-      <div class="nav__inner">
-        <a href="/" class="brand">Cobalt <span>Shield</span></a>
-        <ul class="nav__links">
-          <li><a href="#features">Features</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="https://github.com/DedeHakizi/Cobalt-shield" target="_blank" rel="noopener">GitHub</a></li>
-          <li><a href="#contact" class="btn btn--primary pill">Get Started</a></li>
-        </ul>
-        <button class="nav__burger" id="navBurger">☰</button>
+  <!-- Chatbot Widget -->
+  <div class="chat-widget">
+    <button class="chat-bubble" id="chatBubble" aria-label="Open chat support">
+      <span class="chat-icon">🤖</span>
+    </button>
+    <div class="chat-container hidden" id="chatContainer">
+      <div class="chat-header">
+        <h3>
+          <span class="chat-status"></span>
+          Cobalt Support
+        </h3>
+        <button class="chat-close" id="chatClose" aria-label="Close chat">×</button>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="message bot">
+          <div class="message-avatar">🤖</div>
+          <div class="message-content">
+            <div class="message-text">Hey there! 👋 Welcome to Cobalt Shield. How can I help you today?</div>
+          </div>
+        </div>
+      </div>
+      <div class="chat-input">
+        <input type="text" id="chatInput" placeholder="Type a message..." />
+        <button class="chat-send" id="chatSend" aria-label="Send message">→</button>
       </div>
     </div>
-  </nav>
-
-  <!-- ===== MAIN ===== -->
-  <main id="main">
-    <!-- HERO SECTION -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero__content">
-          <div class="hero-badge">🚀 Protecting Youth, Powering Communities</div>
-          <h1>Digital Safety & <span>Ethical Innovation</span></h1>
-          <p class="hero-sub">
-            Build secure, transparent, and sustainable technology solutions for Africa and emerging markets. 
-            We combine cybersecurity expertise with ethical practices for organizations making real impact.
-          </p>
-          <div class="hero__cta">
-            <a href="#contact" class="btn btn--primary">Start Project</a>
-            <a href="https://github.com/DedeHakizi/Cobalt-shield" target="_blank" rel="noopener" class="btn btn--ghost">View on GitHub</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FEATURES SECTION -->
-    <section id="features" class="section section--alt">
-      <div class="container">
-        <h2 class="text-center mb-xl">Our Services</h2>
-        <div class="features">
-          <div class="feature">
-            <div class="feature__icon">🔒</div>
-            <div class="feature__content">
-              <h3>Security Audits</h3>
-              <p>Comprehensive security assessments for digital infrastructure, identifying vulnerabilities and establishing resilient practices.</p>
-            </div>
-          </div>
-
-          <div class="feature">
-            <div class="feature__icon">⚡</div>
-            <div class="feature__content">
-              <h3>Infrastructure Design</h3>
-              <p>Scalable solutions built for performance, security, and accessibility in resource-constrained environments.</p>
-            </div>
-          </div>
-
-          <div class="feature">
-            <div class="feature__icon">🌍</div>
-            <div class="feature__content">
-              <h3>Ethical Innovation</h3>
-              <p>Open-source tools and transparent practices ensuring technology benefits communities, not just corporations.</p>
-            </div>
-          </div>
-
-          <div class="feature">
-            <div class="feature__icon">📚</div>
-            <div class="feature__content">
-              <h3>Knowledge Transfer</h3>
-              <p>Training programs and documentation building security expertise within organizations and communities.</p>
-            </div>
-          </div>
-
-          <div class="feature">
-            <div class="feature__icon">🔧</div>
-            <div class="feature__content">
-              <h3>Custom Solutions</h3>
-              <p>Bespoke tools developed specifically for your organization's unique security and operational requirements.</p>
-            </div>
-          </div>
-
-          <div class="feature">
-            <div class="feature__icon">🛡️</div>
-            <div class="feature__content">
-              <h3>24/7 Support</h3>
-              <p>Ongoing monitoring, incident response, and technical support to keep your systems secure and operational.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="kpis">
-          <div class="kpi">
-            <div class="kpi__label">Communities Protected</div>
-            <div class="kpi__value">500+</div>
-          </div>
-          <div class="kpi">
-            <div class="kpi__label">Countries Served</div>
-            <div class="kpi__value">15+</div>
-          </div>
-          <div class="kpi">
-            <div class="kpi__label">System Uptime</div>
-            <div class="kpi__value">99.8%</div>
-          </div>
-          <div class="kpi">
-            <div class="kpi__label">Response Time</div>
-            <div class="kpi__value">24h</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="section">
-      <div class="container">
-        <h2 class="text-center mb-xl">Let's Build Something Secure</h2>
-        
-        <div class="contact-grid">
-          <div class="contact-info">
-            <h3>Contact Details</h3>
-
-            <div class="contact-item">
-              <span class="contact-label">📧 Email</span>
-              <div class="contact-value">
-                <a href="mailto:delphin@cobalt-shield.com">delphin@cobalt-shield.com</a>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <span class="contact-label">🐙 GitHub</span>
-              <div class="contact-value">
-                <a href="https://github.com/DedeHakizi/Cobalt-shield" target="_blank" rel="noopener">
-                  DedeHakizi/Cobalt-shield
-                </a>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <span class="contact-label">🌐 Operations</span>
-              <div class="contact-value">
-                Remote Worldwide<br>
-                <span style="font-size: 0.9rem; color: var(--muted);">Supporting Africa-first initiatives</span>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <span class="contact-label">⏱️ Response</span>
-              <div class="contact-value">
-                Within 24 hours <span class="chip ok">Available</span>
-              </div>
-            </div>
-          </div>
-
-          <form class="contact-form" id="contactForm" method="POST">
-            <div class="form-group">
-              <label for="name">Full Name</label>
-              <input type="text" id="name" name="name" placeholder="Your name" required>
-            </div>
-
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" placeholder="your@email.com" required>
-            </div>
-
-            <div class="form-group">
-              <label for="subject">Subject</label>
-              <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
-            </div>
-
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="Tell us more about your needs..." required></textarea>
-            </div>
-
-            <button type="submit" class="btn btn--primary" style="width: 100%;">
-              Send Message
-            </button>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div class="footer__section">
-          <h3>About</h3>
-          <ul>
-            <li><a href="#features">Services</a></li>
-            <li><a href="https://github.com/DedeHakizi/Cobalt-shield">GitHub</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-
-        <div class="footer__section">
-          <h3>Security</h3>
-          <ul>
-            <li><a href="#">Security Policy</a></li>
-            <li><a href="#">Vulnerability Report</a></li>
-            <li><a href="#">Audit Reports</a></li>
-          </ul>
-        </div>
-
-        <div class="footer__section">
-          <h3>Community</h3>
-          <ul>
-            <li><a href="#">Get Involved</a></li>
-            <li><a href="#">Contribute</a></li>
-            <li><a href="#">Discussions</a></li>
-          </ul>
-        </div>
-
-        <div class="footer__section">
-          <h3>Legal</h3>
-          <ul>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-            <li><a href="#">License</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer__bottom">
-        <div>&copy; 2024 Cobalt Shield Initiative. Protecting Youth. Powering Communities.</div>
-      </div>
-    </div>
-  </footer>
+  </div>
 
   <script>
-    // Mobile menu toggle
-    const navBurger = document.getElementById('navBurger');
-    const navLinks = document.querySelector('.nav__links');
+    // Chatbot Widget Logic
+    const chatBubble = document.getElementById('chatBubble');
+    const chatContainer = document.getElementById('chatContainer');
+    const chatClose = document.getElementById('chatClose');
+    const chatInput = document.getElementById('chatInput');
+    const chatSend = document.getElementById('chatSend');
+    const chatMessages = document.getElementById('chatMessages');
 
-    navBurger?.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-      navBurger.textContent = navLinks.classList.contains('open') ? '✕' : '☰';
-    });
+    let isOpen = false;
 
-    // Close menu when link is clicked
-    document.querySelectorAll('.nav__links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        navBurger.textContent = '☰';
-      });
-    });
+    // Sample responses for demo
+    const botResponses = [
+      "That's a great question! Let me help you with that.",
+      "I'd be happy to assist! Can you tell me more?",
+      "Thanks for reaching out! How else can I help?",
+      "Absolutely! Is there anything specific you'd like to know?",
+      "Got it! Feel free to ask anything about Cobalt Shield.",
+    ];
 
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
+    function toggleChat() {
+      isOpen = !isOpen;
+      if (isOpen) {
+        chatContainer.classList.remove('hidden');
+        chatBubble.classList.add('chat-bubble--active');
+        chatInput.focus();
+      } else {
+        chatContainer.classList.add('hidden');
+        chatBubble.classList.remove('chat-bubble--active');
+      }
+    }
 
-    // Form submission
-    const contactForm = document.getElementById('contactForm');
-    contactForm?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const btn = contactForm.querySelector('.btn');
-      const originalText = btn.textContent;
-      
-      btn.textContent = '✓ Message Sent!';
-      btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
-      
+    function sendMessage() {
+      const message = chatInput.value.trim();
+      if (!message) return;
+
+      // Add user message
+      const userMsg = document.createElement('div');
+      userMsg.className = 'message user';
+      userMsg.innerHTML = `
+        <div class="message-content">
+          <div class="message-text">${message}</div>
+        </div>
+        <div class="message-avatar">👤</div>
+      `;
+      chatMessages.appendChild(userMsg);
+      chatInput.value = '';
+
+      // Simulate bot response
       setTimeout(() => {
-        contactForm.reset();
-        btn.textContent = originalText;
-        btn.style.background = '';
-      }, 3000);
+        const botMsg = document.createElement('div');
+        botMsg.className = 'message bot';
+        const randomResponse = botResponses[Math.floor(Math.random() * botResponses.length)];
+        botMsg.innerHTML = `
+          <div class="message-avatar">🤖</div>
+          <div class="message-content">
+            <div class="message-text">${randomResponse}</div>
+          </div>
+        `;
+        chatMessages.appendChild(botMsg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }, 500);
+
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Event listeners
+    chatBubble.addEventListener('click', toggleChat);
+    chatClose.addEventListener('click', toggleChat);
+    chatSend.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendMessage();
     });
 
-    // Stagger animations for cards
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.animation = 'slideInUp 0.6s ease forwards';
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.card, .feature, .kpi').forEach(el => {
-      observer.observe(el);
-    });
+    // Auto-open chat after 2 seconds
+    setTimeout(() => {
+      if (!isOpen) {
+        toggleChat();
+      }
+    }, 2000);
   </script>
 </body>
 </html>
