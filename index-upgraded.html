@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Cobalt Shield | Secure Systems for Africa & Beyond</title>
+  <meta name="description" content="Cybersecurity, ethical technology, and digital infrastructure built for Africa and beyond." />
+  <meta name="theme-color" content="#0a0f1e" />
+  <link rel="icon" type="image/png" href="/cobalt-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #0a0f1e;
+      --cobalt: #1e56c8;
+      --cobalt-light: #3b7cf8;
+      --cobalt-accent: #5b9eff;
+      --gold: #f5a623;
+      --gold-light: #ffd166;
+      --magenta: #ff006e;
+      --cyan: #00f5ff;
+      --white: #f0f4ff;
+      --white-dim: rgba(240, 244, 255, 0.65);
+      --border: rgba(240, 244, 255, 0.08);
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-tech: 'Space Grotesk', sans-serif;
+      --transition: 220ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 800ms cubic-bezier(0.35, 0, 0.2, 1);
+      --transition-bounce: 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    *, *::before, *::after { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+
+    html { 
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--ink) 0%, #0d1428 100%);
+      color: var(--white);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
+      pointer-events: none; 
+      z-index: 9999; 
+      opacity: 0.3;
+    }
+
+    /* ── ANIME GRID BACKGROUND ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(0deg, transparent 24%, rgba(0, 245, 255, 0.03) 25%, rgba(0, 245, 255, 0.03) 26%, transparent 27%, transparent 74%, rgba(0, 245, 255, 0.03) 75%, rgba(0, 245, 255, 0.03) 76%, transparent 77%, transparent 100%),
+        linear-gradient(90deg, transparent 24%, rgba(0, 245, 255, 0.03) 25%, rgba(0, 245, 255, 0.03) 26%, transparent 27%, transparent 74%, rgba(0, 245, 255, 0.03) 75%, rgba(0, 245, 255, 0.03) 76%, transparent 77%, transparent 100%);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 1;
+      animation: gridShift 20s linear infinite;
+    }
+
+    @keyframes gridShift {
+      0% { background-position: 0 0, 0 0; }
+      100% { background-position: 60px 0, 0 60px; }
+    }
+
+    /* ── HEADER STYLES ── */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 15, 30, 0.7);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      transition: all var(--transition);
+    }
+
+    .header.scrolled {
+      background: rgba(10, 15, 30, 0.95);
+      backdrop-filter: blur(30px);
+      border-bottom-color: rgba(0, 245, 255, 0.2);
+      padding: 12px 24px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .header__inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    /* ── LOGO/BRAND ── */
+    .brand {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--white);
+      transition: all var(--transition);
+      position: relative;
+      z-index: 5;
+    }
+
+    .brand:hover {
+      transform: scale(1.05);
+    }
+
+    .brand em { 
+      color: var(--cyan);
+      font-style: normal;
+      animation: glow 2s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% { text-shadow: 0 0 10px rgba(0, 245, 255, 0.3); }
+      50% { text-shadow: 0 0 20px rgba(0, 245, 255, 0.6); }
+    }
+
+    /* ── NAVIGATION ── */
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: var(--white-dim);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all var(--transition);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan), var(--cobalt-light));
+      transition: width var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+      background: rgba(0, 245, 255, 0.08);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links .cta {
+      background: linear-gradient(135deg, var(--cobalt) 0%, var(--cyan) 100%);
+      color: white;
+      font-weight: 700;
+      margin-left: 12px;
+      border-radius: 8px;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-links .cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .nav-links .cta:hover::before {
+      left: 100%;
+    }
+
+    .nav-links .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 245, 255, 0.3);
+    }
+
+    /* ── MOBILE MENU BUTTON ── */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 10;
+      transition: all var(--transition);
+    }
+
+    .menu-toggle.active {
+      color: var(--cyan);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { 
+        opacity: 0; 
+        transform: translateY(30px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+
+    @keyframes slideInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { 
+        opacity: 0.18; 
+        transform: scale(1); 
+      }
+      50% { 
+        opacity: 0.28; 
+        transform: scale(1.08); 
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { 
+        transform: translateY(0px) translateX(0px); 
+      }
+      25% { 
+        transform: translateY(-15px) translateX(5px); 
+      }
+      50% { 
+        transform: translateY(-30px) translateX(-5px); 
+      }
+      75% { 
+        transform: translateY(-15px) translateX(5px); 
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    /* ── HERO SECTION ── */
+    .hero {
+      min-height: 100vh; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center;
+      position: relative; 
+      overflow: hidden; 
+      padding: 120px 24px 40px;
+      z-index: 10;
+    }
+
+    /* Animated Background Elements */
+    .hero__bg {
+      position: absolute; 
+      inset: 0; 
+      z-index: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(30, 86, 200, 0.25) 0%, transparent 70%), 
+                  radial-gradient(ellipse 100% 80% at 100% 100%, rgba(255, 0, 110, 0.15) 0%, transparent 60%),
+                  radial-gradient(ellipse 80% 100% at 0% 0%, rgba(0, 245, 255, 0.1) 0%, transparent 70%);
+      animation: glowPulse 8s ease-in-out infinite;
+    }
+
+    /* Anime Accent Orbs */
+    .hero__orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      animation: float 6s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    .hero__orb-1 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(59, 124, 248, 0.4) 0%, transparent 70%);
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .hero__orb-2 {
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(255, 0, 110, 0.3) 0%, transparent 70%);
+      bottom: 15%;
+      right: 15%;
+      animation-delay: 2s;
+    }
+
+    .hero__orb-3 {
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(0, 245, 255, 0.25) 0%, transparent 70%);
+      top: 50%;
+      right: 5%;
+      animation-delay: 4s;
+    }
+
+    .hero__content { 
+      position: relative; 
+      z-index: 5; 
+      max-width: 900px;
+      text-align: center;
+      animation: slideInUp 0.8s ease 0.2s both;
+    }
+    
+    .hero__tag {
+      display: inline-block; 
+      font-size: 0.75rem; 
+      font-weight: 700; 
+      letter-spacing: 0.15em;
+      text-transform: uppercase; 
+      color: var(--cyan);
+      background: linear-gradient(135deg, rgba(0, 245, 255, 0.1) 0%, rgba(30, 86, 200, 0.1) 100%);
+      border: 1px solid rgba(0, 245, 255, 0.4);
+      padding: 8px 18px; 
+      border-radius: 30px;
+      margin-bottom: 30px; 
+      animation: fadeUp 0.6s ease both;
+      font-family: var(--font-tech);
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .hero__tag:hover {
+      border-color: rgba(0, 245, 255, 0.8);
+      box-shadow: 0 0 20px rgba(0, 245, 255, 0.3), inset 0 0 10px rgba(0, 245, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .hero h1 {
+      font-family: var(--font-display); 
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 800; 
+      line-height: 1.05; 
+      margin-bottom: 24px; 
+      letter-spacing: -0.02em;
+      animation: slideInDown 0.8s ease 0.3s both;
+      text-shadow: 0 0 30px rgba(30, 86, 200, 0.3);
+    }
+
+    .hero h1 .glow-text {
+      background: linear-gradient(135deg, var(--cobalt-light) 0%, var(--cyan) 50%, var(--gold-light) 100%);
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(0, 245, 255, 0.4));
+      animation: slideInDown 0.8s ease 0.4s both;
+    }
+
+    .hero__sub {
+      font-size: 1.15rem; 
+      color: var(--white-dim); 
+      max-width: 650px; 
+      margin: 0 auto 40px;
+      animation: fadeUp 0.8s ease 0.4s both;
+      line-height: 1.6;
+    }
+
+    /* ── CTA BUTTONS ── */
+    .hero__cta {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s ease 0.5s both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 15px 32px; 
+      background: linear-gradient(135deg, var(--cobalt) 0%, var(--cobalt-light) 100%);
+      color: white; 
+      font-family: var(--font-display); 
+      font-weight: 700;
+      border-radius: 10px; 
+      border: 1px solid rgba(59, 124, 248, 0.5);
+      cursor: pointer; 
+      transition: all var(--transition);
+      font-size: 1rem;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover { 
+      background: linear-gradient(135deg, var(--cobalt-light) 0%, var(--cyan) 100%);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(30, 86, 200, 0.4);
+      border-color: var(--cyan);
+    }
+
+    .btn:active {
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid var(--cyan);
+      color: var(--cyan);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(0, 245, 255, 0.1);
+      box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+    }
+
+    /* ── SCROLL INDICATOR ── */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      animation: fadeUp 1s ease 0.8s both;
+    }
+
+    .scroll-indicator svg {
+      width: 24px;
+      height: 40px;
+      stroke: var(--cyan);
+      stroke-width: 2;
+      fill: none;
+      animation: scrollBounce 2s infinite;
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateY(0); opacity: 1; }
+      50% { transform: translateY(10px); opacity: 0.5; }
+    }
+
+    /* ── RESPONSIVE DESIGN ── */
+    @media (max-width: 1024px) {
+      .header__inner {
+        gap: 16px;
+      }
+
+      .brand {
+        font-size: 1.2rem;
+      }
+
+      .nav-links {
+        gap: 4px;
+      }
+
+      .nav-links a {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 14px 16px;
+      }
+
+      .header.scrolled {
+        padding: 10px 16px;
+      }
+
+      .brand {
+        font-size: 1.1rem;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: rgba(10, 15, 30, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 20px;
+        gap: 12px;
+        border-bottom: 1px solid var(--border);
+        animation: slideInDown 0.3s ease;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 12px 16px;
+        text-align: center;
+      }
+
+      .nav-links .cta {
+        margin-left: 0;
+        width: 100%;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero {
+        padding: 100px 16px 40px;
+        min-height: auto;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
+      }
+
+      .hero__sub {
+        font-size: 1rem;
+      }
+
+      .hero__cta {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .hero__orb-1, .hero__orb-2, .hero__orb-3 {
+        opacity: 0.6;
+      }
+
+      .hero__orb-1 {
+        width: 200px;
+        height: 200px;
+      }
+
+      .hero__orb-2 {
+        width: 150px;
+        height: 150px;
+      }
+
+      .hero__orb-3 {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header {
+        padding: 12px 12px;
+      }
+
+      .header__inner {
+        gap: 12px;
+      }
+
+      .brand {
+        font-size: 1rem;
+      }
+
+      .hero {
+        padding: 90px 12px 30px;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        margin-bottom: 16px;
+      }
+
+      .hero__tag {
+        font-size: 0.65rem;
+        padding: 6px 12px;
+        margin-bottom: 20px;
+      }
+
+      .hero__sub {
+        font-size: 0.95rem;
+        margin-bottom: 30px;
+      }
+
+      .hero__cta {
+        gap: 12px;
+      }
+
+      .btn {
+        padding: 12px 24px;
+        font-size: 0.95rem;
+      }
+
+      .scroll-indicator {
+        bottom: 20px;
+      }
+
+      .scroll-indicator svg {
+        width: 20px;
+        height: 30px;
+      }
+    }
+
+    /* Prefier Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      * { 
+        animation: none !important; 
+        transition: none !important; 
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ENHANCED HEADER -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="#" class="brand">Cobalt<em>Shield</em></a>
+      
+      <nav class="nav-links" id="navLinks">
+        <a href="#mission">Mission</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a href="/dashboard.html" class="cta">Dashboard</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-label="Toggle menu">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="top">
+    <div class="hero__bg"></div>
+    
+    <!-- Anime Accent Elements -->
+    <div class="hero__orb hero__orb-1"></div>
+    <div class="hero__orb hero__orb-2"></div>
+    <div class="hero__orb hero__orb-3"></div>
+
+    <div class="hero__content">
+      <div class="hero__tag">🔐 Cybersecurity · 🌍 Africa · ⚡ Ethical Tech</div>
+      
+      <h1>Secure Infrastructure Built for the <span class="glow-text">Real World</span></h1>
+      
+      <p class="hero__sub">
+        Digital safety tools, automation systems, and cybersecurity platforms built lean, 
+        deployed fast, and designed to protect what matters most to your community.
+      </p>
+      
+      <div class="hero__cta">
+        <a href="https://github.com/DedeHakizi" class="btn">
+          <span>→</span> Explore Architecture
+        </a>
+        <a href="#features" class="btn btn-secondary">
+          Learn More
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+      <svg viewBox="0 0 24 40" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 4C12 4 12 20 12 28M8 24L12 32L16 24" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- JAVASCRIPT FOR INTERACTIVE FEATURES -->
+  <script>
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const header = document.getElementById('header');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+      menuToggle.setAttribute('aria-expanded', 
+        menuToggle.getAttribute('aria-expanded') === 'false' ? 'true' : 'false'
+      );
+    });
+
+    // Close menu when clicking on a link
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && document.querySelector(href)) {
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
