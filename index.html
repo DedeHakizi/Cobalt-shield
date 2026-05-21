@@ -26,1325 +26,426 @@
   <link rel="icon" type="image/png" href="/cobalt-logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    /* ========== CSS VARIABLES SYSTEM ========== */
-    :root {
-      /* Brand Colors */
-      --brand: #0f4c81;
-      --brand-dark: #0b3960;
-      --brand-light: #1e6ba8;
-      --brand-lighter: #3b7fb8;
-      --accent: #00d4ff;
-      --accent-dark: #00a8cc;
-      
-      /* Semantic Colors */
-      --bg: #f8fafc;
-      --bg-secondary: #f1f5f9;
-      --card: #ffffff;
-      --text: #0f172a;
-      --text-secondary: #334155;
-      --muted: #64748b;
-      --border: #e2e8f0;
-      
-      /* Status Colors */
-      --ok: #10b981;
-      --ok-bg: #ecfdf5;
-      --warn: #f59e0b;
-      --warn-bg: #fffbeb;
-      --bad: #ef4444;
-      --bad-bg: #fef2f2;
-      --info: #0284c7;
-      --info-bg: #f0f9ff;
-      
-      /* UI Properties */
-      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08);
-      --shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-      --shadow-lg: 0 20px 40px rgba(15, 23, 42, 0.12);
-      --shadow-xl: 0 25px 50px rgba(15, 23, 42, 0.15);
-      --radius: 16px;
-      --radius-sm: 8px;
-      --radius-lg: 24px;
-      
-      /* Transitions */
-      --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-bounce: 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
-      
-      /* Spacing */
-      --space-xs: 4px;
-      --space-sm: 8px;
-      --space-md: 16px;
-      --space-lg: 24px;
-      --space-xl: 32px;
-      --space-2xl: 48px;
-      
-      /* Typography */
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --font-mono: 'Fira Code', 'JetBrains Mono', monospace;
-    }
-
-    /* Dark Mode Support */
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0f172a;
-        --bg-secondary: #1e293b;
-        --card: #1e293b;
-        --text: #f1f5f9;
-        --text-secondary: #cbd5e1;
-        --muted: #94a3b8;
-        --border: #334155;
-      }
-    }
-
-    /* ========== RESET & BASE STYLES ========== */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      -webkit-text-size-adjust: 100%;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-sans);
-      font-size: 16px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    /* ========== SKIP LINK ========== */
-    .skip-link {
-      position: absolute;
-      top: -40px;
-      left: 0;
-      background: var(--brand);
-      color: white;
-      padding: var(--space-sm) var(--space-md);
-      z-index: 1000;
-      transition: top var(--transition-fast);
-    }
-
-    .skip-link:focus {
-      top: 0;
-    }
-
-    /* ========== CONTAINER ========== */
-    .container {
-      width: 100%;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 var(--space-md);
-    }
-
-    /* ========== TYPOGRAPHY ========== */
-    h1, h2, h3, h4, h5, h6 {
-      font-weight: 700;
-      line-height: 1.2;
-    }
-
-    h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-    }
-
-    h2 {
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      margin-bottom: var(--space-lg);
-    }
-
-    h3 {
-      font-size: 1.25rem;
-    }
-
-    p {
-      margin-bottom: var(--space-md);
-    }
-
-    a {
-      color: var(--brand);
-      text-decoration: none;
-      transition: color var(--transition-fast);
-    }
-
-    a:hover {
-      color: var(--brand-light);
-    }
-
-    /* ========== NAVIGATION ========== */
-    .nav {
-      background: var(--card);
-      border-bottom: 1px solid var(--border);
-      padding: var(--space-md) 0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(8px);
-      box-shadow: var(--shadow-sm);
-      animation: slideInDown 0.6s ease;
-    }
-
-    @keyframes slideInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .nav__inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-lg);
-    }
-
-    .brand {
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: var(--brand);
-      text-decoration: none;
-      letter-spacing: -0.5px;
-      transition: all var(--transition-fast);
-    }
-
-    .brand:hover {
-      transform: scale(1.05);
-      color: var(--brand-light);
-    }
-
-    .brand span {
-      color: var(--text);
-    }
-
-    .nav__links {
-      display: flex;
-      gap: var(--space-md);
-      align-items: center;
-      list-style: none;
-    }
-
-    .nav__links a {
-      color: var(--text-secondary);
-      font-weight: 600;
-      padding: var(--space-sm) var(--space-md);
-      border-radius: var(--radius-sm);
-      transition: all var(--transition-fast);
-      position: relative;
-    }
-
-    .nav__links a::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      transition: width var(--transition-fast);
-    }
-
-    .nav__links a:hover {
-      background: var(--bg-secondary);
-      color: var(--brand);
-    }
-
-    .nav__links a:hover::after {
-      width: 100%;
-    }
-
-    .nav__links a[aria-current="page"] {
-      background: var(--bg-secondary);
-      color: var(--brand);
-    }
-
-    .nav__links .pill {
-      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
-      color: white;
-      border: none;
-      transition: all var(--transition-fast);
-    }
-
-    .nav__links .pill:hover {
-      background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand) 100%);
-      box-shadow: var(--shadow-lg);
-      transform: translateY(-2px);
-    }
-
-    .nav__burger {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--text);
-      padding: var(--space-sm);
-    }
-
-    @media (max-width: 768px) {
-      .nav__links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--card);
-        flex-direction: column;
-        padding: var(--space-md);
-        border-bottom: 1px solid var(--border);
-        box-shadow: var(--shadow-lg);
-        border-radius: 0 0 var(--radius) var(--radius);
-        animation: slideInDown 0.3s ease;
-      }
-
-      .nav__links.open {
-        display: flex;
-      }
-
-      .nav__burger {
-        display: block;
-      }
-
-      .nav__links a {
-        padding: var(--space-md);
-        border-radius: 0;
-      }
-    }
-
-    /* ========== HERO SECTION ========== */
-    .hero {
-      padding: var(--space-2xl) 0;
-      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
-      color: white;
-      position: relative;
-      overflow: hidden;
-      min-height: 80vh;
-      display: flex;
-      align-items: center;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-      pointer-events: none;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: 
-        radial-gradient(circle at 0% 0%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 100% 100%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
-      pointer-events: none;
-      animation: glow 4s ease-in-out infinite;
-    }
-
-    @keyframes glow {
-      0%, 100% { opacity: 0.5; }
-      50% { opacity: 1; }
-    }
-
-    .hero__content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      max-width: 900px;
-      margin: 0 auto;
-      animation: slideInUp 0.8s ease 0.2s backwards;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      color: white;
-      padding: var(--space-sm) var(--space-lg);
-      border-radius: var(--radius-lg);
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: var(--space-lg);
-      border: 1px solid rgba(0, 212, 255, 0.5);
-      animation: slideInDown 0.6s ease;
-      transition: all var(--transition-fast);
-    }
-
-    .hero-badge:hover {
-      background: rgba(0, 212, 255, 0.2);
-      border-color: rgba(0, 212, 255, 0.8);
-      transform: translateY(-2px);
-    }
-
-    .hero h1 {
-      margin-bottom: var(--space-md);
-      animation: slideInUp 0.6s ease 0.1s backwards;
-    }
-
-    .hero h1 span {
-      color: #00d4ff;
-      display: block;
-      animation: glow 3s ease-in-out infinite;
-    }
-
-    .hero-sub {
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.9);
-      max-width: 700px;
-      margin: var(--space-lg) auto;
-      animation: slideInUp 0.6s ease 0.2s backwards;
-      line-height: 1.8;
-    }
-
-    .hero__cta {
-      display: flex;
-      gap: var(--space-md);
-      justify-content: center;
-      margin-top: var(--space-xl);
-      flex-wrap: wrap;
-      animation: slideInUp 0.6s ease 0.3s backwards;
-    }
-
-    @media (max-width: 768px) {
-      .hero {
-        padding: var(--space-xl) 0;
-        min-height: auto;
-      }
-
-      .hero h1 {
-        font-size: 1.75rem;
-      }
-
-      .hero-sub {
-        font-size: 1rem;
-      }
-
-      .hero__cta {
-        flex-direction: column;
-        gap: var(--space-sm);
-      }
-    }
-
-    /* ========== BUTTONS ========== */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-xs);
-      padding: var(--space-sm) var(--space-lg);
-      border-radius: var(--radius-sm);
-      font-weight: 700;
-      text-decoration: none;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: all var(--transition-fast);
-      font-size: 0.95rem;
-      white-space: nowrap;
-      font-family: var(--font-sans);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transform: translateX(-100%);
-      transition: transform var(--transition-normal);
-    }
-
-    .btn:hover::before {
-      transform: translateX(100%);
-    }
-
-    .btn--primary {
-      background: var(--brand);
-      color: white;
-      position: relative;
-    }
-
-    .btn--primary:hover {
-      background: var(--brand-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(15, 76, 129, 0.3);
-    }
-
-    .btn--secondary {
-      background: var(--bg-secondary);
-      color: var(--text);
-      border: 2px solid var(--border);
-    }
-
-    .btn--secondary:hover {
-      border-color: var(--brand);
-      color: var(--brand);
-      background: var(--bg);
-      box-shadow: var(--shadow);
-    }
-
-    .btn--ghost {
-      background: transparent;
-      color: white;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .btn--ghost:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: white;
-      transform: translateY(-2px);
-    }
-
-    .btn--success {
-      background: var(--ok);
-      color: white;
-    }
-
-    .btn--success:hover {
-      background: #059669;
-      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
-      transform: translateY(-2px);
-    }
-
-    .btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    /* ========== CARDS ========== */
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      transition: all var(--transition-normal);
-      overflow: hidden;
-      animation: slideInUp 0.6s ease;
-    }
-
-    .card:hover {
-      box-shadow: var(--shadow-lg);
-      transform: translateY(-4px);
-      border-color: var(--accent);
-    }
-
-    .card__header {
-      padding: var(--space-lg);
-      border-bottom: 1px solid var(--border);
-      background: var(--bg-secondary);
-    }
-
-    .card__body {
-      padding: var(--space-lg);
-    }
-
-    .card__footer {
-      padding: var(--space-lg);
-      border-top: 1px solid var(--border);
-      background: var(--bg-secondary);
-      display: flex;
-      gap: var(--space-md);
-      justify-content: flex-end;
-    }
-
-    /* ========== SECTIONS ========== */
-    .section {
-      padding: var(--space-2xl) 0;
-      animation: fadeIn 0.8s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .section--alt {
-      background: var(--bg-secondary);
-    }
-
-    .section--brand {
-      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
-      color: white;
-    }
-
-    /* ========== GRIDS ========== */
-    .grid {
-      display: grid;
-      gap: var(--space-lg);
-      margin-top: var(--space-lg);
-    }
-
-    .grid-2 {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
-
-    .grid-3 {
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-
-    .grid-4 {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-
-    @media (max-width: 768px) {
-      .grid-2, .grid-3, .grid-4 {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* ========== KPI GRID ========== */
-    .kpis {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--space-lg);
-      margin-top: var(--space-lg);
-    }
-
-    .kpi {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: var(--space-lg);
-      box-shadow: var(--shadow-sm);
-      transition: all var(--transition-normal);
-      text-align: center;
-      animation: slideInUp 0.6s ease;
-    }
-
-    .kpi:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--accent);
-    }
-
-    .kpi__label {
-      color: var(--muted);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: var(--space-sm);
-      font-weight: 600;
-    }
-
-    .kpi__value {
-      font-size: 2.5rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1;
-    }
-
-    .kpi__delta {
-      margin-top: var(--space-sm);
-      font-size: 0.85rem;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .kpi__delta.up {
-      color: var(--ok);
-    }
-
-    .kpi__delta.down {
-      color: var(--bad);
-    }
-
-    /* ========== CONTACT SECTION ========== */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: var(--space-2xl);
-      margin-top: var(--space-xl);
-      align-items: start;
-    }
-
-    .contact-info {
-      animation: slideInLeft 0.6s ease;
-    }
-
-    .contact-info h3 {
-      font-size: 1.5rem;
-      margin-bottom: var(--space-lg);
-      color: var(--brand);
-    }
-
-    .contact-item {
-      margin-bottom: var(--space-xl);
-      padding-bottom: var(--space-xl);
-      border-bottom: 2px solid var(--border);
-      position: relative;
-      transition: all var(--transition-fast);
-      animation: slideInUp 0.6s ease;
-    }
-
-    .contact-item:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    .contact-item::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 4px;
-      height: 0;
-      background: linear-gradient(180deg, var(--accent), transparent);
-      transition: height var(--transition-normal);
-    }
-
-    .contact-item:hover::before {
-      height: 100%;
-    }
-
-    .contact-label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      margin-bottom: var(--space-sm);
-      text-shadow: 0 2px 4px rgba(15, 76, 129, 0.1);
-    }
-
-    .contact-value {
-      font-size: 1.1rem;
-      color: var(--text);
-      font-weight: 600;
-      word-break: break-word;
-      transition: color var(--transition-fast);
-    }
-
-    .contact-value a {
-      color: var(--brand);
-      position: relative;
-    }
-
-    .contact-value a::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      transition: width var(--transition-normal);
-    }
-
-    .contact-value a:hover {
-      color: var(--brand-light);
-    }
-
-    .contact-value a:hover::after {
-      width: 100%;
-    }
-
-    .contact-form {
-      background: var(--card);
-      border: 2px solid var(--border);
-      border-radius: var(--radius);
-      padding: var(--space-xl);
-      box-shadow: var(--shadow);
-      animation: slideInRight 0.6s ease;
-      transition: all var(--transition-normal);
-    }
-
-    .contact-form:hover {
-      border-color: var(--accent);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .form {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-lg);
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-sm);
-      animation: slideInUp 0.6s ease;
-    }
-
-    .form-group label {
-      font-weight: 600;
-      color: var(--text);
-      font-size: 0.95rem;
-    }
-
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      padding: var(--space-md);
-      border: 2px solid var(--border);
-      border-radius: var(--radius-sm);
-      font-family: var(--font-sans);
-      font-size: 1rem;
-      transition: all var(--transition-fast);
-      background: var(--bg);
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      outline: none;
-      border-color: var(--accent);
-      background: var(--card);
-      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
-      transform: translateY(-2px);
-    }
-
-    .form-group textarea {
-      min-height: 140px;
-      resize: vertical;
-      font-family: var(--font-sans);
-    }
-
-    .form-group--inline {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-md);
-    }
-
-    @media (max-width: 768px) {
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .form-group--inline {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* ========== CHIPS/BADGES ========== */
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      padding: var(--space-sm) var(--space-lg);
-      font-size: 0.85rem;
-      font-weight: 700;
-      border: 1px solid var(--border);
-      white-space: nowrap;
-      gap: var(--space-xs);
-      transition: all var(--transition-fast);
-    }
-
-    .chip.ok {
-      background: var(--ok-bg);
-      border-color: var(--ok);
-      color: #065f46;
-    }
-
-    .chip.ok:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
-    }
-
-    .chip.warn {
-      background: var(--warn-bg);
-      border-color: var(--warn);
-      color: #92400e;
-    }
-
-    .chip.bad {
-      background: var(--bad-bg);
-      border-color: var(--bad);
-      color: #991b1b;
-    }
-
-    /* ========== ALERTS ========== */
-    .alert {
-      padding: var(--space-lg);
-      border-radius: var(--radius-sm);
-      border-left: 4px solid var(--border);
-      margin-bottom: var(--space-lg);
-      animation: slideInDown 0.3s ease;
-    }
-
-    .alert.success {
-      background: var(--ok-bg);
-      border-left-color: var(--ok);
-      color: #065f46;
-    }
-
-    .alert.warning {
-      background: var(--warn-bg);
-      border-left-color: var(--warn);
-      color: #92400e;
-    }
-
-    .alert.error {
-      background: var(--bad-bg);
-      border-left-color: var(--bad);
-      color: #991b1b;
-    }
-
-    /* ========== FEATURE GRID ========== */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: var(--space-xl);
-      margin-top: var(--space-xl);
-    }
-
-    .feature {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-lg);
-      animation: slideInUp 0.6s ease;
-      padding: var(--space-lg);
-      border-radius: var(--radius);
-      background: var(--card);
-      border: 1px solid var(--border);
-      transition: all var(--transition-normal);
-    }
-
-    .feature:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--accent);
-    }
-
-    .feature__icon {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, var(--info-bg) 0%, rgba(2, 132, 199, 0.1) 100%);
-      border-radius: var(--radius);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      transition: all var(--transition-fast);
-    }
-
-    .feature:hover .feature__icon {
-      transform: scale(1.1) rotate(5deg);
-      background: linear-gradient(135deg, var(--accent) 0%, rgba(0, 212, 255, 0.2) 100%);
-    }
-
-    .feature__content h3 {
-      margin-top: 0;
-    }
-
-    /* ========== CHATBOT WIDGET ========== */
-    .chat-widget {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 999;
-      font-family: var(--font-sans);
-    }
-
-    .chat-bubble {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: var(--shadow-lg);
-      transition: all var(--transition-fast);
-      border: 2px solid var(--accent);
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-
-    .chat-bubble:hover {
-      transform: scale(1.1);
-      box-shadow: var(--shadow-xl);
-    }
-
-    .chat-bubble--active {
-      animation: none;
-    }
-
-    .chat-icon {
-      font-size: 1.8rem;
-      color: white;
-    }
-
-    .chat-container {
-      position: absolute;
-      bottom: 100px;
-      right: 0;
-      width: 420px;
-      max-height: 600px;
-      background: var(--card);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-xl);
-      display: flex;
-      flex-direction: column;
-      animation: slideInUp 0.3s ease;
-      border: 1px solid var(--border);
-      overflow: hidden;
-    }
-
-    .chat-container.hidden {
-      display: none;
-    }
-
-    .chat-header {
-      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
-      color: white;
-      padding: var(--space-lg);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .chat-header h3 {
-      margin: 0;
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-    }
-
-    .chat-status {
-      width: 8px;
-      height: 8px;
-      background: #10b981;
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-
-    .chat-close {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-      padding: 0;
-      transition: transform var(--transition-fast);
-    }
-
-    .chat-close:hover {
-      transform: rotate(90deg);
-    }
-
-    .chat-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: var(--space-lg);
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-md);
-      background: var(--bg);
-      min-height: 300px;
-    }
-
-    .message {
-      display: flex;
-      gap: var(--space-md);
-      animation: slideInUp 0.3s ease;
-    }
-
-    .message.bot {
-      justify-content: flex-start;
-    }
-
-    .message.user {
-      justify-content: flex-end;
-    }
-
-    .message-avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-
-    .message.user .message-avatar {
-      background: linear-gradient(135deg, var(--muted) 0%, var(--text-secondary) 100%);
-    }
-
-    .message-content {
-      max-width: 70%;
-    }
-
-    .message-text {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: var(--space-md) var(--space-lg);
-      border-radius: var(--radius-sm);
-      font-size: 0.9rem;
-      line-height: 1.5;
-      color: var(--text);
-    }
-
-    .message.user .message-text {
-      background: var(--brand);
-      color: white;
-      border: none;
-    }
-
-    .chat-input {
-      padding: var(--space-lg);
-      border-top: 1px solid var(--border);
-      display: flex;
-      gap: var(--space-sm);
-      background: var(--card);
-    }
-
-    .chat-input input {
-      flex: 1;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: var(--space-sm) var(--space-md);
-      font-family: var(--font-sans);
-      font-size: 0.9rem;
-      transition: all var(--transition-fast);
-    }
-
-    .chat-input input:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
-    }
-
-    .chat-send {
-      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
-      border: none;
-      color: white;
-      width: 40px;
-      height: 40px;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all var(--transition-fast);
-      font-size: 1.1rem;
-    }
-
-    .chat-send:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 12px rgba(15, 76, 129, 0.3);
-    }
-
-    @media (max-width: 768px) {
-      .chat-widget {
-        bottom: 16px;
-        right: 16px;
-      }
-
-      .chat-container {
-        width: calc(100vw - 32px);
-        max-width: 380px;
-        bottom: 90px;
-      }
-    }
-
-    /* ========== ANIMATIONS ========== */
-    @keyframes slideInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes slideInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes slideInRight {
-      from {
-        opacity: 0;
-        transform: translateX(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes scaleIn {
-      from {
-        opacity: 0;
-        transform: scale(0.95);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    /* ========== UTILITY CLASSES ========== */
-    .text-center {
-      text-align: center;
-    }
-
-    .mt-lg {
-      margin-top: var(--space-lg);
-    }
-
-    .mb-lg {
-      margin-bottom: var(--space-lg);
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
 
-  <!-- Chatbot Widget -->
-  <div class="chat-widget">
-    <button class="chat-bubble" id="chatBubble" aria-label="Open chat support">
-      <span class="chat-icon">🤖</span>
-    </button>
-    <div class="chat-container hidden" id="chatContainer">
-      <div class="chat-header">
-        <h3>
-          <span class="chat-status"></span>
-          Cobalt Support
-        </h3>
-        <button class="chat-close" id="chatClose" aria-label="Close chat">×</button>
+  <!-- Navigation -->
+  <nav class="nav" role="navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="#" class="brand">
+          <span class="brand__icon">🛡️</span>
+          <span class="brand__text">Cobalt<span class="brand__highlight">Shield</span></span>
+        </a>
+        
+        <button class="nav__burger" id="navBurger" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul class="nav__links" id="navLinks">
+          <li><a href="#mission" class="nav__link">Mission</a></li>
+          <li><a href="#impact" class="nav__link">Impact</a></li>
+          <li><a href="#initiatives" class="nav__link">Initiatives</a></li>
+          <li><a href="#get-involved" class="nav__link">Get Involved</a></li>
+          <li><a href="#contact" class="nav__link nav__link--cta">Contact Us</a></li>
+        </ul>
       </div>
-      <div class="chat-messages" id="chatMessages">
-        <div class="message bot">
-          <div class="message-avatar">🤖</div>
-          <div class="message-content">
-            <div class="message-text">Hey there! 👋 Welcome to Cobalt Shield. How can I help you today?</div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero__background"></div>
+    <div class="container">
+      <div class="hero__content">
+        <div class="hero-badge">
+          <span class="badge-icon">✨</span>
+          <span>Protecting Youth. Powering Africa.</span>
+        </div>
+        
+        <h1 class="hero__title">
+          Digital Safety & <span class="gradient-text">Ethical Innovation</span>
+        </h1>
+        
+        <p class="hero__subtitle">
+          Empowering youth and small organizations across Africa with practical digital safety tools, 
+          ethical EV solutions, and sustainable technology practices.
+        </p>
+
+        <div class="hero__cta">
+          <button class="btn btn--primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+            Get Started
+            <span class="btn__icon">→</span>
+          </button>
+          <button class="btn btn--ghost">
+            Learn More
+            <span class="btn__icon">↓</span>
+          </button>
+        </div>
+
+        <div class="hero__stats">
+          <div class="stat">
+            <div class="stat__value">10K+</div>
+            <div class="stat__label">Youth Protected</div>
+          </div>
+          <div class="stat">
+            <div class="stat__value">50+</div>
+            <div class="stat__label">Organizations</div>
+          </div>
+          <div class="stat">
+            <div class="stat__value">15</div>
+            <div class="stat__label">Countries</div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="section mission" id="mission">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Mission</h2>
+        <p class="section-subtitle">Building a safer, more sustainable digital future</p>
+      </div>
+
+      <div class="mission-grid">
+        <div class="mission-card">
+          <div class="mission-card__icon">🔐</div>
+          <h3>Digital Safety</h3>
+          <p>Comprehensive cybersecurity education and tools designed for youth and small organizations in underserved communities.</p>
+          <a href="#" class="link-arrow">Learn more →</a>
+        </div>
+
+        <div class="mission-card">
+          <div class="mission-card__icon">⚡</div>
+          <h3>Ethical EV Solutions</h3>
+          <p>Promoting sustainable energy practices and responsible cobalt sourcing in electric vehicle manufacturing.</p>
+          <a href="#" class="link-arrow">Learn more →</a>
+        </div>
+
+        <div class="mission-card">
+          <div class="mission-card__icon">🌱</div>
+          <h3>Sustainable Innovation</h3>
+          <p>Creating practical tools and resources that drive real environmental and social impact in Africa.</p>
+          <a href="#" class="link-arrow">Learn more →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Section -->
+  <section class="section impact section--alternate" id="impact">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Impact</h2>
+        <p class="section-subtitle">Real results across Africa</p>
+      </div>
+
+      <div class="impact-grid">
+        <div class="impact-item">
+          <div class="impact-number">68%</div>
+          <p>Increase in digital safety awareness among youth</p>
+        </div>
+        <div class="impact-item">
+          <div class="impact-number">42</div>
+          <p>Security incidents prevented through education</p>
+        </div>
+        <div class="impact-item">
+          <div class="impact-number">5.2K</div>
+          <p>Organizations supported with tools & training</p>
+        </div>
+        <div class="impact-item">
+          <div class="impact-number">99%</div>
+          <p>Program satisfaction rate</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Initiatives Section -->
+  <section class="section initiatives" id="initiatives">
+    <div class="container">
+      <div class="section-header">
+        <h2>Key Initiatives</h2>
+        <p class="section-subtitle">Our core programs making a difference</p>
+      </div>
+
+      <div class="initiatives-grid">
+        <div class="initiative-card">
+          <div class="initiative-card__header">
+            <span class="initiative-badge">Digital Safety</span>
+          </div>
+          <div class="initiative-card__content">
+            <h3>CyberGuard Academy</h3>
+            <p>Free cybersecurity training for youth aged 13-25, covering password management, phishing detection, and secure digital practices.</p>
+            <ul class="initiative-list">
+              <li>Online & in-person workshops</li>
+              <li>Certification programs</li>
+              <li>Mentorship opportunities</li>
+            </ul>
+          </div>
+          <div class="initiative-card__footer">
+            <a href="#" class="btn btn--small">Learn More →</a>
+          </div>
+        </div>
+
+        <div class="initiative-card">
+          <div class="initiative-card__header">
+            <span class="initiative-badge">Sustainable Energy</span>
+          </div>
+          <div class="initiative-card__content">
+            <h3>EthicalEV Initiative</h3>
+            <p>Advocating for responsible cobalt sourcing and ethical manufacturing practices in the EV industry.</p>
+            <ul class="initiative-list">
+              <li>Supply chain transparency</li>
+              <li>Industry partnerships</li>
+              <li>Policy advocacy</li>
+            </ul>
+          </div>
+          <div class="initiative-card__footer">
+            <a href="#" class="btn btn--small">Learn More →</a>
+          </div>
+        </div>
+
+        <div class="initiative-card">
+          <div class="initiative-card__header">
+            <span class="initiative-badge">Community Support</span>
+          </div>
+          <div class="initiative-card__content">
+            <h3>SmallBiz Secure</h3>
+            <p>Tailored digital security solutions and training for small businesses and social enterprises across Africa.</p>
+            <ul class="initiative-list">
+              <li>Customized security audits</li>
+              <li>Staff training programs</li>
+              <li>Ongoing support</li>
+            </ul>
+          </div>
+          <div class="initiative-card__footer">
+            <a href="#" class="btn btn--small">Learn More →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get Involved Section -->
+  <section class="section get-involved section--brand" id="get-involved">
+    <div class="container">
+      <div class="section-header section-header--light">
+        <h2>Get Involved</h2>
+        <p class="section-subtitle">Be part of the movement</p>
+      </div>
+
+      <div class="involvement-grid">
+        <div class="involvement-card">
+          <div class="involvement-icon">🎓</div>
+          <h3>Join a Program</h3>
+          <p>Enroll in one of our free digital safety or sustainability programs and start your learning journey today.</p>
+          <a href="#contact" class="btn btn--secondary btn--small">Enroll Now</a>
+        </div>
+
+        <div class="involvement-card">
+          <div class="involvement-icon">🤝</div>
+          <h3>Partner With Us</h3>
+          <p>Organizations can partner with us to bring digital safety training and resources to their communities.</p>
+          <a href="#contact" class="btn btn--secondary btn--small">Partner</a>
+        </div>
+
+        <div class="involvement-card">
+          <div class="involvement-icon">💪</div>
+          <h3>Volunteer</h3>
+          <p>Contribute your expertise as a mentor, trainer, or advocate for our initiatives.</p>
+          <a href="#contact" class="btn btn--secondary btn--small">Volunteer</a>
+        </div>
+
+        <div class="involvement-card">
+          <div class="involvement-icon">❤️</div>
+          <h3>Support Our Work</h3>
+          <p>Donate to help us expand our reach and impact across Africa.</p>
+          <a href="#contact" class="btn btn--secondary btn--small">Donate</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <h2>Get in Touch</h2>
+        <p class="section-subtitle">We'd love to hear from you</p>
+      </div>
+
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h3>Contact Information</h3>
+          
+          <div class="contact-item">
+            <span class="contact-icon">📧</span>
+            <div>
+              <p class="contact-label">Email</p>
+              <a href="mailto:delphin@cobalt-shield.com" class="contact-value">delphin@cobalt-shield.com</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <span class="contact-icon">📱</span>
+            <div>
+              <p class="contact-label">Phone</p>
+              <a href="tel:+306986761215" class="contact-value">+306986761215</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <span class="contact-icon">📍</span>
+            <div>
+              <p class="contact-label">Location</p>
+              <p class="contact-value">Remote </p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <span class="contact-icon">🌐</span>
+            <div>
+              <p class="contact-label">Social</p>
+              <div class="social-links">
+                <a href="#" aria-label="Twitter">Twitter</a>
+                <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                <a href="#" aria-label="Instagram">Instagram</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required aria-required="true" />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required aria-required="true" />
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject" required aria-required="true">
+              <option value="">Select a subject...</option>
+              <option value="program">Join a Program</option>
+              <option value="partnership">Partnership Inquiry</option>
+              <option value="volunteer">Volunteer</option>
+              <option value="donation">Support Us</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required aria-required="true"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--full">
+            Send Message
+            <span class="btn__icon">→</span>
+          </button>
+
+          <p class="form-notice">We'll get back to you within 24 hours.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chatbot Widget -->
+  <div class="chat-widget" id="chatWidget">
+    <button class="chat-bubble" id="chatBubble" aria-label="Open chat support" aria-expanded="false">
+      <span class="chat-icon">💬</span>
+    </button>
+
+    <div class="chat-container hidden" id="chatContainer" role="dialog" aria-label="Chat support">
+      <div class="chat-header">
+        <h3>
+          <span class="chat-status"></span>
+          Support
+        </h3>
+        <button class="chat-close" id="chatClose" aria-label="Close chat">×</button>
+      </div>
+
+      <div class="chat-messages" id="chatMessages" role="log">
+        <div class="message bot">
+          <div class="message-avatar">💬</div>
+          <div class="message-content">
+            <div class="message-text">Hi! 👋 How can we help you today?</div>
+          </div>
+        </div>
+      </div>
+
       <div class="chat-input">
-        <input type="text" id="chatInput" placeholder="Type a message..." />
+        <input 
+          type="text" 
+          id="chatInput" 
+          placeholder="Type your message..." 
+          aria-label="Chat input"
+        />
         <button class="chat-send" id="chatSend" aria-label="Send message">→</button>
       </div>
     </div>
   </div>
 
-  <script>
-    // Chatbot Widget Logic
-    const chatBubble = document.getElementById('chatBubble');
-    const chatContainer = document.getElementById('chatContainer');
-    const chatClose = document.getElementById('chatClose');
-    const chatInput = document.getElementById('chatInput');
-    const chatSend = document.getElementById('chatSend');
-    const chatMessages = document.getElementById('chatMessages');
-
-    let isOpen = false;
-
-    // Sample responses for demo
-    const botResponses = [
-      "That's a great question! Let me help you with that.",
-      "I'd be happy to assist! Can you tell me more?",
-      "Thanks for reaching out! How else can I help?",
-      "Absolutely! Is there anything specific you'd like to know?",
-      "Got it! Feel free to ask anything about Cobalt Shield.",
-    ];
-
-    function toggleChat() {
-      isOpen = !isOpen;
-      if (isOpen) {
-        chatContainer.classList.remove('hidden');
-        chatBubble.classList.add('chat-bubble--active');
-        chatInput.focus();
-      } else {
-        chatContainer.classList.add('hidden');
-        chatBubble.classList.remove('chat-bubble--active');
-      }
-    }
-
-    function sendMessage() {
-      const message = chatInput.value.trim();
-      if (!message) return;
-
-      // Add user message
-      const userMsg = document.createElement('div');
-      userMsg.className = 'message user';
-      userMsg.innerHTML = `
-        <div class="message-content">
-          <div class="message-text">${message}</div>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3 class="footer-title">Cobalt Shield</h3>
+          <p>Protecting youth and empowering organizations across Africa with digital safety and sustainable innovation.</p>
         </div>
-        <div class="message-avatar">👤</div>
-      `;
-      chatMessages.appendChild(userMsg);
-      chatInput.value = '';
 
-      // Simulate bot response
-      setTimeout(() => {
-        const botMsg = document.createElement('div');
-        botMsg.className = 'message bot';
-        const randomResponse = botResponses[Math.floor(Math.random() * botResponses.length)];
-        botMsg.innerHTML = `
-          <div class="message-avatar">🤖</div>
-          <div class="message-content">
-            <div class="message-text">${randomResponse}</div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#mission">Mission</a></li>
+            <li><a href="#impact">Impact</a></li>
+            <li><a href="#initiatives">Initiatives</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Follow Us</h4>
+          <div class="footer-social">
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="GitHub">⚙️</a>
           </div>
-        `;
-        chatMessages.appendChild(botMsg);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-      }, 500);
+        </div>
+      </div>
 
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
+      <div class="footer-bottom">
+        <p>&copy; 2024 Cobalt Shield Initiative. All rights reserved.</p>
+        <p>Made with ❤️ in Africa</p>
+      </div>
+    </div>
+  </footer>
 
-    // Event listeners
-    chatBubble.addEventListener('click', toggleChat);
-    chatClose.addEventListener('click', toggleChat);
-    chatSend.addEventListener('click', sendMessage);
-    chatInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') sendMessage();
-    });
-
-    // Auto-open chat after 2 seconds
-    setTimeout(() => {
-      if (!isOpen) {
-        toggleChat();
-      }
-    }, 2000);
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
